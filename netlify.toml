@@ -1,0 +1,33 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/alkyarchetype"
+  to = "/book"
+  status = 301
+
+[[redirects]]
+  from = "/cody-peterson-bio"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/blurbs"
+  to = "/book"
+  status = 301
+
+[[redirects]]
+  from = "/blog"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/logio-psyches-quiz"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/cart"
+  to = "/"
+  status = 301
