@@ -31,3 +31,8 @@
   from = "/cart"
   to = "/"
   status = 301
+
+[[redirects]]
+  from = "/videos/*"
+  to = "/videos"
+  status = 301
