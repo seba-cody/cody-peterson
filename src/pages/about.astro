@@ -1,7 +1,18 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    '@id': 'https://cody-peterson.com/#person',
+    name: 'Cody Peterson',
+    description: 'Published author, depth psychology scholar, and founder of Seba Health.',
+  },
+};
 ---
-<Base title="About" description="The story of Cody Peterson — from homelessness and addiction to published author and founder of Seba Health.">
+<Base title="About" description="The story of Cody Peterson — from homelessness and addiction to published author and founder of Seba Health." jsonLd={jsonLd}>
   <article>
     <h1>About</h1>
 

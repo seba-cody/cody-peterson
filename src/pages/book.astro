@@ -1,7 +1,25 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Book',
+  '@id': 'https://cody-peterson.com/book/#book',
+  name: 'The Shadow of a Figure of Light: The Archetype of the Alcoholic and the Journey to Enlightenment',
+  author: { '@id': 'https://cody-peterson.com/#person' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Chiron Publications',
+    url: 'https://www.chironpublications.com/',
+  },
+  datePublished: '2024',
+  workExample: [
+    { '@type': 'Book', isbn: '9781685035174', bookFormat: 'https://schema.org/Paperback' },
+    { '@type': 'Book', isbn: '9781685035181', bookFormat: 'https://schema.org/Hardcover' },
+  ],
+};
 ---
-<Base title="The Shadow of a Figure of Light" description="The Archetype of the Alcoholic and the Journey to Enlightenment. Published by Chiron Publications, 2024. By Cody Peterson.">
+<Base title="The Shadow of a Figure of Light" description="The Archetype of the Alcoholic and the Journey to Enlightenment. Published by Chiron Publications, 2024. By Cody Peterson." jsonLd={jsonLd}>
   <article>
     <h1>The Shadow of a Figure of Light</h1>
     <p style="font-size: 1.125rem; color: var(--color-text-muted); margin-bottom: 0.5rem;">The Archetype of the Alcoholic and the Journey to Enlightenment</p>

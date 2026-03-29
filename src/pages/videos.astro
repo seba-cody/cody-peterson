@@ -1,7 +1,104 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const videos = [
+  {
+    title: 'Dreamwork 1: Alchemical Symbolism and Modern Dreams',
+    description: "Cody introduces dream interpretation from the lens of Carl Jung's contributions to alchemy. Examines different ways to interpret dreams, with audience Q&A.",
+    youtube_id: 'EzDFZsEOMVQ',
+    uploadDate: '2025-04-02',
+  },
+  {
+    title: 'Dreamwork 2: The Divine Feminine',
+    description: 'Cody dives deeper into the anima, examining the Gnostic figure of Sophia, the divine feminine trapped in matter, and her relationship to the modern masculine psyche.',
+    youtube_id: 'TvrcDw0CB8I',
+    uploadDate: '2025-04-09',
+  },
+  {
+    title: 'Dreamwork 3: Mercurius',
+    description: 'Cody introduces the alchemical concept of Mercurius, a duplex character equated with the Trickster and the Alcoholic, and examines the relationship between Mercurius and the anima.',
+    youtube_id: 'tqZl1kvvZSM',
+    uploadDate: '2025-04-17',
+  },
+  {
+    title: 'Dreamwork 4: The Philosopher\'s Stone',
+    description: 'Cody takes us through the alchemical concept of the philosopher\'s stone, squaring the circle, the four functions, and mythological context for the coniunctio.',
+    youtube_id: 'P9D_28CEAqs',
+    uploadDate: '2025-04-23',
+  },
+  {
+    title: 'The Mystery of the Coniunctio: Unpacking Jung\'s Helpful Formula',
+    description: 'A deep dive into the psychology behind Jung\'s statement Spiritus Contra Spiritum, exploring the coniunctio oppositorum through the lens of the archetype of the Alcoholic.',
+    youtube_id: 'E_BuFNpGE_A',
+    uploadDate: '2025-02-16',
+  },
+  {
+    title: 'The Archetype of the Alcoholic (Part One)',
+    description: 'Cody introduces his conception of the Archetype of the Alcoholic, comparing it to the ancient energy known as the Trickster/Shaman.',
+    youtube_id: 'GxhOhJ056WQ',
+    uploadDate: '2025-02-03',
+  },
+  {
+    title: 'Chapter Seventeen: Doorways to the Self',
+    description: 'A chapter-by-chapter discussion exploring how the Twelve Steps function as doorways to what Jung called the Self.',
+    youtube_id: '2S3wafhxo0Y',
+    uploadDate: '2025-03-19',
+  },
+  {
+    title: 'Introduction: A Case for Coming Down',
+    description: 'Cody introduces the concept of emotional sobriety and makes the case for descent — why recovery requires more than spiritual ascent.',
+    youtube_id: 'sDYXCBCN3KQ',
+    uploadDate: '2025-06-22',
+  },
+  {
+    title: 'Monotheism, Misogyny, and Eusebia',
+    description: 'How Western culture\'s monotheistic bias has shaped recovery programs. Drawing on Corbin, Hillman, and Welwood, Cody traces how serenity became an idol and turns to the Greek notion of eusebia.',
+    youtube_id: 'kDZG3sBqap4',
+    uploadDate: '2025-08-31',
+  },
+  {
+    title: 'C.G. Jung & Recovery: From Trickster to Shaman (Part 1)',
+    description: 'The first of a collaborative workshop series exploring the intersection of Jungian thought and the history of recovery.',
+    youtube_id: 'h1gzmto1ZLQ',
+    uploadDate: '2024-10-20',
+  },
+  {
+    title: 'The Birth of AA: Jung to Bill W. (Part 2)',
+    description: 'Tracing the historical and psychological lineage from Jung\'s encounter with Rowland Hazard to the founding of Alcoholics Anonymous.',
+    youtube_id: 'jBZ9FhyrgNY',
+    uploadDate: '2024-11-01',
+  },
+  {
+    title: 'The Transformative Power of Storytelling in Recovery (with Bill Schaberg)',
+    description: 'A conversation with Bill Schaberg on the role of narrative and storytelling in the recovery process.',
+    youtube_id: 'g5lVdXRL-Yc',
+    uploadDate: '2024-12-29',
+  },
+  {
+    title: 'Carl Jung, Bill Wilson & AA\'s Spiritual Roots',
+    description: 'Introduction by Cody Peterson for Ian McCabe\'s presentation on the spiritual foundations of AA.',
+    youtube_id: 'ifWIU05f7UY',
+    uploadDate: '2025-02-01',
+  },
+  {
+    title: 'Big Book History #23: Storytelling in Recovery (with Bill Schaberg)',
+    description: 'An interview with Bill Schaberg exploring the narrative traditions embedded in the Big Book.',
+    youtube_id: 'hEXrBZ3qxOk',
+    uploadDate: '2025-01-14',
+  },
+];
+
+const jsonLd = videos.map(v => ({
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: v.title,
+  description: v.description,
+  embedUrl: `https://www.youtube.com/embed/${v.youtube_id}`,
+  thumbnailUrl: `https://img.youtube.com/vi/${v.youtube_id}/maxresdefault.jpg`,
+  uploadDate: v.uploadDate,
+}));
 ---
-<Base title="Videos" description="Seminar presentations, lectures, and workshops on depth psychology, addiction recovery, and the archetype of the Alcoholic by Cody Peterson.">
+<Base title="Videos" description="Seminar presentations, lectures, and workshops on depth psychology, addiction recovery, and the archetype of the Alcoholic by Cody Peterson." jsonLd={jsonLd}>
   <article>
     <h1>Videos</h1>
     <p>Seminars, lectures, and workshops on depth psychology, the archetype of the Alcoholic, and Jungian approaches to recovery.</p>

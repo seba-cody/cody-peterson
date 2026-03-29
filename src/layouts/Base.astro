@@ -6,11 +6,65 @@ interface Props {
   description?: string;
   seoTitle?: string;
   noSuffix?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description = '', seoTitle, noSuffix = false } = Astro.props;
+const { title, description = '', seoTitle, noSuffix = false, jsonLd } = Astro.props;
 const pageTitle = seoTitle || (noSuffix ? title : `${title} | Cody Peterson`);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const globalSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': 'https://cody-peterson.com/#person',
+      name: 'Cody Peterson',
+      url: 'https://cody-peterson.com/',
+      jobTitle: 'Depth Psychology Scholar',
+      description: 'Published author (Chiron Publications), depth psychology scholar, Jung Journal contributor, and founder of Seba Health.',
+      sameAs: [
+        'https://seba.health/',
+        'https://www.chironpublications.com/product-category/authors/peterson-cody/',
+        'https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105',
+        'https://www.researchgate.net/profile/Cody-Peterson-6/research',
+        'https://scholar.google.com/citations?user=a8xhFSgAAAAJ',
+        'https://orcid.org/0009-0009-2028-0154',
+        'https://www.youtube.com/@cody-peterson-author',
+        'https://x.com/AlkyArchetype',
+        'https://www.linkedin.com/in/cody-peterson-487224229/',
+        'https://books.google.com/books/about/The_Shadow_of_a_Figure_of_Light.html?id=sacxEQAAQBAJ',
+      ],
+      alumniOf: {
+        '@type': 'CollegeOrUniversity',
+        name: 'University of Utah',
+        sameAs: 'https://en.wikipedia.org/wiki/University_of_Utah',
+      },
+      hasCredential: [{
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'Degree',
+        educationalLevel: 'Bachelor of Arts in Psychology',
+        recognizedBy: {
+          '@type': 'CollegeOrUniversity',
+          name: 'University of Utah',
+          sameAs: 'https://en.wikipedia.org/wiki/University_of_Utah',
+        },
+      }],
+      knowsAbout: [
+        'Depth psychology', 'Analytical psychology', 'Addiction recovery',
+        'Twelve-step programs', 'Jungian psychotherapy', 'Emotional sobriety',
+        'Archetypal psychology',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://cody-peterson.com/#website',
+      url: 'https://cody-peterson.com/',
+      name: 'Cody Peterson',
+      publisher: { '@id': 'https://cody-peterson.com/#person' },
+    },
+  ],
+};
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -31,111 +85,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <meta property="og:url" content={canonicalURL} />
   <meta name="twitter:card" content="summary" />
 
-  <!-- JSON-LD: Full Person @graph -->
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "@id": "https://cody-peterson.com/#person",
-        "name": "Cody Peterson",
-        "url": "https://cody-peterson.com/",
-        "jobTitle": "Author, Depth Psychology Scholar, and Founder of Seba Health",
-        "description": "Published author (Chiron Publications), depth psychology scholar, Jung Journal contributor, and founder of Seba Health.",
-        "sameAs": [
-          "https://seba.health/",
-          "https://www.chironpublications.com/product-category/authors/peterson-cody/",
-          "https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105",
-          "https://www.researchgate.net/profile/Cody-Peterson-6/research",
-          "https://scholar.google.com/citations?user=a8xhFSgAAAAJ",
-          "https://orcid.org/0009-0009-2028-0154",
-          "https://www.youtube.com/@cody-peterson-author",
-          "https://x.com/AlkyArchetype",
-          "https://www.linkedin.com/in/cody-peterson-487224229/",
-          "https://books.google.com/books/about/The_Shadow_of_a_Figure_of_Light.html?id=sacxEQAAQBAJ"
-        ],
-        "owns": { "@id": "https://seba.health/#organization" },
-        "affiliation": { "@id": "https://seba.health/#organization" },
-        "alumniOf": {
-          "@type": "CollegeOrUniversity",
-          "name": "University of Utah",
-          "sameAs": "https://en.wikipedia.org/wiki/University_of_Utah"
-        },
-        "hasCredential": [{
-          "@type": "EducationalOccupationalCredential",
-          "credentialCategory": "Degree",
-          "educationalLevel": "Bachelor of Arts in Psychology",
-          "recognizedBy": {
-            "@type": "CollegeOrUniversity",
-            "name": "University of Utah",
-            "sameAs": "https://en.wikipedia.org/wiki/University_of_Utah"
-          }
-        }],
-        "knowsAbout": [
-          "Depth psychology", "Analytical psychology", "Addiction recovery",
-          "Twelve-step programs", "Jungian psychotherapy", "Emotional sobriety",
-          "Archetypal psychology"
-        ]
-      },
-      {
-        "@type": "Organization",
-        "@id": "https://seba.health/#organization",
-        "name": "Seba Health",
-        "url": "https://seba.health/",
-        "founder": { "@id": "https://cody-peterson.com/#person" }
-      },
-      {
-        "@type": "Book",
-        "@id": "https://cody-peterson.com/#book-shadow-figure-light",
-        "name": "The Shadow of a Figure of Light: The Archetype of the Alcoholic and the Journey to Enlightenment",
-        "author": { "@id": "https://cody-peterson.com/#person" },
-        "isbn": "9781685035174",
-        "publisher": {
-          "@type": "Organization",
-          "name": "Chiron Publications",
-          "url": "https://www.chironpublications.com/"
-        },
-        "datePublished": "2024"
-      },
-      {
-        "@type": "ScholarlyArticle",
-        "@id": "https://cody-peterson.com/#article-taming-wild-beasts",
-        "headline": "Taming Wild Beasts",
-        "author": { "@id": "https://cody-peterson.com/#person" },
-        "datePublished": "2025-06-13",
-        "pageStart": "235",
-        "pageEnd": "239",
-        "isPartOf": {
-          "@type": "PublicationIssue",
-          "issueNumber": "2",
-          "isPartOf": {
-            "@type": "PublicationVolume",
-            "volumeNumber": "19",
-            "isPartOf": {
-              "@type": "Periodical",
-              "name": "Jung Journal: Culture & Psyche",
-              "publisher": {
-                "@type": "Organization",
-                "name": "C.G. Jung Institute of San Francisco"
-              },
-              "issn": "1934-2039"
-            }
-          }
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Taylor & Francis"
-        }
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://cody-peterson.com/#website",
-        "url": "https://cody-peterson.com/",
-        "name": "Cody Peterson",
-        "publisher": { "@id": "https://cody-peterson.com/#person" }
-      }
-    ]
-  })} />
+  <!-- JSON-LD: Global Person + WebSite -->
+  <script type="application/ld+json" set:html={JSON.stringify(globalSchema)} />
+  {jsonLd && (
+    Array.isArray(jsonLd)
+      ? jsonLd.map(item => <script type="application/ld+json" set:html={JSON.stringify(item)} />)
+      : <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  )}
   <script defer src="https://analytics.seba.health/script.js" data-website-id="01f8f274-971e-431d-a34e-75a84e61dd01"></script>
 </head>
 <body>
