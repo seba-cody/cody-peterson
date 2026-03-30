@@ -221,19 +221,17 @@ img {
 }
 
 .hero-photo {
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
+  width: 240px;
+  height: auto;
+  border-radius: 6px;
   object-fit: cover;
   object-position: center top;
-  border: 4px solid rgba(255,255,255,0.15);
   flex-shrink: 0;
 }
 
 @media (min-width: 768px) {
   .hero-photo {
-    width: 280px;
-    height: 280px;
+    width: 300px;
   }
 }
 
