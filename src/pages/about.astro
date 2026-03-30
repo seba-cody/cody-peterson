@@ -4,48 +4,65 @@ import Base from '../layouts/Base.astro';
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ProfilePage',
-  mainEntity: {
-    '@type': 'Person',
-    '@id': 'https://cody-peterson.com/#person',
-    name: 'Cody Peterson',
-    description: 'Published author, depth psychology scholar, and founder of Seba.Health.',
-  },
+  mainEntity: { '@id': 'https://www.cody-peterson.com/#person' },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.cody-peterson.com/' },
+    { '@type': 'ListItem', position: 2, name: 'About', item: 'https://www.cody-peterson.com/about/' },
+  ],
 };
 ---
-<Base title="About" description="The story of Cody Peterson — from homelessness and addiction to published author and founder of Seba.Health." jsonLd={jsonLd}>
-  <article>
-    <h1>About</h1>
+<Base title="About" description="The story of Cody Peterson — from homelessness and addiction to published author and founder of Seba.Health." jsonLd={[jsonLd, breadcrumb]}>
 
-    <p>I grew up in an alcoholic home in St. George, Utah. Nobody talked about God. Nobody practiced anything. We had these really basic conversations about whether anyone believed in anything, and it wasn't clear that they did. I started drinking when I was fourteen and became an alcoholic essentially overnight. I was using drugs every day shortly after that, and by the time I was seventeen I'd dropped out of high school, been arrested, spent time in juvie, and my mom had kicked me out of the house.</p>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <h1>About</h1>
+    </div>
+  </div>
 
-    <p>A friend of mine had become a Mormon. We used to drink and party together, but he was getting ready for a mission, and when I showed up at rock bottom he was happy to take me in. I moved into his house. Over the next eight months, something started to shift. I was preparing for a mission of my own, and I was reading the Book of Mormon — Moroni, chapter 10, verses 3 through 5: <em>"If ye shall ask with a sincere heart, with real intent, having faith in Christ, he will manifest the truth of it unto you, by the power of the Holy Ghost."</em> So I said that prayer. And as I sat there, something happened that I can only describe as nearly identical to Bill Wilson's White Light experience. This kernel of joy was planted in my heart, and it started to sprout. Slowly, this overwhelming feeling of peace and love spread through my body and filled the entire room. I just sat there and basked in it.</p>
+  <section class="section">
+    <div class="container">
+      <div class="about-hero">
+        <img src="/images/cody-peterson-bw.jpg" alt="Cody Peterson" class="about-photo" width="200" height="260" />
+        <div>
+          <p style="font-size: 1.125rem; line-height: 1.7;">I grew up in an alcoholic home in St. George, Utah. Nobody talked about God. Nobody practiced anything. We had these really basic conversations about whether anyone believed in anything, and it wasn't clear that they did. I started drinking when I was fourteen and became an alcoholic essentially overnight. I was using drugs every day shortly after that, and by the time I was seventeen I'd dropped out of high school, been arrested, spent time in juvie, and my mom had kicked me out of the house.</p>
+        </div>
+      </div>
 
-    <p>That was the beginning of what I call my spiritual adventure.</p>
+      <p>A friend of mine had become a Mormon. We used to drink and party together, but he was getting ready for a mission, and when I showed up at rock bottom he was happy to take me in. I moved into his house. Over the next eight months, something started to shift. I was preparing for a mission of my own, and I was reading the Book of Mormon — Moroni, chapter 10, verses 3 through 5: <em>"If ye shall ask with a sincere heart, with real intent, having faith in Christ, he will manifest the truth of it unto you, by the power of the Holy Ghost."</em> So I said that prayer. And as I sat there, something happened that I can only describe as nearly identical to Bill Wilson's White Light experience. This kernel of joy was planted in my heart, and it started to sprout. Slowly, this overwhelming feeling of peace and love spread through my body and filled the entire room. I just sat there and basked in it.</p>
 
-    <p>But alcoholism would have its way with me. After my mission to Argentina, I relapsed. I got married, had two kids, got divorced. I wound up in jail in 2005 — six months — and that's where I was introduced to AA and the 12 steps. I managed about eighteen months of sobriety, then relapsed again. I went in and out of the rooms for years, and somewhere in there I ended up homeless in Las Vegas. I had a car for most of it. I could crash at my girlfriend's place sometimes. But I spent a lot of time in trap houses, and by the end I was on the streets.</p>
+      <p>That was the beginning of what I call my spiritual adventure.</p>
 
-    <p>The last night I was drinking, it was cold and it was dark. I was at the Hard Rock casino — the one that used to be on Harmon and Flamingo, before they moved it to the Strip. I'd gone over there with these delusions of grandeur, thinking maybe I could hook up with some girls, maybe score some heroin. I was homeless. I had no money. I'd been awake for days on methamphetamines, and I kept falling asleep in different spots inside the casino until a security guard finally ushered me out. I sat down on the curb.</p>
+      <p>But alcoholism would have its way with me. After my mission to Argentina, I relapsed. I got married, had two kids, got divorced. I wound up in jail in 2005 — six months — and that's where I was introduced to AA and the 12 steps. I managed about eighteen months of sobriety, then relapsed again. I went in and out of the rooms for years, and somewhere in there I ended up homeless in Las Vegas. I had a car for most of it. I could crash at my girlfriend's place sometimes. But I spent a lot of time in trap houses, and by the end I was on the streets.</p>
 
-    <p>And then a limo pulled up.</p>
+      <p>The last night I was drinking, it was cold and it was dark. I was at the Hard Rock casino — the one that used to be on Harmon and Flamingo, before they moved it to the Strip. I'd gone over there with these delusions of grandeur, thinking maybe I could hook up with some girls, maybe score some heroin. I was homeless. I had no money. I'd been awake for days on methamphetamines, and I kept falling asleep in different spots inside the casino until a security guard finally ushered me out. I sat down on the curb.</p>
 
-    <p>All these beautiful young people got out — dressed to the nines, drinking champagne, walking into the club. They walked right past me. I was sitting there on the curb, and I noticed something: they didn't look at me. When I looked around, nobody else was looking at me either. And it hit me — they weren't looking at me because they were afraid I was going to ask them for something. I realized that there's a group of people I don't like to look at either, and it's for the same reason. It's not that I don't love them or care about them. It's that I don't want to have to tell them no.</p>
+      <p>And then a limo pulled up.</p>
 
-    <p>I was thirty-four years old. Deadbeat dad. Unemployable. No driver's license. Warrants in four states. And sitting on that curb, I had this moment of clarity: <em>My problem is that I think I know everything. I thought I knew how spirituality was supposed to work because I'd had that white light experience. I thought I knew how AA was supposed to work because I'd strung together eighteen months one time. I'd been living my whole life pretending to know how it was supposed to go, and I couldn't keep any of it together. I hadn't seen my kids in a year.</em></p>
+      <p>All these beautiful young people got out — dressed to the nines, drinking champagne, walking into the club. They walked right past me. I was sitting there on the curb, and I noticed something: they didn't look at me. When I looked around, nobody else was looking at me either. And it hit me — they weren't looking at me because they were afraid I was going to ask them for something. I realized that there's a group of people I don't like to look at either, and it's for the same reason. It's not that I don't love them or care about them. It's that I don't want to have to tell them no.</p>
 
-    <p>I got sober on March 4, 2013. I haven't had a drink or a drug since.</p>
+      <p>I was thirty-four years old. Deadbeat dad. Unemployable. No driver's license. Warrants in four states. And sitting on that curb, I had this moment of clarity: <em>My problem is that I think I know everything. I thought I knew how spirituality was supposed to work because I'd had that white light experience. I thought I knew how AA was supposed to work because I'd strung together eighteen months one time. I'd been living my whole life pretending to know how it was supposed to go, and I couldn't keep any of it together. I hadn't seen my kids in a year.</em></p>
 
-    <p>Five or six years into sobriety, I returned to my love of books. I picked up Joseph Campbell again and loved it, because I could finally understand it. I got deep into Eastern meditation. I spent years rock climbing and trail running — my wife and I lived near Zion National Park for five years, and that's where something started to stir. Campbell always talks about Jung, and I thought, <em>Well, I should give Jung a whirl.</em> The first book I picked up was <em>Symbols of Transformation.</em> I chose it because I liked the name. I quickly read six or seven more — <em>Psychology and Alchemy,</em> <em>Aion,</em> <em>Archetypes and the Collective Unconscious,</em> Volume 11. At a certain point I remember thinking, <em>This stuff is so good. It's so similar to what I've experienced in getting sober.</em> Jung just got it. I felt this deep, immediate connection to his work.</p>
+      <p><strong>I got sober on March 4, 2013. I haven't had a drink or a drug since.</strong></p>
 
-    <p>And then one morning I woke up and thought: <em>I have to start writing.</em> I didn't know what about. But I started, and what emerged was a book called <em>The Shadow of a Figure of Light: The Archetype of the Alcoholic and the Journey to Enlightenment,</em> published by Chiron Publications. I'm really proud of it. The first four chapters lay out the history of how Carl Jung's own experience led to the formulation of Alcoholics Anonymous, and I put together pieces of that puzzle that nobody had assembled before.</p>
+      <p>Five or six years into sobriety, I returned to my love of books. I picked up Joseph Campbell again and loved it, because I could finally understand it. I got deep into Eastern meditation. I spent years rock climbing and trail running — my wife and I lived near Zion National Park for five years, and that's where something started to stir. Campbell always talks about Jung, and I thought, <em>Well, I should give Jung a whirl.</em> The first book I picked up was <em>Symbols of Transformation.</em> I chose it because I liked the name. I quickly read six or seven more — <em>Psychology and Alchemy,</em> <em>Aion,</em> <em>Archetypes and the Collective Unconscious,</em> Volume 11. At a certain point I remember thinking, <em>This stuff is so good. It's so similar to what I've experienced in getting sober.</em> Jung just got it. I felt this deep, immediate connection to his work.</p>
 
-    <p>What I mean by the "archetype of the Alcoholic" is something Bill Wilson said on page 62 of the Big Book: <em>"The alcoholic is an extreme example of self-will run riot, though he usually doesn't think so."</em> That's the essence of it. The alcoholic is a person driven by something deep inside — a thirst for spirituality, a thirst for wholeness. Alcohol recreates that feeling of wholeness, temporarily. But the reason this is an archetype and not just a diagnosis is that all of us experience it. Everybody's driven by something. What's doing the driving lives deep down inside, and in Jungian terms, it's the Self — pushing us toward wholeness whether we cooperate or not.</p>
+      <p>And then one morning I woke up and thought: <em>I have to start writing.</em> I didn't know what about. But I started, and what emerged was a book called <em>The Shadow of a Figure of Light: The Archetype of the Alcoholic and the Journey to Enlightenment,</em> published by Chiron Publications. I'm really proud of it. The first four chapters lay out the history of how Carl Jung's own experience led to the formulation of Alcoholics Anonymous, and I put together pieces of that puzzle that nobody had assembled before.</p>
 
-    <p>Since that first book, I've published another paper, "Taming Wild Beasts." I've taught at the Jung Institute in Zürich. I've presented on international stages. I've gone back to school for my undergraduate degree in psychology, and I'm applying for a master's program at Adams State University in Colorado so I can become a licensed clinician.</p>
+      <p>What I mean by the "archetype of the Alcoholic" is something Bill Wilson said on page 62 of the Big Book: <em>"The alcoholic is an extreme example of self-will run riot, though he usually doesn't think so."</em> That's the essence of it. The alcoholic is a person driven by something deep inside — a thirst for spirituality, a thirst for wholeness. Alcohol recreates that feeling of wholeness, temporarily. But the reason this is an archetype and not just a diagnosis is that all of us experience it. Everybody's driven by something. What's doing the driving lives deep down inside, and in Jungian terms, it's the Self — pushing us toward wholeness whether we cooperate or not.</p>
 
-    <p>And now I'm building Seba.Health.</p>
+      <p>Since that first book, I've published in <em>Jung Journal: Culture & Psyche</em>. I've taught at the Jung Institute in Zurich. I've presented on international stages. I've gone back to school for my undergraduate degree in psychology, and I'm applying for a master's program at Adams State University in Colorado so I can become a licensed clinician.</p>
 
-    <p>Seba.Health is a depth-oriented approach to addiction treatment built around three phases: spirit, soul, and thumos. The first phase addresses the archetype of the alcoholic — the mystery of compulsion, the thirst for wholeness that drives every addict. The second phase confronts what inevitably happens in recovery: spiritual bypass. You cannot practice spirituality without eventually bypassing. That's actually what spirituality does — it lifts you above the pain. But there comes a moment when something you've been avoiding catches up with you, and that's the third phase: the return to feeling, the second reawakening, what I call the thumos. It's where the real work begins.</p>
+      <p>And now I'm building <a href="https://www.seba.health">Seba.Health</a>.</p>
 
-    <p>That night on the curb in front of the Hard Rock, nobody looked at me. Now I'm building something for the people nobody looks at.</p>
-  </article>
+      <p>Seba.Health is a depth-oriented approach to addiction treatment built around three phases: spirit, soul, and thumos. The first phase addresses the archetype of the alcoholic — the mystery of compulsion, the thirst for wholeness that drives every addict. The second phase confronts what inevitably happens in recovery: spiritual bypass. You cannot practice spirituality without eventually bypassing. That's actually what spirituality does — it lifts you above the pain. But there comes a moment when something you've been avoiding catches up with you, and that's the third phase: the return to feeling, the second reawakening, what I call the thumos. It's where the real work begins.</p>
+
+      <p>That night on the curb in front of the Hard Rock, nobody looked at me. Now I'm building something for the people nobody looks at.</p>
+    </div>
+  </section>
+
 </Base>

@@ -1,50 +1,81 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  '@id': 'https://www.cody-peterson.com/#profilepage',
+  mainEntity: { '@id': 'https://www.cody-peterson.com/#person' },
+  dateCreated: '2024-01-01',
+  dateModified: '2026-03-29',
+};
 ---
-<Base title="Cody Peterson" description="Published author (Chiron Publications), depth psychology scholar, Jung Journal contributor, and founder of Seba.Health.">
-  <h1>Cody Peterson</h1>
-  <p style="font-size: 1.25rem; color: var(--color-text-muted); margin-bottom: 1rem;">Published author, depth psychology scholar, and founder of Seba.Health.</p>
-  <p>Published author (Chiron Publications, 2024). Contributor to <em>Jung Journal: Culture &amp; Psyche.</em> Psychology, University of Utah.</p>
+<Base title="Cody Peterson" seoTitle="Cody Peterson | Depth Psychology Scholar, Author, Founder of Seba.Health" description="Published author (Chiron Publications), Jung Journal contributor, and founder of Seba.Health. Depth psychology, addiction recovery, and the ancient organ of feeling." jsonLd={jsonLd}>
 
-  <blockquote style="margin: 2.5rem 0;">
-    <p style="font-family: var(--font-heading); font-size: 1.125rem; font-style: normal; color: var(--color-text); margin-bottom: 0.25rem;">σέβας δέ σε θυμὸν ἱκέσθω</p>
-    <p style="font-family: var(--font-heading); font-size: 1.125rem; font-style: normal; color: var(--color-text); margin-bottom: 0.75rem;">— <em>Iliad</em> 18.178</p>
-    <p style="font-size: 0.9rem; color: var(--color-text-muted); font-style: italic; margin-bottom: 0;">"Let sebas reach your thūmos."</p>
-  </blockquote>
-
-  <h2>The Shadow of a Figure of Light</h2>
-  <p>The Archetype of the Alcoholic and the Journey to Enlightenment. Published by Chiron Publications, 2024.</p>
-  <blockquote>
-    <p>"Cody Peterson has written a book whose extension is deep, wide, and high. It rests on the solid foundations of careful scholarship and personal experience, it extends the understanding of alcoholism beyond the reductive neuro-physiological explanations, and it elevates the vision of Bill Wilson and AA using the psycho-spiritual wisdom of C.G. Jung. It's a very readable book and highly to be recommended to anyone with an interest in the practical use of analytical psychology for addiction to anything, including the ego."</p>
-    <p style="margin-bottom: 0;">— Murray Stein, Ph.D.</p>
-  </blockquote>
-  <p><a href="/book">Learn more →</a></p>
-
-  <h2 style="font-family: var(--font-heading);">Now I'm building something for the people nobody looks at.</h2>
-  <p>Seba.Health is a clinical educational platform exploring depth psychology, Jungian recovery, and the ancient organ of feeling.</p>
-  <p><a href="https://seba.health">Visit Seba.Health →</a></p>
-
-  <section style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-border);">
-    <h2 style="margin-top: 0;">Subscribe</h2>
-    <p>Sign up to receive news and updates.</p>
-    <form
-      action="https://buttondown.com/api/emails/embed-subscribe/alkyarchetype"
-      method="post"
-      style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem;"
-    >
-      <input
-        type="email"
-        name="email"
-        placeholder="your@email.com"
-        required
-        style="flex: 1; min-width: 200px; padding: 0.5rem 0.75rem; border: 1px solid var(--color-border); border-radius: 4px; font-size: 1rem; background: var(--color-surface);"
-      />
-      <button
-        type="submit"
-        style="padding: 0.5rem 1.25rem; background: var(--color-accent); color: white; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer;"
-      >
-        Subscribe
-      </button>
-    </form>
+  <section class="hero">
+    <div class="hero-inner">
+      <img src="/images/cody-peterson-bw.jpg" alt="Cody Peterson" class="hero-photo" width="280" height="280" />
+      <div class="hero-content">
+        <h1>Cody Peterson</h1>
+        <p class="hero-tagline">Scholar. Author. Trickster.<br />Building something for the people nobody looks at.</p>
+        <div class="hero-links">
+          <a href="/book" class="btn btn-primary">The Book</a>
+          <a href="https://www.seba.health" class="btn btn-outline">Seba.Health</a>
+        </div>
+        <div class="hero-epigraph">
+          <span class="greek">σέβας δέ σε θυμὸν ἱκέσθω</span><br />
+          "Let <em>sebas</em> reach your <em>thumos.</em>" — <em>Iliad</em> 18.178
+        </div>
+      </div>
+    </div>
   </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>The Shadow of a Figure of Light</h2>
+        <p>The Archetype of the Alcoholic and the Journey to Enlightenment. Chiron Publications, 2024.</p>
+      </div>
+      <div class="testimonial">
+        <blockquote>
+          <p>"Cody Peterson has written a book whose extension is deep, wide, and high. It rests on the solid foundations of careful scholarship and personal experience, it extends the understanding of alcoholism beyond the reductive neuro-physiological explanations, and it elevates the vision of Bill Wilson and AA using the psycho-spiritual wisdom of C.G. Jung."</p>
+        </blockquote>
+        <p class="attribution">— Murray Stein, Ph.D., author of <em>The Mystery of Transformation</em></p>
+      </div>
+      <a href="/book" class="btn btn-primary">Read reviews & get a copy</a>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Published in Jung Journal</h2>
+        <p>Peer-reviewed scholarship on the psychology of antiquity, emotional sobriety, and the archetype of the Alcoholic.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div class="card">
+          <h3 style="margin-bottom: 0.25rem;"><a href="https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105">Taming Wild Beasts</a></h3>
+          <p style="color: var(--color-text-muted); font-size: 0.9375rem; margin-bottom: 0.5rem;"><em>Jung Journal: Culture & Psyche,</em> Vol. 19, Issue 2 (2025)</p>
+          <p style="margin-bottom: 0;">Iron <em>thumos</em> and the interoceptive roots of emotional sobriety in Homer's <em>Odyssey.</em></p>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom: 0.25rem;">The Abolished Middle (forthcoming)</h3>
+          <p style="color: var(--color-text-muted); font-size: 0.9375rem; margin-bottom: 0.5rem;"><em>Journal of Analytical Psychology</em> (under review)</p>
+          <p style="margin-bottom: 0;">The <em>tertium non datur</em> in Homer, Jung, and the recovery of the feeling function.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Seba.Health</h2>
+        <p>A depth-oriented platform exploring the psychology of addiction, the roots of the psyche, and the ancient organ of feeling.</p>
+      </div>
+      <p>Seba.Health is the convergence of everything I've been working on: depth psychology, recovery, interoception, and the Greek concept of <em>thumos</em> — the seat of feeling that Western culture forgot. Library, glossary, essays, and a lexicon of 5,000 ancient Greek passages indexed for psychological vocabulary.</p>
+      <p><a href="https://www.seba.health" class="btn btn-primary">Visit Seba.Health</a></p>
+    </div>
+  </section>
+
 </Base>

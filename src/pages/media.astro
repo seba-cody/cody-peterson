@@ -1,45 +1,95 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Media — Cody Peterson',
+  description: 'Podcast appearances, interviews, and press coverage featuring Cody Peterson on depth psychology, addiction, and the archetype of the Alcoholic.',
+  url: 'https://www.cody-peterson.com/media/',
+  mainEntity: { '@id': 'https://www.cody-peterson.com/#person' },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.cody-peterson.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Media', item: 'https://www.cody-peterson.com/media/' },
+  ],
+};
 ---
-<Base title="Media" description="Podcast appearances, interviews, and press coverage featuring Cody Peterson on depth psychology, addiction, and the archetype of the Alcoholic.">
-  <article>
-    <h1>Media</h1>
-    <p>Podcast appearances, interviews, and press for <em>The Shadow of a Figure of Light</em> and Seba.Health.</p>
+<Base title="Media" description="Podcast appearances, interviews, and press coverage featuring Cody Peterson on depth psychology, addiction, and the archetype of the Alcoholic." jsonLd={[jsonLd, breadcrumb]}>
 
-    <h2>Interviews &amp; Features</h2>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <h1>Media</h1>
+      <p class="subtitle">Podcast appearances, interviews, and press for <em>The Shadow of a Figure of Light</em> and Seba.Health.</p>
+    </div>
+  </div>
 
-    <h3><a href="https://inmag.com/books/shadow-of-a-figure-the-alcoholic-journey-to-enlightenment-cody-peterson.html" target="_blank">"Beyond a Shadow of a Doubt"</a></h3>
-    <p>Full interview with INmag on the book and the archetype of the Alcoholic.</p>
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Interviews & Features</h2>
+      </div>
+      <div class="media-item">
+        <h3><a href="https://inmag.com/books/shadow-of-a-figure-the-alcoholic-journey-to-enlightenment-cody-peterson.html" target="_blank" rel="noopener">Beyond a Shadow of a Doubt</a></h3>
+        <p>Full interview with INmag on the book and the archetype of the Alcoholic.</p>
+      </div>
+      <div class="media-item">
+        <h3><a href="https://player.fm/series/aeon-byte-gnostic-radio-1335182/cody-peterson-on-cg-jung-and-addiction" target="_blank" rel="noopener">C.G. Jung and Addiction</a></h3>
+        <p>Aeon Byte Gnostic Radio — exploring Jung, addiction, and the spiritual dimensions of recovery.</p>
+      </div>
+    </div>
+  </section>
 
-    <h3><a href="https://player.fm/series/aeon-byte-gnostic-radio-1335182/cody-peterson-on-cg-jung-and-addiction" target="_blank">"C.G. Jung and Addiction"</a></h3>
-    <p>Aeon Byte Gnostic Radio — exploring Jung, addiction, and the spiritual dimensions of recovery.</p>
+  <section class="section section-alt">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Podcast Appearances</h2>
+      </div>
+      <div class="media-item">
+        <h3><a href="https://www.youtube.com/watch?v=Q8hG0TMgM90" target="_blank" rel="noopener">Cody Peterson's Journey From Addiction to Spiritual Awakening</a></h3>
+        <p>Positive Talk Radio</p>
+      </div>
+      <div class="media-item">
+        <h3><a href="https://www.youtube.com/watch?v=IM8syhL5t7c" target="_blank" rel="noopener">Sobriety & Spirituality</a></h3>
+        <p>A Trauma Survivor Thriver's Podcast with Lorilee Binstock</p>
+      </div>
+      <div class="media-item">
+        <h3><a href="https://www.youtube.com/watch?v=pArdMFdT6IY" target="_blank" rel="noopener">The Archetype of the Alcoholic & Spiritual Awakening</a></h3>
+        <p>Sober Voyager Podcast</p>
+      </div>
+      <div class="media-item">
+        <h3><a href="https://www.youtube.com/watch?v=XurWfWR3j7A" target="_blank" rel="noopener">Author/Recovering Alcoholic Cody Peterson Interview</a></h3>
+        <p>The Mike Wagner Show</p>
+      </div>
+      <div class="media-item">
+        <h3><a href="https://www.youtube.com/watch?v=mppJKZ-DmD0" target="_blank" rel="noopener">The Archetype of the Alcoholic</a></h3>
+        <p>Interview with Daniel T. Bourne</p>
+      </div>
+    </div>
+  </section>
 
-    <h2>Podcast Appearances</h2>
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Academic & Teaching</h2>
+      </div>
+      <div class="media-item">
+        <h3><a href="https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105" target="_blank" rel="noopener">Taming Wild Beasts</a></h3>
+        <p>Published in <em>Jung Journal: Culture & Psyche,</em> Vol. 19, Issue 2 (2025).</p>
+      </div>
+      <div class="media-item">
+        <h3>Presentations at the C.G. Jung Institute, Zurich</h3>
+        <p>Lectures on depth psychology and the archetype of the Alcoholic.</p>
+      </div>
+      <div class="media-item">
+        <h3>Dreamwork: Dreams and Symbols of Recovery</h3>
+        <p>Four-part workshop series for Friendly Circle Berlin (April 2025). <a href="/videos">Watch the videos</a></p>
+      </div>
+    </div>
+  </section>
 
-    <h3><a href="https://www.youtube.com/watch?v=Q8hG0TMgM90" target="_blank">"Cody Peterson's Journey From Addiction to Spiritual Awakening"</a></h3>
-    <p>Positive Talk Radio</p>
-
-    <h3><a href="https://www.youtube.com/watch?v=IM8syhL5t7c" target="_blank">"Sobriety &amp; Spirituality"</a></h3>
-    <p>A Trauma Survivor Thriver's Podcast with Lorilee Binstock</p>
-
-    <h3><a href="https://www.youtube.com/watch?v=pArdMFdT6IY" target="_blank">"The Archetype of the Alcoholic &amp; Spiritual Awakening"</a></h3>
-    <p>Sober Voyager Podcast</p>
-
-    <h3><a href="https://www.youtube.com/watch?v=XurWfWR3j7A" target="_blank">"Author/Recovering Alcoholic Cody Peterson Interview"</a></h3>
-    <p>The Mike Wagner Show</p>
-
-    <h3><a href="https://www.youtube.com/watch?v=mppJKZ-DmD0" target="_blank">"The Archetype of the Alcoholic"</a></h3>
-    <p>Interview with Daniel T. Bourne</p>
-
-    <h2>Academic &amp; Teaching</h2>
-
-    <h3>"Dreamwork: Dreams and Symbols of Recovery"</h3>
-    <p>Four-part workshop series for Friendly Circle Berlin (April 2025). See <a href="/videos">Videos →</a></p>
-
-    <h3>Presentations at the C.G. Jung Institute, Zürich</h3>
-    <p>Lectures on depth psychology and the archetype of the Alcoholic.</p>
-
-    <h3><a href="https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105" target="_blank">"Taming Wild Beasts"</a></h3>
-    <p>Published in <em>Jung Journal: Culture &amp; Psyche,</em> Vol. 19, Issue 2 (2025).</p>
-  </article>
 </Base>
