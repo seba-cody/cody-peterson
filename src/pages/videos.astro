@@ -50,7 +50,7 @@ const jsonLd = allVideos.map(v => ({
   description: v.description,
   embedUrl: `https://www.youtube.com/embed/${v.youtube_id}`,
   thumbnailUrl: `https://img.youtube.com/vi/${v.youtube_id}/maxresdefault.jpg`,
-  uploadDate: v.uploadDate,
+  uploadDate: `${v.uploadDate}T00:00:00Z`,
   author: { '@id': 'https://www.cody-peterson.com/#person' },
   publisher: { '@id': 'https://www.cody-peterson.com/#person' },
 }));
