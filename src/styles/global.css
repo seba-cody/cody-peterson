@@ -612,3 +612,159 @@ img {
   color: var(--color-text-muted);
   margin-top: var(--space-xl);
 }
+
+/* ─── Shop ─── */
+
+.shop-product-card {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: var(--space-xl);
+  background: var(--color-surface);
+}
+
+.shop-book-subtitle {
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-bottom: 0.25rem;
+}
+
+.shop-publisher {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  margin-bottom: var(--space-md);
+}
+
+.shop-pricing {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.shop-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.5rem 0;
+}
+
+.shop-format {
+  font-weight: 500;
+}
+
+.shop-price {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.shop-shipping-note {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.shop-order-section {
+  max-width: 600px;
+}
+
+.shop-order-intro {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.shop-form-row {
+  display: flex;
+  gap: var(--space-md);
+}
+
+@media (max-width: 480px) {
+  .shop-form-row { flex-direction: column; gap: 0; }
+}
+
+.shop-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: var(--space-md);
+  flex: 1;
+}
+
+.shop-form-group-sm {
+  flex: 0 0 100px;
+}
+
+.shop-label {
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.shop-input {
+  padding: 0.625rem var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  outline: none;
+  width: 100%;
+}
+
+.shop-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px rgba(196, 113, 59, 0.15);
+}
+
+select.shop-input {
+  appearance: auto;
+}
+
+.shop-textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.shop-confirmation {
+  padding: var(--space-xl);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.shop-payment-options {
+  display: flex;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+  flex-wrap: wrap;
+}
+
+.shop-payment-card {
+  flex: 1;
+  min-width: 200px;
+  padding: var(--space-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.shop-payment-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.shop-payment-handle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: 0.25rem;
+}
+
+.shop-payment-note {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}

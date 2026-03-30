@@ -1,6 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
 
+const paperbackPrice = 23.95;
+const hardcoverPrice = 38.00;
+const shippingFlat = 5.00;
+
 const reviews = [
   {
     quote: "Cody Peterson has written a book whose extension is deep, wide, and high. It rests on the solid foundations of careful scholarship and personal experience, it broadens our understanding of alcoholism beyond the reductive neuro-physiological explanations, and it elevates the vision of Bill Wilson and the Twelve Steps using the psycho-spiritual wisdom of C.G. Jung. It's a very readable book and highly to be recommended to anyone with an interest in the practical use of analytical psychology for addiction to anything, including the ego.",
@@ -47,6 +51,38 @@ const jsonLd = {
   workExample: [
     { '@type': 'Book', isbn: '9781685035174', bookFormat: 'https://schema.org/Paperback' },
     { '@type': 'Book', isbn: '9781685035181', bookFormat: 'https://schema.org/Hardcover' },
+  ],
+  offers: [
+    {
+      '@type': 'Offer',
+      name: 'Paperback (signed)',
+      price: paperbackPrice,
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      itemCondition: 'https://schema.org/NewCondition',
+      seller: { '@type': 'Person', name: 'Cody Peterson' },
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingRate: { '@type': 'MonetaryAmount', value: shippingFlat, currency: 'USD' },
+        shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'US' },
+        deliveryTime: { '@type': 'ShippingDeliveryTime', handlingTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 3, unitCode: 'DAY' }, transitTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 8, unitCode: 'DAY' } },
+      },
+    },
+    {
+      '@type': 'Offer',
+      name: 'Hardcover (signed)',
+      price: hardcoverPrice,
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+      itemCondition: 'https://schema.org/NewCondition',
+      seller: { '@type': 'Person', name: 'Cody Peterson' },
+      shippingDetails: {
+        '@type': 'OfferShippingDetails',
+        shippingRate: { '@type': 'MonetaryAmount', value: shippingFlat, currency: 'USD' },
+        shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'US' },
+        deliveryTime: { '@type': 'ShippingDeliveryTime', handlingTime: { '@type': 'QuantitativeValue', minValue: 1, maxValue: 3, unitCode: 'DAY' }, transitTime: { '@type': 'QuantitativeValue', minValue: 2, maxValue: 8, unitCode: 'DAY' } },
+      },
+    },
   ],
   review: reviews.map(r => ({
     '@type': 'Review',
@@ -99,6 +135,118 @@ const breadcrumb = {
   <section class="section section-alt">
     <div class="section-inner">
       <div class="section-header">
+        <h2>Order a Signed Copy</h2>
+        <p>Same price, signed by the author, shipped directly to you.</p>
+      </div>
+
+      <div class="shop-pricing">
+        <div class="shop-price-row">
+          <span class="shop-format">Paperback</span>
+          <span class="shop-price">${paperbackPrice.toFixed(2)}</span>
+        </div>
+        <div class="shop-price-row">
+          <span class="shop-format">Hardcover</span>
+          <span class="shop-price">${hardcoverPrice.toFixed(2)}</span>
+        </div>
+        <p class="shop-shipping-note">+ ${shippingFlat.toFixed(2)} flat-rate shipping (USPS Media Mail, US only)</p>
+      </div>
+
+      <div class="shop-order-section" style="margin-top: var(--space-xl);">
+        <p class="shop-order-intro">Fill out the form below and we'll send you payment instructions. Books ship within 2-3 business days of receiving payment.</p>
+
+        <form
+          action="https://formspree.io/f/mqegqkyq"
+          method="POST"
+          class="shop-form"
+          id="order-form"
+        >
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name="_subject" value="New book order from cody-peterson.com" />
+
+          <div class="shop-form-row">
+            <div class="shop-form-group">
+              <label for="name" class="shop-label">Full Name</label>
+              <input type="text" id="name" name="name" required class="shop-input" autocomplete="name" />
+            </div>
+            <div class="shop-form-group">
+              <label for="email" class="shop-label">Email</label>
+              <input type="email" id="email" name="email" required class="shop-input" autocomplete="email" />
+            </div>
+          </div>
+
+          <div class="shop-form-group">
+            <label for="address" class="shop-label">Shipping Address</label>
+            <input type="text" id="address" name="address" required class="shop-input" placeholder="Street address" autocomplete="street-address" />
+          </div>
+
+          <div class="shop-form-row">
+            <div class="shop-form-group">
+              <label for="city" class="shop-label">City</label>
+              <input type="text" id="city" name="city" required class="shop-input" autocomplete="address-level2" />
+            </div>
+            <div class="shop-form-group shop-form-group-sm">
+              <label for="state" class="shop-label">State</label>
+              <input type="text" id="state" name="state" required class="shop-input" maxlength="2" placeholder="UT" autocomplete="address-level1" />
+            </div>
+            <div class="shop-form-group shop-form-group-sm">
+              <label for="zip" class="shop-label">ZIP</label>
+              <input type="text" id="zip" name="zip" required class="shop-input" maxlength="10" autocomplete="postal-code" />
+            </div>
+          </div>
+
+          <div class="shop-form-row">
+            <div class="shop-form-group">
+              <label for="format" class="shop-label">Format</label>
+              <select id="format" name="format" required class="shop-input">
+                <option value="paperback">Paperback — ${paperbackPrice.toFixed(2)}</option>
+                <option value="hardcover">Hardcover — ${hardcoverPrice.toFixed(2)}</option>
+              </select>
+            </div>
+            <div class="shop-form-group shop-form-group-sm">
+              <label for="quantity" class="shop-label">Qty</label>
+              <select id="quantity" name="quantity" class="shop-input">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="shop-form-group">
+            <label for="note" class="shop-label">Note <span style="color: var(--color-text-muted); font-weight: 400;">(optional)</span></label>
+            <textarea id="note" name="note" rows="2" class="shop-input shop-textarea" placeholder="Inscription request, gift message, etc."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="margin-top: var(--space-sm); padding: 0.75rem var(--space-xl); font-size: 1rem;">Submit Order</button>
+        </form>
+
+        <div class="shop-confirmation" id="confirmation" style="display:none;">
+          <h2 style="color: var(--color-accent);">Order received!</h2>
+          <p>Your total is <strong id="order-total"></strong> (including $5.00 shipping).</p>
+          <p>Send payment using either option below, then we'll ship your signed copy within 2-3 business days.</p>
+
+          <div class="shop-payment-options">
+            <div class="shop-payment-card">
+              <h3>Venmo</h3>
+              <p class="shop-payment-handle">@cody-peterson-author</p>
+              <p class="shop-payment-note">Include your name in the memo</p>
+            </div>
+            <div class="shop-payment-card">
+              <h3>Zelle</h3>
+              <p class="shop-payment-handle">Cody Peterson</p>
+              <p class="shop-payment-note">725-502-3114</p>
+            </div>
+          </div>
+
+          <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-top: var(--space-lg); margin-bottom: 0;">A confirmation email has been sent. If you have any questions, reach out at <a href="mailto:alkyarchetype@gmail.com">alkyarchetype@gmail.com</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-header">
         <h2>What scholars are saying</h2>
       </div>
       {reviews.map(r => (
@@ -110,7 +258,7 @@ const breadcrumb = {
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section-alt">
     <div class="section-inner" style="text-align: center;">
       <p class="book-meta">
         ISBN (Paperback): 978-1-68503-517-4<br />
@@ -120,3 +268,30 @@ const breadcrumb = {
   </section>
 
 </Base>
+
+<script>
+  const form = document.getElementById('order-form') as HTMLFormElement;
+  const confirmation = document.getElementById('confirmation')!;
+  const orderTotal = document.getElementById('order-total')!;
+
+  const prices: Record<string, number> = { paperback: 23.95, hardcover: 38.00 };
+  const shipping = 5.00;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const format = data.get('format') as string;
+    const qty = Number(data.get('quantity'));
+    const total = (prices[format] * qty + shipping).toFixed(2);
+
+    try {
+      await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+    } catch (_) { /* Formspree submission — show confirmation regardless */ }
+
+    orderTotal.textContent = `$${total}`;
+    form.style.display = 'none';
+    document.querySelector('.shop-order-intro')!.remove();
+    confirmation.style.display = 'block';
+    confirmation.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
