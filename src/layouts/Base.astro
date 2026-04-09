@@ -38,9 +38,11 @@ const globalSchema = {
       url: 'https://www.cody-peterson.com/',
       image: 'https://www.cody-peterson.com/images/cody-peterson-bw.jpg',
       jobTitle: 'Depth Psychology Scholar',
-      description: 'Published author (Chiron Publications, 2024), depth psychology scholar, Jung Journal contributor, and founder of Seba.Health.',
+      description: 'Published author (Chiron Publications, 2024), depth psychology scholar, Jung Journal contributor, and founder of Seba Health, City Seamless Rain Gutter, and 702 Alliance.',
       sameAs: [
         'https://www.seba.health/',
+        'https://www.cityseamless.com/',
+        'https://www.702alliance.com/',
         'https://www.chironpublications.com/product-category/authors/peterson-cody/',
         'https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105',
         'https://www.researchgate.net/profile/Cody-Peterson-6/research',
@@ -50,6 +52,28 @@ const globalSchema = {
         'https://x.com/AlkyArchetype',
         'https://www.linkedin.com/in/cody-peterson-487224229/',
         'https://books.google.com/books/about/The_Shadow_of_a_Figure_of_Light.html?id=sacxEQAAQBAJ',
+      ],
+      founder: [
+        {
+          '@type': 'Organization',
+          name: 'Seba Health',
+          url: 'https://www.seba.health/',
+          description: 'Depth-oriented clinical authority platform for addiction recovery, convergence psychology, and the ancient vocabulary of the soul.',
+        },
+        {
+          '@type': 'LocalBusiness',
+          name: 'City Seamless Rain Gutter',
+          url: 'https://www.cityseamless.com/',
+          description: 'Seamless rain gutter installation in the Las Vegas Valley.',
+          areaServed: { '@type': 'City', name: 'Las Vegas', addressRegion: 'NV' },
+        },
+        {
+          '@type': 'Organization',
+          name: '702 Alliance',
+          url: 'https://www.702alliance.com/',
+          description: 'Vetted network of locally owned businesses across the Las Vegas Valley.',
+          areaServed: { '@type': 'City', name: 'Las Vegas', addressRegion: 'NV' },
+        },
       ],
       alumniOf: {
         '@type': 'CollegeOrUniversity',
@@ -97,6 +121,11 @@ const globalSchema = {
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="icon" type="image/png" href="/images/moon.png" />
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
   <!-- Open Graph -->
   <meta property="og:title" content={pageTitle} />
   <meta property="og:description" content={description} />
@@ -127,7 +156,7 @@ const globalSchema = {
   <header class="site-header">
     <div class="header-inner">
       <a href="/" class="site-name">
-        <img src="/images/logo-moon.png" alt="" width="32" height="32" style="border-radius: 6px;" aria-hidden="true" />
+        <img src="/images/logo-moon.png" alt="" width="32" height="32" aria-hidden="true" />
         Cody Peterson
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
@@ -168,10 +197,11 @@ const globalSchema = {
   </section>
 
   <footer class="site-footer">
-    <p>&copy; 2026 Cody Peterson. Founder, <a href="https://www.seba.health">Seba.Health</a>.</p>
+    <p>&copy; 2026 Cody Peterson. Founder, <a href="https://www.seba.health">Seba Health</a> · <a href="https://www.702alliance.com">702 Alliance</a> · <a href="https://www.cityseamless.com">City Seamless</a>.</p>
   </footer>
 
   <script>
+    // Mobile menu
     const toggle = document.getElementById('menu-toggle');
     const mobileNav = document.getElementById('mobile-nav');
     toggle?.addEventListener('click', () => {
@@ -179,6 +209,36 @@ const globalSchema = {
       toggle.setAttribute('aria-expanded', String(isOpen));
       mobileNav?.setAttribute('aria-hidden', String(!isOpen));
       toggle.classList.toggle('open', isOpen);
+    });
+
+    // Header scroll shadow
+    const header = document.querySelector('.site-header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        header?.classList.add('scrolled');
+      } else {
+        header?.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // Scroll reveal (progressive enhancement — content visible without JS)
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) {
+        el.classList.add('revealed');
+      } else {
+        el.classList.add('reveal-init');
+        revealObserver.observe(el);
+      }
     });
   </script>
 </body>
