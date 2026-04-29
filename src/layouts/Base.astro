@@ -22,11 +22,13 @@ function isActive(href: string) {
 }
 
 const navLinks = [
-  { href: '/book', label: 'Book' },
-  { href: '/videos', label: 'Videos' },
-  { href: '/media', label: 'Media' },
-  { href: '/about', label: 'About' },
+  { href: '/book', label: 'Book', numeral: 'I' },
+  { href: '/videos', label: 'Videos', numeral: 'II' },
+  { href: '/media', label: 'Media', numeral: 'III' },
+  { href: '/about', label: 'About', numeral: 'IV' },
 ];
+
+const year = new Date().getFullYear();
 
 const globalSchema = {
   '@context': 'https://schema.org',
@@ -35,10 +37,15 @@ const globalSchema = {
       '@type': 'Person',
       '@id': 'https://www.cody-peterson.com/#person',
       name: 'Cody Peterson',
+      givenName: 'Cody',
+      familyName: 'Peterson',
       url: 'https://www.cody-peterson.com/',
       image: 'https://www.cody-peterson.com/images/cody-peterson-bw.jpg',
       jobTitle: 'Depth Psychology Scholar',
       description: 'Published author (Chiron Publications, 2024), depth psychology scholar, Jung Journal contributor, and founder of Seba Health, City Seamless Rain Gutter, and 702 Alliance.',
+      identifier: [
+        { '@type': 'PropertyValue', propertyID: 'ORCID', value: '0009-0009-2028-0154', url: 'https://orcid.org/0009-0009-2028-0154' },
+      ],
       sameAs: [
         'https://www.seba.health/',
         'https://www.cityseamless.com/',
@@ -105,6 +112,25 @@ const globalSchema = {
       description: 'Depth psychology scholar, published author, and founder of Seba.Health.',
       publisher: { '@id': 'https://www.cody-peterson.com/#person' },
       inLanguage: 'en-US',
+      potentialAction: {
+        '@type': 'ReadAction',
+        target: ['https://www.cody-peterson.com/book/', 'https://www.cody-peterson.com/about/'],
+      },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonicalURL.toString()}#webpage`,
+      url: canonicalURL.toString(),
+      name: pageTitle,
+      description,
+      isPartOf: { '@id': 'https://www.cody-peterson.com/#website' },
+      about: { '@id': 'https://www.cody-peterson.com/#person' },
+      primaryImageOfPage: new URL(ogImageURL, Astro.site).toString(),
+      inLanguage: 'en-US',
+      speakable: {
+        '@type': 'SpeakableSpecification',
+        cssSelector: ['h1', '.masthead-subtitle', '.epigraph-translation', '.section-header h2', '.pull-quote', '.closing-line'],
+      },
     },
   ],
 };
@@ -117,6 +143,7 @@ const globalSchema = {
   <title>{pageTitle}</title>
   <meta name="description" content={description} />
   <meta name="author" content="Cody Peterson" />
+  <meta name="theme-color" content="#F3ECDF" />
   <link rel="canonical" href={canonicalURL} />
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="icon" type="image/png" href="/images/moon.png" />
@@ -124,7 +151,7 @@ const globalSchema = {
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
 
   <!-- Open Graph -->
   <meta property="og:title" content={pageTitle} />
@@ -155,9 +182,8 @@ const globalSchema = {
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a href="/" class="site-name">
-        <img src="/images/logo-moon.png" alt="" width="32" height="32" aria-hidden="true" />
-        Cody Peterson
+      <a href="/" class="site-name" aria-label="Cody Peterson — home">
+        Cody Peterson<span class="site-name-mark" aria-hidden="true"></span>
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
         {navLinks.map(link => (
@@ -166,6 +192,9 @@ const globalSchema = {
           </a>
         ))}
       </nav>
+      <div class="header-folio" aria-hidden="true">
+        Vol. <em>I</em> &nbsp;·&nbsp; Est. <em>MMXXIV</em>
+      </div>
       <button class="hamburger" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span>
         <span></span>
@@ -174,7 +203,7 @@ const globalSchema = {
     </div>
     <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
       {navLinks.map(link => (
-        <a href={link.href} class:list={[{ active: isActive(link.href) }]} aria-current={isActive(link.href) ? 'page' : undefined}>
+        <a href={link.href} data-numeral={link.numeral} class:list={[{ active: isActive(link.href) }]} aria-current={isActive(link.href) ? 'page' : undefined}>
           {link.label}
         </a>
       ))}
@@ -185,10 +214,11 @@ const globalSchema = {
     <slot />
   </main>
 
-  <section class="subscribe-section">
+  <section class="subscribe-section" aria-label="Subscribe to the newsletter">
     <div class="subscribe-inner">
+      <div class="subscribe-eyebrow">Correspondence</div>
       <h2>Stay in the work.</h2>
-      <p>Depth psychology, recovery, and the ancient roots of feeling. No spam, unsubscribe anytime.</p>
+      <p>Depth psychology, recovery, and the ancient roots of feeling. Occasional letters. No spam.</p>
       <form class="subscribe-form" action="https://buttondown.com/api/emails/embed-subscribe/alkyarchetype" method="post">
         <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address" />
         <button type="submit">Subscribe</button>
@@ -197,7 +227,39 @@ const globalSchema = {
   </section>
 
   <footer class="site-footer">
-    <p>&copy; 2026 Cody Peterson. Founder, <a href="https://www.seba.health">Seba Health</a> · <a href="https://www.702alliance.com">702 Alliance</a> · <a href="https://www.cityseamless.com">City Seamless</a>.</p>
+    <div class="colophon">
+      <div class="colophon-block">
+        <span class="colophon-label">Colophon</span>
+        <em>Cody Peterson</em>
+        <p style="color: rgba(243, 236, 223, 0.55); font-style: italic; line-height: 1.55; margin: 0;">
+          Depth psychologist, author, and founder. Set in Cormorant &amp; Spectral. Published from the Mojave.
+        </p>
+      </div>
+      <div class="colophon-block">
+        <span class="colophon-label">Work</span>
+        <a href="/book">The Book</a>
+        <a href="/videos">Videos</a>
+        <a href="/media">Media</a>
+        <a href="/about">About</a>
+      </div>
+      <div class="colophon-block">
+        <span class="colophon-label">Ventures</span>
+        <a href="https://www.seba.health">Seba Health</a>
+        <a href="https://www.702alliance.com">702 Alliance</a>
+        <a href="https://www.cityseamless.com">City Seamless</a>
+      </div>
+      <div class="colophon-block">
+        <span class="colophon-label">Correspond</span>
+        <a href="https://x.com/AlkyArchetype" rel="me noopener" target="_blank">X / Twitter</a>
+        <a href="https://www.youtube.com/@cody-peterson-author" rel="me noopener" target="_blank">YouTube</a>
+        <a href="https://www.linkedin.com/in/cody-peterson-487224229/" rel="me noopener" target="_blank">LinkedIn</a>
+        <a href="https://orcid.org/0009-0009-2028-0154" rel="me noopener" target="_blank">ORCID</a>
+      </div>
+      <div class="colophon-note">
+        <span>&copy; {year} Cody Peterson. All rights reserved.</span>
+        <span>Composed by hand. Typeset in Cormorant &amp; Spectral.</span>
+      </div>
+    </div>
   </footer>
 
   <script>
@@ -214,7 +276,7 @@ const globalSchema = {
     // Header scroll shadow
     const header = document.querySelector('.site-header');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 60) {
+      if (window.scrollY > 40) {
         header?.classList.add('scrolled');
       } else {
         header?.classList.remove('scrolled');
@@ -229,7 +291,7 @@ const globalSchema = {
           revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
 
     document.querySelectorAll('.reveal').forEach(el => {
       const rect = el.getBoundingClientRect();

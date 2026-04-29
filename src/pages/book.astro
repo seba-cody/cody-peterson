@@ -84,6 +84,12 @@ const jsonLd = {
       },
     },
   ],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: 5,
+    bestRating: 5,
+    reviewCount: reviews.length,
+  },
   review: reviews.map(r => ({
     '@type': 'Review',
     reviewBody: r.quote,
@@ -107,29 +113,57 @@ const breadcrumb = {
   ],
 };
 ---
-<Base title="The Shadow of a Figure of Light" description="The Archetype of the Alcoholic and the Journey to Enlightenment. Published by Chiron Publications, 2024. By Cody Peterson." jsonLd={[jsonLd, breadcrumb]}>
+<Base
+  title="The Shadow of a Figure of Light"
+  description="The Archetype of the Alcoholic and the Journey to Enlightenment. Published by Chiron Publications, 2024. By Cody Peterson."
+  jsonLd={[jsonLd, breadcrumb]}
+>
 
   <div class="page-header">
     <div class="page-header-inner">
-      <h1>The Shadow of a Figure of Light</h1>
-      <p class="subtitle">The Archetype of the Alcoholic and the Journey to Enlightenment</p>
+      <div class="folio">
+        <span>No. I &nbsp;·&nbsp; The Book</span>
+        <em>Chiron Publications &nbsp;·&nbsp; 2024</em>
+      </div>
+      <h1>The Shadow of <em>a Figure of Light</em></h1>
+      <p class="subtitle">The Archetype of the Alcoholic and the Journey to Enlightenment.</p>
     </div>
   </div>
 
   <section class="section">
     <div class="section-inner">
-      <p style="font-size: 1.0625rem; line-height: 1.7;">The Shadow of a Figure of Light delves into the nature of modern psychospiritual transformation by examining the human thirst for wholeness through the lens of alcoholism and addiction. Establishing an unknown thread that ties renowned psychiatrist C.G. Jung to Alcoholics Anonymous co-founder Bill Wilson, Peterson shows how their methodologies each stemmed from an ancient shamanistic source constellated through what he has coined the archetype of the Alcoholic. Painting the Twelve Steps as a modern myth, the author presents the Alcoholic as a paradoxical image leading us towards enlightenment amid a deepening, culture-wide spiritual crisis.</p>
-
-      <p style="font-size: 0.9375rem; color: var(--color-text-muted); margin-top: 0.5rem;">Published by Chiron Publications, 2024</p>
+      <p class="book-intro">
+        <em>The Shadow of a Figure of Light</em> delves into the nature of modern psychospiritual transformation by examining the human thirst for wholeness through the lens of alcoholism and addiction. Establishing an unknown thread that ties renowned psychiatrist C.G. Jung to Alcoholics Anonymous co-founder Bill Wilson, Peterson shows how their methodologies each stemmed from an ancient shamanistic source constellated through what he has coined <em>the archetype of the Alcoholic</em>. Painting the Twelve Steps as a modern myth, the author presents the Alcoholic as a paradoxical image leading us towards enlightenment amid a deepening, culture-wide spiritual crisis.
+      </p>
+      <p class="book-publisher">Published by Chiron Publications &nbsp;·&nbsp; 2024</p>
     </div>
   </section>
 
-  <section class="section section-alt" style="padding-top: var(--space-2xl);">
+  <section class="section section-alt reveal">
     <div class="section-inner">
-      <div class="section-header" id="order">
-        <h2>Get a Signed Copy</h2>
-        <p>Signed by the author, shipped directly to you.</p>
+      <header class="section-header">
+        <span class="eyebrow">Reception</span>
+        <h2>What scholars are saying</h2>
+        <p>Selected reviews from analysts, historians, and Jungian scholars.</p>
+      </header>
+      <div>
+        {reviews.map(r => (
+          <div class="testimonial reveal">
+            <blockquote><p>{r.quote}</p></blockquote>
+            <p class="attribution">{r.author} &nbsp;·&nbsp; <Fragment set:html={r.credential} /></p>
+          </div>
+        ))}
       </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="order">
+    <div class="section-inner">
+      <header class="section-header">
+        <span class="eyebrow">Order</span>
+        <h2>Get a <em>signed</em> copy</h2>
+        <p>Signed by the author, shipped directly to you. Ships within 2&ndash;3 business days of payment.</p>
+      </header>
 
       <div class="shop-pricing">
         <div class="shop-price-row">
@@ -143,13 +177,12 @@ const breadcrumb = {
         <p class="shop-shipping-note">+ ${shippingFlat.toFixed(2)} flat-rate shipping (USPS Media Mail, US only)</p>
       </div>
 
-      <div class="shop-order-section" style="margin-top: var(--space-xl);">
-        <p class="shop-order-intro">Fill out the form below and we'll send you payment instructions. Books ship within 2-3 business days of receiving payment.</p>
+      <div class="shop-order-section">
+        <p class="shop-order-intro">Fill out the form below and we&rsquo;ll send payment instructions. Books ship within 2&ndash;3 business days of receiving payment.</p>
 
         <form
           action="https://formspree.io/f/mqegqkyq"
           method="POST"
-          class="shop-form"
           id="order-form"
         >
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
@@ -190,8 +223,8 @@ const breadcrumb = {
             <div class="shop-form-group">
               <label for="format" class="shop-label">Format</label>
               <select id="format" name="format" required class="shop-input">
-                <option value="paperback">Paperback — ${paperbackPrice.toFixed(2)}</option>
-                <option value="hardcover">Hardcover — ${hardcoverPrice.toFixed(2)}</option>
+                <option value="paperback">Paperback &mdash; ${paperbackPrice.toFixed(2)}</option>
+                <option value="hardcover">Hardcover &mdash; ${hardcoverPrice.toFixed(2)}</option>
               </select>
             </div>
             <div class="shop-form-group shop-form-group-sm">
@@ -205,17 +238,17 @@ const breadcrumb = {
           </div>
 
           <div class="shop-form-group">
-            <label for="note" class="shop-label">Note <span style="color: var(--color-text-muted); font-weight: 400;">(optional)</span></label>
+            <label for="note" class="shop-label">Note <span style="color: var(--color-text-soft); font-weight: 400; text-transform: none; letter-spacing: 0;">&mdash; optional</span></label>
             <textarea id="note" name="note" rows="2" class="shop-input shop-textarea" placeholder="Inscription request, gift message, etc."></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary" style="margin-top: var(--space-sm); padding: 0.75rem var(--space-xl); font-size: 1rem;">Submit Order</button>
+          <button type="submit" class="shop-submit">Submit Order</button>
         </form>
 
         <div class="shop-confirmation" id="confirmation" style="display:none;">
-          <h2 style="color: var(--color-accent);">Order received!</h2>
+          <h2 class="confirmation-title">Order received.</h2>
           <p>Your total is <strong id="order-total"></strong> (including $5.00 shipping).</p>
-          <p>Send payment using either option below, then we'll ship your signed copy within 2-3 business days.</p>
+          <p>Send payment using either option below, then we&rsquo;ll ship your signed copy within 2&ndash;3 business days.</p>
 
           <div class="shop-payment-options">
             <div class="shop-payment-card">
@@ -226,37 +259,23 @@ const breadcrumb = {
             <div class="shop-payment-card">
               <h3>Zelle</h3>
               <p class="shop-payment-handle">Cody Peterson</p>
-              <p class="shop-payment-note">725-502-3114</p>
+              <p class="shop-payment-note">725&ndash;502&ndash;3114</p>
             </div>
           </div>
 
-          <p style="font-size: 0.875rem; color: var(--color-text-muted); margin-top: var(--space-lg); margin-bottom: 0;">A confirmation email has been sent. If you have any questions, reach out at <a href="mailto:alkyarchetype@gmail.com">alkyarchetype@gmail.com</a>.</p>
+          <p class="confirmation-note">A confirmation email has been sent. If you have any questions, reach out at <a href="mailto:alkyarchetype@gmail.com">alkyarchetype@gmail.com</a>.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <h2>What scholars are saying</h2>
-      </div>
-      {reviews.map(r => (
-        <div class="testimonial">
-          <blockquote><p>{r.quote}</p></blockquote>
-          <p class="attribution">— {r.author}, <Fragment set:html={r.credential} /></p>
-        </div>
-      ))}
     </div>
   </section>
 
   <section class="section section-alt">
-    <div class="section-inner" style="text-align: center;">
+    <div class="section-inner text-center">
       <p class="book-meta">
-        ISBN (Paperback): 978-1-68503-517-4<br />
-        ISBN (Hardcover): 978-1-68503-518-1
+        ISBN Paperback &nbsp;·&nbsp; 978&#8209;1&#8209;68503&#8209;517&#8209;4<br />
+        ISBN Hardcover &nbsp;·&nbsp; 978&#8209;1&#8209;68503&#8209;518&#8209;1
       </p>
-      <p style="margin-top: var(--space-lg); color: var(--color-text-muted);">For more on depth psychology, recovery, and the ancient roots of feeling, visit <a href="https://www.seba.health">Seba.Health</a>.</p>
+      <p style="margin-top: var(--space-lg); color: var(--color-text-muted); font-style: italic;">For more on depth psychology, recovery, and the ancient roots of feeling, visit <a href="https://www.seba.health">Seba.Health</a>.</p>
     </div>
   </section>
 

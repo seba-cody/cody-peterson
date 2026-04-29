@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>v2 · Cinema — Cody Peterson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --black:#0a0a0a;
+    --bone:#efeae0;
+    --bone-2:#d8d2c4;
+    --vermillion:#d6422e;
+    --soft:#9a948a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--black);color:var(--bone);font-family:'Fraunces',Georgia,serif;font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;font-feature-settings:"liga","kern"}
+  body{overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  em{font-style:italic}
+  ::selection{background:var(--vermillion);color:#fff}
+
+  /* Top tag */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:30;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 28px;mix-blend-mode:difference;color:var(--bone);
+    font-family:'Fraunces',serif;font-size:13px;letter-spacing:.02em;
+  }
+  .topbar .left{display:flex;gap:18px;align-items:baseline}
+  .topbar .left .mark{font-family:'Cormorant',serif;font-weight:400;font-size:18px;letter-spacing:.06em;text-transform:uppercase}
+  .topbar .left .mark em{color:var(--vermillion);font-weight:400;font-style:italic;text-transform:none;letter-spacing:.02em}
+  .topbar nav{display:flex;gap:26px}
+  .topbar nav a{font-size:12px;letter-spacing:.18em;text-transform:uppercase;opacity:.7}
+  .topbar nav a:hover{opacity:1;color:var(--vermillion)}
+
+  /* Hero */
+  .hero{
+    position:relative;min-height:100vh;
+    background:var(--black);
+    padding:120px 6vw 60px;display:grid;
+    grid-template-columns: 0.85fr 1.15fr;gap:6vw;align-items:end;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(900px 700px at 110% -10%, rgba(214,66,46,.08), transparent 60%),
+      radial-gradient(900px 700px at -10% 110%, rgba(255,255,255,.04), transparent 60%);
+    pointer-events:none;
+  }
+  .portrait{
+    position:relative;align-self:end;
+    aspect-ratio:4/5;width:100%;max-width:520px;justify-self:end;
+    overflow:hidden;
+    box-shadow:0 60px 120px rgba(0,0,0,.6);
+    filter:contrast(1.05) saturate(.9);
+  }
+  .portrait img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.06)}
+  .portrait .tape{
+    position:absolute;left:-20px;top:32px;
+    background:var(--vermillion);color:var(--bone);
+    font-family:'Cormorant',serif;letter-spacing:.32em;font-size:11px;text-transform:uppercase;
+    padding:6px 22px;transform:rotate(-3deg);font-weight:500;
+  }
+  .portrait .caption{
+    position:absolute;left:0;bottom:-44px;
+    font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:var(--soft);
+  }
+
+  .name-block{align-self:end}
+  .name-block .eyebrow{
+    font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--vermillion);
+    margin-bottom:24px;letter-spacing:.04em;
+  }
+  .name-block .eyebrow::before{
+    content:"";display:inline-block;width:36px;height:1px;background:var(--vermillion);
+    vertical-align:middle;margin-right:12px;
+  }
+  .name{
+    font-family:'Cormorant',serif;font-weight:300;line-height:.85;
+    font-size:clamp(96px,18vw,260px);letter-spacing:-.02em;
+    color:var(--bone);
+  }
+  .name .one{display:block}
+  .name .two{display:block;font-style:italic;font-weight:300;color:var(--bone-2);margin-left:.18em}
+  .name .punct{color:var(--vermillion);font-style:normal}
+  .deck{
+    margin-top:36px;max-width:560px;
+    font-family:'Fraunces',serif;font-size:18px;line-height:1.6;color:var(--bone-2);
+  }
+  .deck em{color:var(--bone)}
+  .credits{
+    display:flex;flex-wrap:wrap;gap:32px;margin-top:42px;
+    font-family:'Fraunces',serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);
+  }
+  .credits span em{font-style:italic;letter-spacing:.04em;text-transform:none;color:var(--bone)}
+
+  /* Letter section */
+  .letter{
+    background:var(--bone);color:var(--black);
+    padding:140px 6vw;
+    position:relative;
+  }
+  .letter::before{
+    content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:1px;height:80px;background:var(--vermillion);
+  }
+  .letter .marker{
+    text-align:center;font-family:'Fraunces',serif;font-style:italic;color:var(--vermillion);
+    margin-bottom:64px;font-size:14px;letter-spacing:.32em;text-transform:uppercase;
+  }
+  .letter .body{max-width:720px;margin:0 auto;font-size:21px;line-height:1.7;font-family:'Fraunces',serif}
+  .letter .body p{margin-bottom:1.4em}
+  .letter .body p:first-of-type::first-letter{
+    font-family:'Cormorant',serif;font-weight:400;font-style:italic;
+    font-size:6em;float:left;line-height:.85;margin:.04em .12em -.05em 0;color:var(--vermillion);
+  }
+  .letter .body em{color:#1c1916}
+  .letter .signoff{
+    text-align:right;max-width:720px;margin:48px auto 0;font-family:'Cormorant',serif;font-style:italic;font-size:28px;color:var(--vermillion)
+  }
+  .letter .signoff small{display:block;font-family:'Fraunces',serif;font-style:normal;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);margin-top:6px}
+
+  /* Object: book */
+  .object{
+    background:var(--black);color:var(--bone);
+    padding:140px 6vw;position:relative;
+    display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:center;
+  }
+  .object .label{
+    font-family:'Fraunces',serif;font-style:italic;font-size:13px;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--vermillion);margin-bottom:24px;
+  }
+  .object h2{
+    font-family:'Cormorant',serif;font-weight:300;line-height:.95;
+    font-size:clamp(54px,8vw,108px);letter-spacing:-.01em;margin-bottom:20px;
+  }
+  .object h2 em{font-weight:300;font-style:italic;color:var(--bone-2)}
+  .object .deck-2{font-family:'Fraunces',serif;font-size:18px;color:var(--bone-2);max-width:480px;margin-bottom:36px}
+  .object .blurb{
+    font-family:'Cormorant',serif;font-style:italic;font-size:24px;line-height:1.45;
+    color:var(--bone);max-width:560px;border-top:1px solid #2a2622;padding-top:30px;
+  }
+  .object .blurb small{display:block;font-family:'Fraunces',serif;font-style:normal;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);margin-top:18px}
+  .object .read{
+    display:inline-block;margin-top:36px;
+    font-family:'Fraunces',serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+    border-bottom:1px solid var(--vermillion);padding-bottom:4px;color:var(--bone);
+  }
+  .object .read:hover{color:var(--vermillion)}
+  .book-art{
+    aspect-ratio:3/4;background:linear-gradient(160deg,#1a1815 0%,#0c0b0a 100%);
+    border:1px solid #2a2622;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 80px 160px rgba(0,0,0,.6),inset 0 0 60px rgba(0,0,0,.6);position:relative;
+  }
+  .book-art .spine{position:absolute;left:0;top:0;bottom:0;width:14px;background:linear-gradient(90deg,rgba(0,0,0,.6),transparent);border-right:1px solid #2a2622}
+  .book-art .cover-text{
+    text-align:center;padding:0 36px;
+  }
+  .book-art .cover-text .ch{font-family:'Fraunces',serif;font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--vermillion);margin-bottom:32px}
+  .book-art .cover-text h3{font-family:'Cormorant',serif;font-weight:400;font-size:42px;line-height:1.05;font-style:italic}
+  .book-art .cover-text h3 em{font-weight:500;font-style:normal}
+  .book-art .cover-text .by{font-family:'Fraunces',serif;font-size:11px;letter-spacing:.32em;text-transform:uppercase;margin-top:42px;color:var(--soft)}
+  .book-art .cover-text .by em{font-style:italic;letter-spacing:.04em;text-transform:none;color:var(--bone)}
+
+  /* Articles roll */
+  .roll{padding:140px 6vw;background:var(--bone);color:var(--black)}
+  .roll .label{font-family:'Fraunces',serif;font-style:italic;font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:var(--vermillion);margin-bottom:30px;text-align:center}
+  .roll h2{font-family:'Cormorant',serif;font-weight:300;font-size:clamp(56px,8vw,112px);text-align:center;line-height:.92;margin-bottom:90px}
+  .roll h2 em{font-style:italic;color:var(--vermillion)}
+  .article-list{max-width:980px;margin:0 auto}
+  .article-row{
+    display:grid;grid-template-columns:80px 1fr auto;gap:32px;align-items:baseline;
+    padding:42px 0;border-top:1px solid rgba(0,0,0,.18);
+  }
+  .article-row:last-child{border-bottom:1px solid rgba(0,0,0,.18)}
+  .article-row .ord{font-family:'Cormorant',serif;font-style:italic;font-size:48px;color:var(--vermillion);line-height:1}
+  .article-row h3{font-family:'Cormorant',serif;font-weight:400;font-size:34px;line-height:1.1;margin-bottom:8px}
+  .article-row h3 em{font-style:italic}
+  .article-row p{font-family:'Fraunces',serif;font-size:15px;color:#3a342c;max-width:540px}
+  .article-row .meta{font-family:'Fraunces',serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#0a0a0a;text-align:right;line-height:1.6}
+  .article-row .meta em{font-style:italic;letter-spacing:.04em;text-transform:none;color:#3a342c;font-size:13px;display:block}
+
+  /* Closer */
+  .closer{
+    background:var(--black);color:var(--bone);text-align:center;
+    padding:160px 6vw;position:relative;
+  }
+  .closer .greek{font-family:'Cormorant',serif;font-style:italic;font-weight:300;font-size:clamp(46px,7vw,96px);line-height:1.05;letter-spacing:.005em}
+  .closer .trans{margin-top:24px;font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:var(--bone-2)}
+  .closer .src{margin-top:14px;font-family:'Fraunces',serif;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--vermillion)}
+
+  footer{
+    background:var(--black);color:var(--soft);padding:32px 6vw 48px;
+    border-top:1px solid #1a1815;display:flex;justify-content:space-between;align-items:center;
+    font-family:'Fraunces',serif;font-size:12px;letter-spacing:.06em;
+  }
+  footer a{margin-left:22px;color:var(--bone-2)}
+  footer a:hover{color:var(--vermillion)}
+
+  .switcher{
+    position:fixed;right:18px;bottom:18px;z-index:50;
+    background:var(--bone);color:var(--black);padding:10px 14px;border-radius:999px;
+    display:flex;gap:14px;font-family:'Fraunces',serif;letter-spacing:.18em;font-size:11px;text-transform:uppercase;
+    box-shadow:0 8px 30px rgba(0,0,0,.4);
+  }
+  .switcher a{opacity:.5}
+  .switcher a.cur{opacity:1;color:var(--vermillion)}
+  .switcher a:hover{opacity:1}
+
+  @media (max-width: 880px){
+    .hero{grid-template-columns:1fr;padding-top:140px}
+    .portrait{justify-self:start;max-width:none}
+    .name{font-size:clamp(72px,18vw,200px)}
+    .object{grid-template-columns:1fr;gap:60px}
+    .object .book-art{order:-1}
+    .topbar nav{display:none}
+    .article-row{grid-template-columns:1fr;gap:8px}
+    .article-row .meta{text-align:left}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="left">
+    <a href="/" class="mark">Cody <em>Peterson</em></a>
+  </div>
+  <nav>
+    <a href="#book">Book</a>
+    <a href="#articles">Articles</a>
+    <a href="#seba">Seba.Health</a>
+    <a href="#about">About</a>
+  </nav>
+</div>
+
+<header class="hero">
+  <div class="portrait">
+    <img src="https://www.cody-peterson.com/images/cody-peterson-bw.jpg" alt="Cody Peterson" />
+    <div class="tape">Author · Scholar · Founder</div>
+    <div class="caption"><em>Henderson, Nevada — winter, 2026.</em></div>
+  </div>
+  <div class="name-block">
+    <div class="eyebrow">A working scholar in depth psychology &amp; antiquity.</div>
+    <h1 class="name">
+      <span class="one">Cody<span class="punct">.</span></span>
+      <span class="two">Peterson</span>
+    </h1>
+    <p class="deck">
+      Author of <em>The Shadow of a Figure of Light</em> (Chiron Publications, 2024). Contributor to <em>Jung Journal: Culture &amp; Psyche</em>. Founder of <em>Seba.Health</em> — a depth-oriented platform for the psychology of recovery and the ancient organ of feeling.
+    </p>
+    <div class="credits">
+      <span><em>Chiron</em> · 2024</span>
+      <span><em>Jung Journal</em> · 2025, 2026</span>
+      <span><em>Seba.Health</em> · 1,987 pages</span>
+      <span><em>ORCID</em> 0009-0009-2028-0154</span>
+    </div>
+  </div>
+</header>
+
+<section class="letter">
+  <div class="marker">— A note from the author —</div>
+  <div class="body">
+    <p>The book that anchors this site began with a question I could not put down: what kind of <em>shadow</em> falls behind a figure of light? It became a study of the alcoholic — a figure Western culture both elevates and reviles, often inside the same sentence — and of the long, patient apprenticeship to feeling that recovery actually is.</p>
+    <p>What I have come to think, after a decade of reading Homer and the Jungians side by side, is that we have been working with an impoverished vocabulary for the inner life. The Greeks named twenty kinds of feeling where we now name two. <em>Thumos</em> — a word that meant <em>breath, courage, appetite, temper, the seat of life</em> — vanished into the English word <em>spirit</em>, and we lost the organ along with the word.</p>
+    <p>Everything on this site — the book, the papers, Seba.Health, the lexicon of five thousand Greek passages — is one long argument with that loss.</p>
+  </div>
+  <div class="signoff">
+    Cody Peterson<small>Henderson, Nevada · 2026</small>
+  </div>
+</section>
+
+<section id="book" class="object">
+  <div>
+    <div class="label">Of record</div>
+    <h2>The Shadow<br/><em>of a Figure of Light</em></h2>
+    <div class="deck-2">The Archetype of the Alcoholic and the Journey to Enlightenment. Chiron Publications, 2024 · 312 pages.</div>
+    <div class="blurb">
+      “Cody Peterson has written a book whose extension is deep, wide, and high. It elevates the vision of Bill Wilson and AA using the psycho-spiritual wisdom of C.G. Jung.”
+      <small>— Murray Stein · author of <em>The Mystery of Transformation</em></small>
+    </div>
+    <a href="/book" class="read">Read more &amp; reviews →</a>
+  </div>
+  <div class="book-art" aria-hidden="true">
+    <div class="spine"></div>
+    <div class="cover-text">
+      <div class="ch">Chiron Publications · MMXXIV</div>
+      <h3>The Shadow<br/>of a Figure<br/>of <em>Light</em></h3>
+      <div class="by">By <em>Cody Peterson</em></div>
+    </div>
+  </div>
+</section>
+
+<section id="articles" class="roll">
+  <div class="label">Peer-reviewed papers</div>
+  <h2>Published in <em>Jung Journal</em></h2>
+  <div class="article-list">
+    <div class="article-row">
+      <div class="ord">i.</div>
+      <div>
+        <h3>Taming Wild Beasts</h3>
+        <p>Iron <em>thumos</em> and the interoceptive roots of emotional sobriety in Homer's <em>Odyssey</em>.</p>
+      </div>
+      <div class="meta">Vol. 19 · Issue 2 · 2025<em>Jung Journal: Culture &amp; Psyche</em></div>
+    </div>
+    <div class="article-row">
+      <div class="ord">ii.</div>
+      <div>
+        <h3>The Iron <em>Thumos</em> &amp; the Empty Vessel</h3>
+        <p>A Homeric response to Jung's <em>Answer to Job</em>. Forthcoming.</p>
+      </div>
+      <div class="meta">Accepted Aug 2026<em>Jung Journal: Culture &amp; Psyche</em></div>
+    </div>
+  </div>
+</section>
+
+<section id="seba" class="closer">
+  <div class="greek">σέβας δέ σε <em>θυμὸν</em> ἱκέσθω</div>
+  <div class="trans"><em>Let sebas reach your thumos.</em></div>
+  <div class="src">Homer · Iliad 18.178</div>
+  <a href="https://www.seba.health" class="read" style="display:inline-block;margin-top:48px;font-family:'Fraunces',serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;border-bottom:1px solid var(--vermillion);padding-bottom:4px">Visit Seba.Health →</a>
+</section>
+
+<footer>
+  <span>© 2026 Cody Peterson · Henderson, Nevada</span>
+  <span>
+    <a href="https://x.com/AlkyArchetype">X</a>
+    <a href="https://www.youtube.com/@cody-peterson-author">YouTube</a>
+    <a href="https://orcid.org/0009-0009-2028-0154">ORCID</a>
+  </span>
+</footer>
+
+<div class="switcher">
+  <a href="v1.html">v1</a>
+  <a class="cur" href="v2.html">v2</a>
+  <a href="v3.html">v3</a>
+  <a href="v4.html">v4</a>
+  <a href="v5.html">v5</a>
+  <a href="index.html">·</a>
+</div>
+
+</body>
+</html>

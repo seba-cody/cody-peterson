@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>v3 · Archive — Cody Peterson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500;1,6..72,600&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f7f3ea;
+    --paper-2:#efe9da;
+    --soot:#1a1815;
+    --ink:#1f3a5f;
+    --ink-2:#2e4d75;
+    --tan:#c9a878;
+    --tan-2:#a78652;
+    --rule:#cdc4b0;
+    --soft:#6e6759;
+    --red:#9b2a1f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--paper);color:var(--soot);font-family:'Newsreader',Georgia,serif;font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased;font-feature-settings:"liga","kern"}
+  body{
+    background-image:
+      radial-gradient(900px 600px at 100% -10%, rgba(31,58,95,.05), transparent 60%),
+      radial-gradient(800px 500px at -10% 110%, rgba(201,168,120,.08), transparent 60%);
+    background-attachment:fixed;
+  }
+  a{color:inherit;text-decoration:none}
+  em{font-style:italic}
+  .mono{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-feature-settings:"ss01","ss02"}
+
+  /* Top file bar */
+  .filebar{
+    position:sticky;top:0;z-index:20;
+    background:var(--paper);
+    border-bottom:1px solid var(--rule);
+    padding:10px clamp(20px,3vw,40px);
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.04em;color:var(--soft);
+  }
+  .filebar .l{display:flex;gap:18px;align-items:center}
+  .filebar .l .stamp{color:var(--soot);font-weight:500}
+  .filebar .l .red{color:var(--red);font-weight:600}
+  .filebar .nav{display:flex;gap:18px}
+  .filebar .nav a{color:var(--soot)}
+  .filebar .nav a:hover{color:var(--ink)}
+
+  /* Layout */
+  .shell{display:grid;grid-template-columns:340px 1fr;min-height:calc(100vh - 36px)}
+  aside{
+    border-right:1px solid var(--rule);
+    background:linear-gradient(180deg,var(--paper) 0%,var(--paper-2) 100%);
+    padding:32px 28px;position:sticky;top:36px;align-self:start;height:calc(100vh - 36px);
+    overflow:auto;
+  }
+  aside .header-mark{
+    font-family:'Newsreader',serif;font-style:italic;font-weight:500;font-size:24px;line-height:1.05;
+    border-bottom:1px solid var(--rule);padding-bottom:18px;margin-bottom:18px;
+  }
+  aside .header-mark small{display:block;font-family:'JetBrains Mono',monospace;font-style:normal;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);margin-top:6px}
+  aside .index-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);margin:18px 0 10px}
+  aside ol{list-style:none}
+  aside ol li{padding:10px 0;border-bottom:1px dashed var(--rule);font-size:14px}
+  aside ol li:last-child{border-bottom:none}
+  aside ol a{display:grid;grid-template-columns:38px 1fr;gap:8px;align-items:start;color:var(--soot)}
+  aside ol a:hover{color:var(--ink)}
+  aside ol .num{font-family:'JetBrains Mono',monospace;color:var(--tan-2);font-weight:500}
+  aside ol .ttl{font-family:'Newsreader',serif;font-weight:500;line-height:1.3}
+  aside ol .ttl em{display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin-top:3px;font-style:normal}
+
+  aside .portrait-wrap{
+    margin-top:24px;border:1px solid var(--rule);padding:8px;background:var(--paper);
+  }
+  aside .portrait-wrap img{display:block;width:100%;height:auto;filter:grayscale(.85) contrast(1.05)}
+  aside .portrait-wrap .cap{margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft)}
+  aside .footer-marks{margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--soft);line-height:1.6}
+
+  main{padding:48px clamp(28px,4vw,72px) 80px;max-width:920px}
+
+  .sheet{
+    border:1px solid var(--rule);background:var(--paper);
+    margin-bottom:48px;
+    box-shadow:0 1px 0 rgba(0,0,0,.02), 0 12px 30px rgba(31,29,21,.04);
+  }
+  .sheet .head{
+    display:flex;justify-content:space-between;align-items:center;
+    background:var(--paper-2);border-bottom:1px solid var(--rule);
+    padding:10px 22px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);
+  }
+  .sheet .head .id{color:var(--soot);font-weight:600}
+  .sheet .head .right{display:flex;gap:16px}
+  .sheet .body{padding:34px 36px 38px}
+
+  /* Provenance / hero entry */
+  .entry-hero h1{
+    font-family:'Newsreader',serif;font-weight:500;font-size:clamp(48px,7vw,84px);line-height:.96;letter-spacing:-.005em;
+    margin-bottom:6px;
+  }
+  .entry-hero h1 em{font-style:italic;color:var(--ink)}
+  .entry-hero .role{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--tan-2);
+    margin-bottom:24px;
+  }
+  .entry-hero .lede{
+    font-family:'Newsreader',serif;font-size:21px;line-height:1.55;max-width:680px;margin-bottom:30px;
+  }
+  .entry-hero .lede em{color:var(--ink)}
+  .citations{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+    border-top:1px solid var(--rule);padding-top:22px;
+  }
+  .citations .cite{font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.6;color:var(--soft)}
+  .citations .cite strong{display:block;color:var(--soot);font-weight:500;margin-bottom:4px;letter-spacing:.04em}
+  .citations .cite a{color:var(--ink);border-bottom:1px solid var(--ink-2)}
+
+  /* Book entry */
+  .entry h2{
+    font-family:'Newsreader',serif;font-weight:500;font-size:36px;line-height:1.15;margin-bottom:8px;
+  }
+  .entry h2 em{font-style:italic;color:var(--ink)}
+  .entry .sub{font-family:'Newsreader',serif;font-style:italic;font-size:18px;color:var(--soft);margin-bottom:24px}
+  .entry .grid-2{display:grid;grid-template-columns:1.4fr 1fr;gap:32px}
+  .entry .abs{font-size:17px;line-height:1.65;color:#2a261f}
+  .entry .abs em{color:var(--ink)}
+  .entry .blockquote{
+    margin-top:22px;border-left:2px solid var(--tan);padding:6px 0 6px 18px;
+    font-style:italic;color:#2a261f;font-size:17px;line-height:1.55;
+  }
+  .entry .blockquote cite{display:block;margin-top:10px;font-style:normal;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+  .entry .blockquote cite em{color:var(--soot)}
+
+  .recordcard{
+    background:var(--paper-2);border:1px solid var(--rule);padding:18px 20px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.7;color:var(--soft);
+  }
+  .recordcard .rk{color:var(--ink);font-weight:600;letter-spacing:.04em}
+  .recordcard .rv{color:var(--soot)}
+  .recordcard a{color:var(--ink);border-bottom:1px solid var(--ink-2)}
+
+  /* Article entry */
+  .article-entry .meta{
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);margin-bottom:8px;
+  }
+  .article-entry h2{margin-bottom:6px}
+  .article-entry .citation{
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink);margin:6px 0 22px;
+    border-bottom:1px dashed var(--rule);padding-bottom:18px;
+  }
+  .article-entry p{font-size:17px;line-height:1.65;color:#2a261f}
+
+  /* Project entry */
+  .project-entry h2{font-size:42px}
+  .project-entry .pull{
+    margin:24px 0;font-family:'Newsreader',serif;font-style:italic;font-size:24px;line-height:1.4;color:var(--soot);
+    border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:18px 0;
+  }
+  .project-entry .pull em{color:var(--ink)}
+  .project-entry .row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:22px}
+  .project-entry .row .stat{
+    border-left:2px solid var(--tan);padding:6px 14px;
+  }
+  .project-entry .row .stat .num{font-family:'Newsreader',serif;font-weight:600;font-size:32px;line-height:1;color:var(--ink)}
+  .project-entry .row .stat .lab{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);margin-top:6px}
+
+  /* Motto entry */
+  .motto-entry{text-align:center;padding:48px 36px}
+  .motto-entry .greek{font-family:'Newsreader',serif;font-style:italic;font-size:42px;line-height:1.2;color:var(--soot)}
+  .motto-entry .trans{font-family:'Newsreader',serif;font-size:18px;color:var(--soft);margin-top:14px;font-style:italic}
+  .motto-entry .src{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);margin-top:18px}
+
+  /* Stamp */
+  .stamp-tl{
+    position:absolute;top:8px;right:14px;
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--red);text-transform:uppercase;
+    border:1px solid var(--red);padding:3px 8px;transform:rotate(2deg);
+  }
+  .sheet{position:relative}
+
+  /* Subscribe / footer */
+  .sub-line{
+    margin-top:8px;border:1px solid var(--rule);padding:24px;background:var(--paper-2);
+    display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;
+  }
+  .sub-line label{font-family:'Newsreader',serif;font-style:italic;font-size:18px}
+  .sub-line label em{color:var(--ink)}
+  .sub-line input{
+    border:none;border-bottom:1px solid var(--rule);background:transparent;
+    padding:8px 6px;font-family:'JetBrains Mono',monospace;font-size:13px;width:100%;color:var(--soot);
+  }
+  .sub-line input:focus{outline:none;border-bottom-color:var(--ink)}
+  .sub-line button{
+    background:var(--ink);color:var(--paper);border:none;padding:10px 18px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;
+  }
+  .sub-line button:hover{background:var(--ink-2)}
+
+  footer.foot{
+    border-top:1px solid var(--rule);padding:24px clamp(28px,4vw,72px);
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);
+    display:flex;justify-content:space-between;
+  }
+
+  .switcher{
+    position:fixed;right:18px;bottom:18px;z-index:50;
+    background:var(--soot);color:var(--paper);padding:10px 14px;border-radius:0;
+    display:flex;gap:14px;font-family:'JetBrains Mono',monospace;letter-spacing:.18em;font-size:10px;text-transform:uppercase;
+    box-shadow:0 8px 30px rgba(0,0,0,.25);
+  }
+  .switcher a{opacity:.55;color:var(--paper)}
+  .switcher a.cur{opacity:1;color:var(--tan)}
+  .switcher a:hover{opacity:1}
+
+  @media (max-width: 880px){
+    .shell{grid-template-columns:1fr}
+    aside{position:relative;height:auto;top:0;border-right:none;border-bottom:1px solid var(--rule)}
+    .entry .grid-2,.project-entry .row,.citations{grid-template-columns:1fr;gap:18px}
+  }
+</style>
+</head>
+<body>
+
+<div class="filebar">
+  <div class="l">
+    <span class="stamp">PETERSON_C / ARCHIVE</span>
+    <span>·</span>
+    <span>2024–2026</span>
+    <span>·</span>
+    <span class="red">DRAFT REV-04 · 28-IV-2026</span>
+  </div>
+  <div class="nav">
+    <a href="#01">01</a><a href="#02">02</a><a href="#03">03</a><a href="#04">04</a><a href="#05">05</a>
+  </div>
+</div>
+
+<div class="shell">
+
+<aside>
+  <div class="header-mark">
+    Cody Peterson<br/><em>— archive of works.</em>
+    <small>Henderson, NV · est. MMXXIV</small>
+  </div>
+
+  <div class="index-label">Index of Works</div>
+  <ol>
+    <li><a href="#01"><span class="num">01.</span><span class="ttl">A working biography<em>provenance</em></span></a></li>
+    <li><a href="#02"><span class="num">02.</span><span class="ttl">The Shadow of a Figure of Light<em>book · 2024</em></span></a></li>
+    <li><a href="#03"><span class="num">03.</span><span class="ttl">Taming Wild Beasts<em>article · jung journal · 2025</em></span></a></li>
+    <li><a href="#04"><span class="num">04.</span><span class="ttl">The Iron Thumos &amp; the Empty Vessel<em>article · forthcoming · 2026</em></span></a></li>
+    <li><a href="#05"><span class="num">05.</span><span class="ttl">Seba.Health<em>project · ongoing</em></span></a></li>
+    <li><a href="#06"><span class="num">06.</span><span class="ttl">σέβας δέ σε θυμὸν ἱκέσθω<em>motto · iliad 18.178</em></span></a></li>
+  </ol>
+
+  <div class="portrait-wrap">
+    <img src="https://www.cody-peterson.com/images/cody-peterson-bw.jpg" alt="Cody Peterson" />
+    <div class="cap">Plate I · Author portrait, b/w · 2025</div>
+  </div>
+
+  <div class="footer-marks">
+    ORCID: 0009-0009-2028-0154<br/>
+    AFFIL: Independent · Henderson, NV<br/>
+    EMAIL: cody@cityseamless.com<br/>
+    TWITTER: @AlkyArchetype
+  </div>
+</aside>
+
+<main>
+
+  <article id="01" class="sheet">
+    <div class="head">
+      <div class="id">FILE 01 · PROVENANCE</div>
+      <div class="right"><span>Last revised 28 Apr 2026</span><span>· public</span></div>
+    </div>
+    <div class="stamp-tl">Of record</div>
+    <div class="body entry-hero">
+      <div class="role">Depth psychology · antiquity · recovery</div>
+      <h1>Cody <em>Peterson</em></h1>
+      <p class="lede">
+        Author of <em>The Shadow of a Figure of Light</em> (Chiron Publications, 2024). Contributor to <em>Jung Journal: Culture &amp; Psyche</em>. Founder of <em>Seba.Health</em> — a long lexicon of the Western forgetting of <em>thumos</em>, the ancient organ of feeling.
+      </p>
+      <div class="citations">
+        <div class="cite"><strong>Book</strong>The Shadow of a Figure of Light · Chiron, 2024 · 312pp</div>
+        <div class="cite"><strong>Articles</strong><a href="https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105">Jung Journal 19.2 · 2025</a> · 1 forthcoming</div>
+        <div class="cite"><strong>Platform</strong><a href="https://www.seba.health">seba.health</a> · 1,987 pp · open access</div>
+      </div>
+    </div>
+  </article>
+
+  <article id="02" class="sheet">
+    <div class="head">
+      <div class="id">FILE 02 · BOOK · MONOGRAPH</div>
+      <div class="right"><span>Chiron Publications, 2024</span></div>
+    </div>
+    <div class="body entry">
+      <div class="grid-2">
+        <div>
+          <h2>The Shadow of a Figure of Light</h2>
+          <div class="sub">The Archetype of the Alcoholic and the Journey to Enlightenment.</div>
+          <p class="abs">A psychological reading of the figure of <em>the alcoholic</em> as Western culture has constructed him: at once revered (the visionary, the seer, the truth-teller) and reviled (the drunk, the failure, the monster). Peterson argues that the <em>shadow</em> of this figure of light is the lost organ of feeling itself — and reads Bill Wilson's vision through the psycho-spiritual wisdom of C.G. Jung.</p>
+          <div class="blockquote">
+            “Cody Peterson has written a book whose extension is deep, wide, and high. It rests on the solid foundations of careful scholarship and personal experience, it extends the understanding of alcoholism beyond the reductive neuro-physiological explanations, and it elevates the vision of Bill Wilson and AA using the psycho-spiritual wisdom of C.G. Jung.”
+            <cite><em>Murray Stein, Ph.D.</em> · author of <em>The Mystery of Transformation</em></cite>
+          </div>
+        </div>
+        <div class="recordcard">
+          <div class="rk">// RECORD CARD</div>
+          <br/>
+          <div><span class="rv">TITLE&nbsp;&nbsp;&nbsp;&nbsp; The Shadow of a Figure of Light</span></div>
+          <div><span class="rv">SUB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The Archetype of the Alcoholic</span></div>
+          <div><span class="rv">AUTHOR&nbsp;&nbsp;&nbsp; Peterson, Cody</span></div>
+          <div><span class="rv">PUB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chiron Publications</span></div>
+          <div><span class="rv">YEAR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2024</span></div>
+          <div><span class="rv">PAGES&nbsp;&nbsp;&nbsp;&nbsp; 312</span></div>
+          <div><span class="rv">LCSH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Jungian psych. · addiction · recovery</span></div>
+          <br/>
+          <div><a href="/book">→ Reviews &amp; sample chapter</a></div>
+          <div><a href="https://www.chironpublications.com/product-category/authors/peterson-cody/">→ Buy from Chiron</a></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article id="03" class="sheet">
+    <div class="head">
+      <div class="id">FILE 03 · ARTICLE · PEER-REVIEWED</div>
+      <div class="right"><span>Vol. 19 · No. 2 · 2025</span></div>
+    </div>
+    <div class="body article-entry">
+      <div class="meta">Article · Jung Journal: Culture &amp; Psyche</div>
+      <h2>Taming Wild Beasts</h2>
+      <div class="citation">Peterson, C. (2025). Taming Wild Beasts: <em>thumos</em> in Homer's <em>Odyssey</em>. <em>Jung Journal: Culture &amp; Psyche</em>, 19(2), 1–24. <a href="https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105">doi:10.1080/19342039.2025.2487105</a></div>
+      <p>An essay on a series of dreams Cody had in the fall/winter of 2024.</p>
+    </div>
+  </article>
+
+  <article id="04" class="sheet">
+    <div class="head">
+      <div class="id">FILE 04 · ARTICLE · FORTHCOMING</div>
+      <div class="right"><span>Accepted · Aug 2026</span></div>
+    </div>
+    <div class="body article-entry">
+      <div class="meta">Forthcoming · Jung Journal: Culture &amp; Psyche</div>
+      <h2>The Iron <em>Thumos</em> &amp; the Empty Vessel</h2>
+      <div class="citation">Peterson, C. (forthcoming). The Iron Thumos and the Empty Vessel: a Homeric response to Jung's <em>Answer to Job</em>. <em>Jung Journal: Culture &amp; Psyche</em>.</div>
+      <p>The vessel emptied of <em>thumos</em> is the modern condition. A reading of <em>Answer to Job</em> from inside the Iliad — where the wounded god is met not with theodicy but with a recovered organ of feeling.</p>
+    </div>
+  </article>
+
+  <article id="05" class="sheet">
+    <div class="head">
+      <div class="id">FILE 05 · PROJECT · ONGOING</div>
+      <div class="right"><span>Open access · seba.health</span></div>
+    </div>
+    <div class="body entry project-entry">
+      <h2>Seba<em>.Health</em></h2>
+      <div class="sub">A depth-oriented platform for the psychology of recovery and the ancient roots of the psyche.</div>
+      <div class="pull">
+        “Where Western culture forgot <em>thumos</em>, Seba is the long index of its memory.”
+      </div>
+      <div class="row">
+        <div class="stat"><div class="num">12,000+</div><div class="lab">Pages</div></div>
+        <div class="stat"><div class="num">700</div><div class="lab">Books indexed</div></div>
+        <div class="stat"><div class="num">7,000+</div><div class="lab">Greek terms in the concordance</div></div>
+      </div>
+      <p style="margin-top:30px;font-size:17px;line-height:1.65">A library, a glossary, a Greek concordance, and a lexicon of <em>seven hundred</em> academic works indexed for psychological vocabulary — Homer to Hillman, read as one continuous corpus.</p>
+      <p style="margin-top:14px;font-size:17px;line-height:1.65">At its center sits <em>Sebastian</em> — a depth-psychology AI I designed and trained on the entire library. Not a chatbot grafted to a search box, but an interlocutor formed inside it: every experience on the site (dream readings, tarot, astrology, the I Ching, Homeric query, guided reading paths) runs through him. <a href="https://www.seba.health" style="color:var(--ink);border-bottom:1px solid var(--ink-2)">Visit Seba.Health →</a></p>
+    </div>
+  </article>
+
+  <article id="06" class="sheet">
+    <div class="head">
+      <div class="id">FILE 06 · MOTTO</div>
+      <div class="right"><span>Iliad 18.178</span></div>
+    </div>
+    <div class="body motto-entry">
+      <div class="greek">σέβας δέ σε θυμὸν ἱκέσθω</div>
+      <div class="trans">Let <em>sebas</em> reach your <em>thumos</em>.</div>
+      <div class="src">— Iris to Achilles · Homer, Iliad 18.178</div>
+    </div>
+  </article>
+
+  <form class="sub-line" onsubmit="event.preventDefault()">
+    <label>Receive new entries by post — <em>occasional letters, no spam.</em>
+      <br/><input type="email" placeholder="your@email.com" />
+    </label>
+    <button type="submit">Subscribe</button>
+  </form>
+
+</main>
+</div>
+
+<footer class="foot">
+  <span>// © 2026 Cody Peterson · Composed in Henderson, NV</span>
+  <span>set in Newsreader &amp; JetBrains Mono</span>
+</footer>
+
+<div class="switcher">
+  <a href="v1.html">v1</a>
+  <a href="v2.html">v2</a>
+  <a class="cur" href="v3.html">v3</a>
+  <a href="v4.html">v4</a>
+  <a href="v5.html">v5</a>
+  <a href="index.html">·</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>v5 · Quiet — Cody Peterson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bone:#fafaf6;
+    --bone-2:#f1ede2;
+    --ink:#16130f;
+    --ink-2:#3c352c;
+    --soft:#7a7165;
+    --hair:#d6d0c0;
+    --ochre:#a87a3a;
+    --ochre-2:#7a5527;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    background:var(--bone);color:var(--ink);
+    font-family:'Inria Sans',ui-sans-serif,sans-serif;font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"liga","kern";
+  }
+  a{color:inherit;text-decoration:none}
+  em{font-style:italic}
+
+  .display{font-family:'Fraunces',Georgia,serif;font-feature-settings:"liga","kern","ss01"}
+
+  /* nav */
+  header.nav{
+    position:sticky;top:0;z-index:20;
+    background:rgba(250,250,246,.85);backdrop-filter:saturate(140%) blur(8px);
+    -webkit-backdrop-filter:saturate(140%) blur(8px);
+    display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:32px;
+    padding:18px clamp(20px,5vw,80px);
+    border-bottom:1px solid var(--hair);
+  }
+  header.nav .mark{
+    font-family:'Fraunces',serif;font-weight:500;font-size:21px;letter-spacing:-.005em;
+    font-variation-settings:"opsz" 30, "SOFT" 70;
+  }
+  header.nav .mark em{font-style:italic;color:var(--ochre);font-weight:400}
+  header.nav nav{justify-self:end;display:flex;gap:28px}
+  header.nav nav a{font-size:13px;color:var(--ink-2);position:relative;padding:6px 2px}
+  header.nav nav a:hover{color:var(--ochre-2)}
+  header.nav nav a.active::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--ochre)}
+  header.nav .meta{font-size:12px;color:var(--soft)}
+
+  /* hero */
+  .hero{
+    padding:120px clamp(20px,5vw,80px) 96px;
+    display:grid;grid-template-columns:1.4fr 1fr;gap:8vw;align-items:end;
+    position:relative;
+  }
+  .hero .eyebrow{
+    font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--ochre);
+    margin-bottom:36px;letter-spacing:.005em;
+  }
+  .hero .eyebrow::before{
+    content:"";display:inline-block;width:24px;height:1px;background:var(--ochre);
+    vertical-align:middle;margin-right:14px;
+  }
+  .hero h1{
+    font-family:'Fraunces',serif;font-weight:500;
+    font-size:clamp(64px,9.5vw,140px);line-height:.92;letter-spacing:-.02em;
+    font-variation-settings:"opsz" 144, "SOFT" 50, "WONK" 0;
+    color:var(--ink);
+  }
+  .hero h1 em{
+    font-style:italic;font-weight:400;color:var(--ink-2);
+    font-variation-settings:"opsz" 144, "SOFT" 100, "WONK" 1;
+  }
+  .hero .lede{
+    margin-top:36px;max-width:560px;font-size:19px;line-height:1.6;color:var(--ink-2);
+  }
+  .hero .lede em{color:var(--ochre-2);font-style:italic}
+  .hero .creditline{
+    margin-top:36px;display:flex;flex-wrap:wrap;gap:18px 32px;
+    font-size:13px;color:var(--soft);
+  }
+  .hero .creditline em{font-style:italic;color:var(--ink)}
+
+  .hero .portrait{
+    justify-self:end;width:100%;max-width:340px;position:relative;
+  }
+  .hero .portrait img{
+    display:block;width:100%;height:auto;
+    filter:grayscale(.5) contrast(1.04);
+  }
+  .hero .portrait::after{
+    content:"— ph. 2025, Henderson NV";
+    display:block;font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:var(--soft);
+    margin-top:14px;
+  }
+  .hero .portrait .vline{
+    position:absolute;top:-40px;left:-32px;width:1px;height:100px;background:var(--ochre);
+  }
+
+  /* divider */
+  .word-divider{
+    display:flex;align-items:center;gap:20px;
+    padding:48px clamp(20px,5vw,80px);max-width:1280px;margin:0 auto;
+  }
+  .word-divider .ln{flex:1;height:1px;background:var(--hair)}
+  .word-divider .w{font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--soft)}
+
+  /* sections */
+  section.s{padding:80px clamp(20px,5vw,80px)}
+  .s-grid{display:grid;grid-template-columns:1fr 2.4fr;gap:64px;align-items:start}
+  .s-grid .label{
+    font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ochre);
+    border-top:2px solid var(--ochre);padding-top:14px;
+  }
+  .s-grid .label .when{color:var(--soft);text-transform:none;letter-spacing:0;font-size:13px;font-style:italic;font-family:'Fraunces',serif;display:block;margin-top:6px}
+
+  .s-grid h2{
+    font-family:'Fraunces',serif;font-weight:500;font-size:clamp(36px,4.5vw,56px);line-height:1.1;
+    letter-spacing:-.01em;margin-bottom:24px;
+    font-variation-settings:"opsz" 60, "SOFT" 60;
+  }
+  .s-grid h2 em{font-style:italic;color:var(--ink-2)}
+  .s-grid p{font-size:18px;line-height:1.7;color:var(--ink-2);max-width:680px;margin-bottom:14px}
+  .s-grid p em{color:var(--ochre-2);font-style:italic}
+  .s-grid .read{
+    display:inline-block;margin-top:20px;font-size:14px;color:var(--ink);
+    border-bottom:1px solid var(--ochre);padding-bottom:3px;
+  }
+  .s-grid .read:hover{color:var(--ochre-2);border-bottom-color:var(--ochre-2)}
+
+  /* book showcase */
+  .book-row{display:grid;grid-template-columns:1fr 1.6fr;gap:48px;align-items:start}
+  .book-row .cover-card{
+    aspect-ratio:3/4;background:linear-gradient(160deg,#1f1c17 0%, #0d0c0a 100%);
+    color:var(--bone);display:flex;align-items:center;justify-content:center;text-align:center;
+    padding:30px;border:1px solid var(--ink);
+    box-shadow:0 30px 60px rgba(0,0,0,.18),inset 0 0 60px rgba(0,0,0,.5);
+    position:relative;
+  }
+  .book-row .cover-card::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:linear-gradient(90deg,rgba(255,255,255,.06),transparent);
+  }
+  .book-row .cover-card .ch{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--ochre);margin-bottom:32px}
+  .book-row .cover-card h3{font-family:'Fraunces',serif;font-weight:400;font-size:32px;line-height:1.1;font-style:italic}
+  .book-row .cover-card h3 strong{font-weight:500;font-style:normal}
+  .book-row .cover-card .by{font-size:11px;letter-spacing:.32em;text-transform:uppercase;margin-top:36px;color:#a89e8c}
+  .book-row .cover-card .by em{font-style:italic;letter-spacing:.04em;text-transform:none;color:var(--bone)}
+
+  .book-row .info h2{
+    font-family:'Fraunces',serif;font-weight:500;font-size:clamp(36px,4.5vw,56px);line-height:1.1;letter-spacing:-.01em;margin-bottom:6px;
+    font-variation-settings:"opsz" 60, "SOFT" 60;
+  }
+  .book-row .info h2 em{font-style:italic;color:var(--ink-2)}
+  .book-row .info .subt{font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:var(--soft);margin-bottom:28px}
+  .book-row .info .blurb{
+    border-left:2px solid var(--ochre);padding:6px 0 6px 18px;
+    font-family:'Fraunces',serif;font-style:italic;font-size:19px;line-height:1.55;color:var(--ink);max-width:580px;
+  }
+  .book-row .info .att{margin-top:14px;font-size:13px;color:var(--soft);padding-left:20px}
+  .book-row .info .att em{color:var(--ink);font-style:italic}
+  .book-row .info .row{
+    margin-top:32px;display:flex;gap:18px 32px;flex-wrap:wrap;font-size:13px;color:var(--soft);
+  }
+  .book-row .info .row em{font-style:italic;color:var(--ink);font-family:'Fraunces',serif}
+  .book-row .info .actions{margin-top:36px;display:flex;gap:24px}
+  .book-row .info .actions a{font-size:14px;border-bottom:1px solid var(--ochre);padding-bottom:3px;color:var(--ink)}
+  .book-row .info .actions a:hover{color:var(--ochre-2)}
+
+  /* articles list */
+  .articles-quiet{display:grid;gap:0}
+  .articles-quiet .a{
+    display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:baseline;
+    padding:30px 0;border-top:1px solid var(--hair);
+  }
+  .articles-quiet .a:last-child{border-bottom:1px solid var(--hair)}
+  .articles-quiet .a .yr{font-family:'Fraunces',serif;font-style:italic;font-size:32px;color:var(--ochre);line-height:1;font-weight:400;font-variation-settings:"opsz" 60,"SOFT" 70}
+  .articles-quiet .a h3{font-family:'Fraunces',serif;font-weight:500;font-size:26px;line-height:1.15;margin-bottom:6px}
+  .articles-quiet .a h3 em{font-style:italic;color:var(--ink-2)}
+  .articles-quiet .a p{font-size:15px;color:var(--ink-2);max-width:540px;line-height:1.6}
+  .articles-quiet .a .where{font-size:12px;color:var(--soft);font-style:italic;font-family:'Fraunces',serif;text-align:right;line-height:1.6;white-space:nowrap}
+  .articles-quiet .a .where em{color:var(--ink);font-style:italic;display:block;font-size:14px}
+
+  /* pull quote */
+  .pull{
+    padding:96px clamp(20px,5vw,80px);text-align:center;
+    background:var(--bone-2);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+  }
+  .pull q{
+    quotes:none;font-family:'Fraunces',serif;font-weight:400;font-style:italic;
+    font-size:clamp(28px,3.6vw,42px);line-height:1.3;color:var(--ink);
+    max-width:980px;display:block;margin:0 auto;
+    font-variation-settings:"opsz" 60, "SOFT" 90;
+  }
+  .pull q em{color:var(--ochre-2)}
+  .pull q::before{content:"“";color:var(--ochre);margin-right:6px}
+  .pull q::after{content:"”";color:var(--ochre);margin-left:6px}
+  .pull cite{
+    display:block;margin-top:22px;font-style:normal;font-size:13px;color:var(--soft);letter-spacing:.04em;
+  }
+  .pull cite em{color:var(--ink);font-style:italic;font-family:'Fraunces',serif}
+
+  /* greek closer */
+  .closing{
+    padding:120px clamp(20px,5vw,80px);text-align:center;
+  }
+  .closing .greek{
+    font-family:'Fraunces',serif;font-style:italic;font-size:clamp(36px,5vw,64px);line-height:1.2;letter-spacing:.005em;
+    color:var(--ink);
+    font-variation-settings:"opsz" 100, "SOFT" 90;
+  }
+  .closing .trans{margin-top:18px;font-size:15px;color:var(--soft);font-family:'Fraunces',serif;font-style:italic}
+  .closing .src{margin-top:6px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ochre)}
+
+  /* subscribe */
+  .sub{
+    padding:64px clamp(20px,5vw,80px);
+    display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
+    border-top:1px solid var(--hair);
+  }
+  .sub h3{font-family:'Fraunces',serif;font-weight:500;font-size:32px;line-height:1.2;margin-bottom:8px;font-variation-settings:"opsz" 60,"SOFT" 60}
+  .sub h3 em{font-style:italic;color:var(--ochre-2)}
+  .sub p{font-size:15px;color:var(--ink-2);max-width:420px}
+  .sub form{display:grid;grid-template-columns:1fr auto;gap:0;border-bottom:1px solid var(--ink)}
+  .sub input{
+    border:none;background:transparent;padding:14px 4px;font-size:15px;font-family:inherit;color:var(--ink);
+  }
+  .sub input:focus{outline:none}
+  .sub button{
+    border:none;background:transparent;padding:14px 4px;font-size:13px;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--ochre-2);font-family:inherit;cursor:pointer;
+  }
+
+  /* footer */
+  footer.foot{
+    padding:32px clamp(20px,5vw,80px);
+    border-top:1px solid var(--hair);
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:12px;color:var(--soft);
+  }
+  footer.foot a{margin-left:18px;color:var(--ink-2)}
+  footer.foot a:hover{color:var(--ochre-2)}
+  footer.foot em{font-family:'Fraunces',serif;font-style:italic;color:var(--ink)}
+
+  .switcher{
+    position:fixed;right:18px;bottom:18px;z-index:50;
+    background:var(--ink);color:var(--bone);padding:10px 14px;border-radius:999px;
+    display:flex;gap:14px;font-family:'Inria Sans',sans-serif;letter-spacing:.18em;font-size:11px;text-transform:uppercase;
+    box-shadow:0 8px 30px rgba(0,0,0,.18);
+  }
+  .switcher a{opacity:.55}
+  .switcher a.cur{opacity:1;color:var(--ochre)}
+  .switcher a:hover{opacity:1}
+
+  @media (max-width: 880px){
+    .hero,.book-row,.s-grid,.sub{grid-template-columns:1fr;gap:36px}
+    header.nav{grid-template-columns:1fr auto;gap:14px}
+    header.nav .meta{display:none}
+    .articles-quiet .a{grid-template-columns:1fr;gap:6px}
+    .articles-quiet .a .where{text-align:left}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a href="/" class="mark">Cody <em>Peterson</em></a>
+  <span class="meta">Depth Psychology · Author · Founder of Seba.Health</span>
+  <nav>
+    <a href="#book">Book</a>
+    <a href="#articles">Articles</a>
+    <a href="#seba">Seba.Health</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">A working scholar in depth psychology &amp; antiquity.</div>
+    <h1 class="display">
+      Cody<br/><em>Peterson.</em>
+    </h1>
+    <p class="lede">
+      Author of <em>The Shadow of a Figure of Light</em> (Chiron Publications, 2024). Contributor to <em>Jung Journal: Culture &amp; Psyche</em>. Founder of <em>Seba.Health</em> — a depth-oriented platform exploring the psychology of recovery and the ancient organ of feeling.
+    </p>
+    <div class="creditline">
+      <span><em>Chiron</em> · 2024</span>
+      <span><em>Jung Journal</em> · 2025, 2026</span>
+      <span><em>seba.health</em> · 1,987 pages</span>
+    </div>
+  </div>
+  <div class="portrait">
+    <span class="vline" aria-hidden="true"></span>
+    <img src="https://www.cody-peterson.com/images/cody-peterson-bw.jpg" alt="Cody Peterson" />
+  </div>
+</section>
+
+<div class="word-divider">
+  <div class="ln"></div>
+  <div class="w">— recent &amp; ongoing work —</div>
+  <div class="ln"></div>
+</div>
+
+<section id="book" class="s">
+  <div class="book-row">
+    <div class="cover-card" aria-hidden="true">
+      <div>
+        <div class="ch">Chiron Publications · 2024</div>
+        <h3>The Shadow<br/>of a Figure<br/><strong>of Light</strong></h3>
+        <div class="by">By <em>Cody Peterson</em></div>
+      </div>
+    </div>
+    <div class="info">
+      <h2>The Shadow of <em>a Figure of Light</em></h2>
+      <div class="subt">The Archetype of the Alcoholic and the Journey to Enlightenment.</div>
+      <div class="blurb">
+        Cody Peterson has written a book whose extension is deep, wide, and high. It elevates the vision of Bill Wilson and AA using the psycho-spiritual wisdom of C.G. Jung.
+      </div>
+      <div class="att">— <em>Murray Stein, Ph.D.</em>, author of <em>The Mystery of Transformation</em></div>
+      <div class="row">
+        <span><em>Publisher</em> Chiron Publications</span>
+        <span><em>Year</em> 2024</span>
+        <span><em>Pages</em> 312</span>
+      </div>
+      <div class="actions">
+        <a href="/book">Read more &amp; reviews →</a>
+        <a href="https://www.chironpublications.com/product-category/authors/peterson-cody/">Buy from Chiron →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pull">
+  <q>The Greeks named twenty kinds of feeling where we now name two. <em>Thumos</em> — breath, courage, appetite, the seat of life — vanished into the English word <em>spirit</em>, and we lost the organ along with the word.</q>
+  <cite>— from <em>The Iron Thumos &amp; the Empty Vessel</em>, forthcoming.</cite>
+</section>
+
+<section id="articles" class="s">
+  <div class="s-grid">
+    <div class="label">Articles<span class="when">Peer-reviewed · Jung Journal</span></div>
+    <div>
+      <h2>Two papers on iron <em>thumos</em>.</h2>
+      <p style="margin-bottom:36px">Scholarship on the psychology of antiquity, emotional sobriety, and a Homeric response to <em>Answer to Job</em>. Published — and forthcoming — in <em>Jung Journal: Culture &amp; Psyche</em>.</p>
+
+      <div class="articles-quiet">
+        <div class="a">
+          <div class="yr">2025</div>
+          <div>
+            <h3>Taming Wild Beasts</h3>
+            <p>Iron <em>thumos</em> and the interoceptive roots of emotional sobriety in Homer's <em>Odyssey</em>.</p>
+          </div>
+          <div class="where">Vol. 19 · Issue 2<em>Jung Journal</em></div>
+        </div>
+        <div class="a">
+          <div class="yr">2026</div>
+          <div>
+            <h3>The Iron <em>Thumos</em> &amp; the Empty Vessel</h3>
+            <p>A Homeric response to Jung's <em>Answer to Job</em>. Forthcoming.</p>
+          </div>
+          <div class="where">Accepted Aug 2026<em>Jung Journal</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="seba" class="s">
+  <div class="s-grid">
+    <div class="label">Platform<span class="when">Ongoing · open access</span></div>
+    <div>
+      <h2><em>Seba</em>.Health.</h2>
+      <p>A depth-oriented platform exploring the psychology of recovery, the roots of the psyche, and the ancient organ of feeling. Library, glossary, essays, and a lexicon of <em>five thousand</em> ancient Greek passages indexed for psychological vocabulary.</p>
+      <p>Where Western culture forgot <em>thumos</em>, Seba is the long index of its memory.</p>
+      <a class="read" href="https://www.seba.health">Visit Seba.Health →</a>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="s">
+  <div class="s-grid">
+    <div class="label">About<span class="when">Henderson, Nevada</span></div>
+    <div>
+      <h2>A working scholar &amp; founder.</h2>
+      <p>I write about depth psychology, antiquity, and addiction recovery from Henderson, Nevada. My research follows a single throughline — the <em>thumos</em> of the Greeks, the lost organ of feeling — across Homer, the Jungian tradition, and the contemporary science of interoception.</p>
+      <p>Outside the writing desk: founder of <em>City Seamless</em> (rain gutters, Las Vegas Valley) and <em>702 Alliance</em> (locally-owned business directory). All three sites circle the same question — how a place, a person, or a feeling becomes itself again.</p>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="greek">σέβας δέ σε θυμὸν ἱκέσθω</div>
+  <div class="trans">Let <em>sebas</em> reach your <em>thumos</em>.</div>
+  <div class="src">Homer · Iliad 18.178</div>
+</section>
+
+<section class="sub">
+  <div>
+    <h3>Stay in <em>the work.</em></h3>
+    <p>Depth psychology, recovery, and the ancient roots of feeling. Occasional letters. No spam.</p>
+  </div>
+  <form onsubmit="event.preventDefault()">
+    <input type="email" placeholder="your@email.com" />
+    <button type="submit">Subscribe →</button>
+  </form>
+</section>
+
+<footer class="foot">
+  <span>© 2026 <em>Cody Peterson</em>. Composed in Henderson, NV. Set in Fraunces &amp; Inria Sans.</span>
+  <span>
+    <a href="https://x.com/AlkyArchetype">X</a>
+    <a href="https://www.youtube.com/@cody-peterson-author">YouTube</a>
+    <a href="https://www.linkedin.com/in/cody-peterson-487224229/">LinkedIn</a>
+    <a href="https://orcid.org/0009-0009-2028-0154">ORCID</a>
+  </span>
+</footer>
+
+<div class="switcher">
+  <a href="v1.html">v1</a>
+  <a href="v2.html">v2</a>
+  <a href="v3.html">v3</a>
+  <a href="v4.html">v4</a>
+  <a class="cur" href="v5.html">v5</a>
+  <a href="index.html">·</a>
+</div>
+
+</body>
+</html>

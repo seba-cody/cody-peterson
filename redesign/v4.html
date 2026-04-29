@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>v4 · Stone — Cody Peterson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Italiana&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --stone:#e8e0cf;
+    --stone-2:#dcd2bd;
+    --stone-3:#c8bda2;
+    --ash:#27241f;
+    --ash-2:#3f3a31;
+    --terra:#a13b22;
+    --terra-2:#7e2a14;
+    --gold:#a78344;
+    --gold-2:#d2a85b;
+    --soft:#6a635a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{
+    background:var(--stone);color:var(--ash);
+    font-family:'Spectral',Georgia,serif;font-size:17px;line-height:1.7;
+    -webkit-font-smoothing:antialiased;font-feature-settings:"liga","kern","onum"
+  }
+  body{
+    background-image:
+      radial-gradient(1100px 700px at 80% -100px, rgba(161,59,34,.06), transparent 60%),
+      radial-gradient(900px 700px at 0% 110%, rgba(167,131,68,.10), transparent 60%);
+    /* subtle noise */
+    background-color: var(--stone);
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .06 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    mix-blend-mode:multiply;opacity:.6;
+  }
+  a{color:inherit;text-decoration:none}
+  em{font-style:italic}
+
+  .display{font-family:'Italiana',serif;font-weight:400;letter-spacing:.005em}
+  .caps{font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.16em;font-weight:500}
+
+  /* top */
+  .top{
+    position:relative;z-index:2;
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+    padding:22px clamp(20px,5vw,72px);
+    border-bottom:1px solid var(--stone-3);
+  }
+  .top .ornament{font-family:'Italiana',serif;font-size:18px;color:var(--terra);letter-spacing:.4em}
+  .top .l{font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.18em;font-size:13px;color:var(--ash-2)}
+  .top nav{justify-self:end;display:flex;gap:28px}
+  .top nav a{font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.18em;font-size:13px;color:var(--ash);position:relative}
+  .top nav a:hover{color:var(--terra)}
+  .top nav a + a::before{content:"·";position:absolute;left:-16px;color:var(--gold);top:50%;transform:translateY(-50%)}
+
+  /* hero / wall */
+  .wall{
+    position:relative;z-index:2;
+    text-align:center;
+    padding:96px clamp(20px,5vw,72px) 86px;
+    border-bottom:1px solid var(--stone-3);
+  }
+  .wall .crown{
+    font-family:'Italiana',serif;font-size:18px;color:var(--terra);letter-spacing:.5em;
+    margin-bottom:42px;
+  }
+  .wall .crown::before, .wall .crown::after{content:"❦";color:var(--gold);margin:0 14px;font-size:.85em}
+  .greek-mono{
+    font-family:'EB Garamond',serif;font-weight:500;font-style:italic;
+    font-size:clamp(48px,8vw,112px);line-height:1.05;color:var(--ash);
+    letter-spacing:.005em;margin-bottom:30px;
+  }
+  .greek-mono em{color:var(--terra);font-style:italic}
+  .greek-trans{
+    font-family:'Spectral',serif;font-style:italic;font-size:22px;color:var(--ash-2);max-width:700px;margin:0 auto;
+  }
+  .greek-cite{
+    font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.32em;font-size:12px;color:var(--terra);margin-top:18px;
+  }
+  .gold-rule{
+    width:280px;height:1px;background:var(--gold);margin:54px auto 28px;position:relative;
+  }
+  .gold-rule::before{
+    content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:14px;height:14px;background:var(--stone);border:1px solid var(--gold);transform:rotate(45deg) translate(-50%,-50%);transform-origin:0 0;
+  }
+
+  .author-line{
+    font-family:'Italiana',serif;font-size:clamp(44px,7vw,96px);line-height:1;letter-spacing:.01em;color:var(--ash);
+  }
+  .author-tag{
+    margin-top:14px;font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.3em;font-size:13px;color:var(--soft);
+  }
+  .author-tag em{font-variant:normal;letter-spacing:0;font-style:italic;color:var(--terra)}
+
+  /* portrait/bio strip */
+  .strip{
+    position:relative;z-index:2;
+    display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:center;
+    padding:96px clamp(20px,5vw,72px);
+    border-bottom:1px solid var(--stone-3);
+  }
+  .strip .frame{
+    position:relative;justify-self:end;width:min(320px,90%);
+    background:var(--stone);
+    border:1px solid var(--ash-2);padding:14px;
+    box-shadow:0 30px 60px rgba(39,36,31,.12);
+  }
+  .strip .frame::before{
+    content:"";position:absolute;inset:6px;border:1px solid var(--gold);pointer-events:none;
+  }
+  .strip .frame img{display:block;width:100%;height:auto;filter:grayscale(.85) sepia(.1) contrast(1.05)}
+  .strip .frame .plate{
+    text-align:center;margin-top:10px;font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.22em;font-size:11px;color:var(--soft);
+  }
+  .strip .copy h2{
+    font-family:'Italiana',serif;font-size:clamp(40px,5.5vw,68px);line-height:1.05;font-weight:400;color:var(--ash);margin-bottom:22px;
+  }
+  .strip .copy h2 em{color:var(--terra);font-style:italic}
+  .strip .copy p{font-size:18px;line-height:1.7;color:var(--ash-2);margin-bottom:14px}
+  .strip .copy p em{color:var(--terra-2);font-style:italic}
+  .strip .copy .creds{
+    margin-top:24px;display:flex;gap:24px;flex-wrap:wrap;
+  }
+  .strip .copy .creds .c{
+    font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.18em;font-size:12px;color:var(--soft);
+    border-left:1px solid var(--gold);padding-left:14px;
+  }
+  .strip .copy .creds .c em{font-variant:normal;letter-spacing:0;font-style:italic;color:var(--ash);font-size:14px}
+
+  /* book section, exhibition card */
+  .exhibit{
+    position:relative;z-index:2;
+    padding:96px clamp(20px,5vw,72px);text-align:center;
+    background:linear-gradient(180deg,var(--stone) 0%, var(--stone-2) 100%);
+    border-bottom:1px solid var(--stone-3);
+  }
+  .exhibit .label{
+    font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.4em;color:var(--terra);font-size:12px;margin-bottom:28px;
+  }
+  .exhibit h2{
+    font-family:'Italiana',serif;font-size:clamp(54px,8vw,108px);line-height:1;font-weight:400;color:var(--ash);
+  }
+  .exhibit h2 em{font-style:italic;color:var(--terra)}
+  .exhibit .subt{
+    margin-top:14px;font-family:'EB Garamond',serif;font-style:italic;font-size:21px;color:var(--ash-2);max-width:680px;margin-left:auto;margin-right:auto;
+  }
+  .exhibit .stand{
+    width:120px;height:1px;background:var(--gold);margin:44px auto;
+  }
+  .exhibit .quote{
+    max-width:780px;margin:0 auto;
+    font-family:'EB Garamond',serif;font-style:italic;font-size:22px;line-height:1.6;color:var(--ash);
+  }
+  .exhibit .quote::before{
+    content:"“";font-family:'Italiana',serif;font-size:80px;line-height:.5;color:var(--gold);
+    display:block;margin-bottom:14px;
+  }
+  .exhibit .att{margin-top:22px;font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.2em;font-size:12px;color:var(--soft)}
+  .exhibit .att em{font-variant:normal;letter-spacing:0;font-style:italic;color:var(--ash)}
+  .exhibit .meta{
+    margin-top:48px;display:inline-grid;grid-template-columns:auto auto;gap:8px 22px;
+    font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.18em;font-size:11px;color:var(--soft);
+    border-top:1px solid var(--stone-3);border-bottom:1px solid var(--stone-3);padding:14px 24px;
+  }
+  .exhibit .meta dd{font-variant:normal;letter-spacing:0;color:var(--ash);font-style:italic;font-size:13px;text-align:left}
+  .exhibit .actions{margin-top:40px;display:flex;gap:24px;justify-content:center}
+  .exhibit .actions a{
+    font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.22em;font-size:12px;
+    border-bottom:1px solid var(--terra);padding-bottom:3px;color:var(--ash);
+  }
+  .exhibit .actions a:hover{color:var(--terra)}
+
+  /* articles, bibliographic */
+  .biblio{
+    position:relative;z-index:2;
+    padding:96px clamp(20px,5vw,72px);
+    border-bottom:1px solid var(--stone-3);
+  }
+  .biblio .head{display:grid;grid-template-columns:auto 1fr;gap:42px;align-items:end;margin-bottom:48px}
+  .biblio .head .label{font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.32em;font-size:12px;color:var(--terra);writing-mode:vertical-rl;transform:rotate(180deg);text-align:right}
+  .biblio h2{font-family:'Italiana',serif;font-size:clamp(40px,5vw,72px);line-height:1.05;color:var(--ash);font-weight:400}
+  .biblio h2 em{font-style:italic;color:var(--terra)}
+
+  .biblio ol{list-style:none;max-width:920px;margin:0 auto}
+  .biblio li{
+    display:grid;grid-template-columns:60px 1fr;gap:22px;
+    padding:32px 0;border-top:1px solid var(--stone-3);
+  }
+  .biblio li:last-child{border-bottom:1px solid var(--stone-3)}
+  .biblio li .ord{font-family:'Italiana',serif;font-size:42px;color:var(--gold);line-height:1}
+  .biblio li h3{font-family:'EB Garamond',serif;font-weight:600;font-size:26px;line-height:1.2;color:var(--ash);margin-bottom:6px}
+  .biblio li h3 em{font-style:italic;color:var(--terra-2)}
+  .biblio li .cite{font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.16em;font-size:11px;color:var(--soft);margin-bottom:10px}
+  .biblio li .cite em{font-variant:normal;letter-spacing:0;font-style:italic;color:var(--ash)}
+  .biblio li p{font-size:16px;color:var(--ash-2);line-height:1.65;max-width:680px}
+
+  /* seba — "current commission" */
+  .commission{
+    position:relative;z-index:2;
+    padding:120px clamp(20px,5vw,72px);text-align:center;
+    background:var(--ash);color:var(--stone);
+  }
+  .commission::before, .commission::after{
+    content:"";position:absolute;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,transparent 0,var(--gold) 50%,transparent 100%);
+  }
+  .commission::before{top:0}
+  .commission::after{bottom:0}
+  .commission .label{font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.4em;font-size:12px;color:var(--gold-2);margin-bottom:24px}
+  .commission h2{font-family:'Italiana',serif;font-size:clamp(48px,7vw,96px);font-weight:400;line-height:1;letter-spacing:.005em}
+  .commission h2 em{color:var(--gold-2);font-style:italic}
+  .commission p{margin:32px auto 0;max-width:680px;font-size:18px;line-height:1.7;color:#cfc4a8;font-family:'Spectral',serif}
+  .commission p em{color:var(--stone);font-style:italic}
+  .commission .visit{
+    display:inline-block;margin-top:36px;
+    font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.32em;font-size:12px;color:var(--gold-2);
+    border-bottom:1px solid var(--gold-2);padding-bottom:4px;
+  }
+  .commission .visit:hover{color:#fff;border-color:#fff}
+
+  /* footer */
+  footer.foot{
+    position:relative;z-index:2;
+    padding:42px clamp(20px,5vw,72px);
+    display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;
+    border-top:1px solid var(--stone-3);
+    font-family:'Spectral',serif;color:var(--ash-2);font-size:14px;
+  }
+  footer.foot h4{font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.22em;font-size:11px;color:var(--terra);margin-bottom:12px}
+  footer.foot a{display:block;padding:3px 0}
+  footer.foot a:hover{color:var(--terra)}
+  footer.foot .colo em{font-style:italic;color:var(--ash)}
+  footer.foot .end{grid-column:1/-1;border-top:1px solid var(--stone-3);padding-top:18px;display:flex;justify-content:space-between;font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.22em;font-size:11px;color:var(--soft)}
+
+  .switcher{
+    position:fixed;right:18px;bottom:18px;z-index:50;
+    background:var(--ash);color:var(--stone);padding:10px 14px;border-radius:0;
+    display:flex;gap:14px;font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.22em;font-size:11px;
+    box-shadow:0 8px 30px rgba(39,36,31,.25);
+    border:1px solid var(--gold);
+  }
+  .switcher a{opacity:.55;color:var(--stone)}
+  .switcher a.cur{opacity:1;color:var(--gold-2)}
+  .switcher a:hover{opacity:1}
+
+  @media (max-width: 880px){
+    .strip{grid-template-columns:1fr;gap:36px}
+    .strip .frame{justify-self:start}
+    .biblio .head{grid-template-columns:1fr}
+    .biblio .head .label{writing-mode:horizontal-tb;transform:none;text-align:left}
+    footer.foot{grid-template-columns:1fr 1fr}
+    .top{grid-template-columns:1fr;gap:14px;text-align:center}
+    .top nav{justify-self:center}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="l">Cody Peterson</div>
+  <div class="ornament">— ❦ —</div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#book">Book</a>
+    <a href="#articles">Articles</a>
+    <a href="#seba">Seba.Health</a>
+  </nav>
+</header>
+
+<section class="wall">
+  <div class="crown">Cabinet of Works</div>
+  <div class="greek-mono">σέβας δέ σε <em>θυμὸν</em> ἱκέσθω</div>
+  <div class="greek-trans">— that <em>sebas</em>, that awe-laced reverence, may reach your <em>thumos</em>, the ancient organ of feeling.</div>
+  <div class="greek-cite">Homer · Iliad 18.178 · Iris to Achilles</div>
+  <div class="gold-rule" aria-hidden="true"></div>
+  <div class="author-line">Cody Peterson</div>
+  <div class="author-tag">Depth Psychology · <em>Antiquity</em> · The Archetype of the Alcoholic</div>
+</section>
+
+<section id="about" class="strip">
+  <div class="frame">
+    <img src="https://www.cody-peterson.com/images/cody-peterson-bw.jpg" alt="Cody Peterson" />
+    <div class="plate">— Plate I —</div>
+  </div>
+  <div class="copy">
+    <h2>Reading <em>Homer</em> through the lens of depth psychology.</h2>
+    <p>
+      I am a depth psychologist, author, and founder of <em>Seba.Health</em>. My work follows a single throughline — the <em>thumos</em> of antiquity, the ancient organ of feeling — across Homer, the Jungian tradition, addiction recovery, and the contemporary science of interoception.
+    </p>
+    <p>
+      My book <em>The Shadow of a Figure of Light</em> (Chiron Publications, 2024) reads the archetype of <em>the alcoholic</em> as a long shadow cast by Western culture's lost organ of feeling. My current research, in <em>Jung Journal</em>, follows the iron <em>thumos</em> of Odysseus into the consulting room.
+    </p>
+    <div class="creds">
+      <div class="c">Author<em>Chiron, 2024</em></div>
+      <div class="c">Contributor<em>Jung Journal</em></div>
+      <div class="c">Founder<em>Seba.Health</em></div>
+    </div>
+  </div>
+</section>
+
+<section id="book" class="exhibit">
+  <div class="label">— Cabinet I · the book —</div>
+  <h2><em>The Shadow</em><br/>of a Figure of Light</h2>
+  <div class="subt">The Archetype of the Alcoholic and the Journey to Enlightenment.</div>
+  <div class="stand" aria-hidden="true"></div>
+  <div class="quote">
+    Cody Peterson has written a book whose extension is deep, wide, and high. It rests on the solid foundations of careful scholarship and personal experience, it extends the understanding of alcoholism beyond the reductive neuro-physiological explanations, and it elevates the vision of Bill Wilson and AA using the psycho-spiritual wisdom of C.G. Jung.
+  </div>
+  <div class="att">— <em>Murray Stein, Ph.D.</em>, author of <em>The Mystery of Transformation</em></div>
+  <dl class="meta">
+    <dt>Publisher</dt><dd>Chiron Publications</dd>
+    <dt>Year</dt><dd>MMXXIV · 2024</dd>
+    <dt>Length</dt><dd>312 pages</dd>
+    <dt>Subjects</dt><dd>Jungian psychology · addiction recovery · alchemy</dd>
+  </dl>
+  <div class="actions">
+    <a href="/book">Read more &amp; reviews</a>
+    <a href="https://www.chironpublications.com/product-category/authors/peterson-cody/">Buy from Chiron</a>
+  </div>
+</section>
+
+<section id="articles" class="biblio">
+  <div class="head">
+    <div class="label">Cabinet II — Papers</div>
+    <h2>Published in <em>Jung Journal</em>.</h2>
+  </div>
+  <ol>
+    <li>
+      <div class="ord">i.</div>
+      <div>
+        <h3>Taming Wild Beasts.</h3>
+        <div class="cite">Peterson, C. (2025) · <em>Jung Journal: Culture &amp; Psyche</em> · Vol. 19, Issue 2 · Spring 2025</div>
+        <p>Iron <em>thumos</em> and the interoceptive roots of emotional sobriety in Homer's <em>Odyssey</em>. <a href="https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105" style="color:var(--terra);border-bottom:1px solid var(--terra)">read the paper →</a></p>
+      </div>
+    </li>
+    <li>
+      <div class="ord">ii.</div>
+      <div>
+        <h3>The Iron <em>Thumos</em> &amp; the Empty Vessel.</h3>
+        <div class="cite">Peterson, C. (forthcoming) · <em>Jung Journal: Culture &amp; Psyche</em> · accepted Aug 2026</div>
+        <p>A Homeric response to Jung's <em>Answer to Job</em>. The vessel emptied of feeling, and the long Western forgetting of <em>thumos</em>.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section id="seba" class="commission">
+  <div class="label">— Cabinet III · current commission —</div>
+  <h2><em>Seba</em>.Health</h2>
+  <p>
+    A depth-oriented platform for the psychology of recovery, the roots of the psyche, and the ancient organ of feeling. Library, glossary, essays, and a lexicon of <em>five thousand</em> ancient Greek passages indexed for psychological vocabulary — where Western culture forgot <em>thumos</em>, Seba is the long index of its memory.
+  </p>
+  <a href="https://www.seba.health" class="visit">Enter Seba.Health →</a>
+</section>
+
+<footer class="foot">
+  <div class="colo">
+    <h4>Colophon</h4>
+    <em>Cody Peterson</em> — composed by hand from Henderson, Nevada. Set in <em>Italiana</em>, <em>EB Garamond</em>, and <em>Spectral</em>. Greek glyphs cut from the Garamond. ❦
+  </div>
+  <div>
+    <h4>Work</h4>
+    <a href="#book">The Book</a>
+    <a href="#articles">Articles</a>
+    <a href="https://www.seba.health">Seba.Health</a>
+  </div>
+  <div>
+    <h4>Ventures</h4>
+    <a href="https://www.seba.health">Seba Health</a>
+    <a href="https://www.702alliance.com">702 Alliance</a>
+    <a href="https://www.cityseamless.com">City Seamless</a>
+  </div>
+  <div>
+    <h4>Correspond</h4>
+    <a href="https://x.com/AlkyArchetype">X / Twitter</a>
+    <a href="https://www.youtube.com/@cody-peterson-author">YouTube</a>
+    <a href="https://orcid.org/0009-0009-2028-0154">ORCID</a>
+  </div>
+  <div class="end">
+    <span>© MMXXVI · Cody Peterson · all rights reserved</span>
+    <span>typeset in italiana &amp; eb garamond</span>
+  </div>
+</footer>
+
+<div class="switcher">
+  <a href="v1.html">v1</a>
+  <a href="v2.html">v2</a>
+  <a href="v3.html">v3</a>
+  <a class="cur" href="v4.html">v4</a>
+  <a href="v5.html">v5</a>
+  <a href="index.html">·</a>
+</div>
+
+</body>
+</html>

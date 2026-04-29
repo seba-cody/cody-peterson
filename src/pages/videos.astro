@@ -68,23 +68,32 @@ const breadcrumb = {
 
   <div class="page-header">
     <div class="page-header-inner">
-      <h1>Videos</h1>
+      <div class="folio">
+        <span>No. II &nbsp;·&nbsp; Moving Pictures</span>
+        <em>Seminars &amp; workshops</em>
+      </div>
+      <h1><em>Videos</em></h1>
       <p class="subtitle">Seminars, lectures, and workshops on depth psychology, the archetype of the Alcoholic, and Jungian approaches to recovery.</p>
     </div>
   </div>
 
-  {series.map((s, i) => (
-    <section class:list={['section', { 'section-alt': i % 2 === 1 }]}>
+  {series.map((s, i) => {
+    const romans = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+    return (
+    <section class:list={['section', { 'section-alt': i % 2 === 1 }, { 'reveal': i > 0 }]}>
       <div class="section-inner">
-        <div class="section-header">
+        <header class="section-header">
+          <span class="eyebrow">{romans[i]}. &nbsp; Series</span>
           <h2>{s.title}</h2>
           <p>{s.description}</p>
-        </div>
+        </header>
         <div class="video-grid">
           {s.videos.map(v => (
             <div class="video-card">
               <a href={`https://www.youtube.com/watch?v=${v.youtube_id}`} target="_blank" rel="noopener">
-                <img class="video-thumb" src={`https://img.youtube.com/vi/${v.youtube_id}/mqdefault.jpg`} alt={v.title} loading="lazy" width="320" height="180" />
+                <div class="video-thumb-wrap">
+                  <img class="video-thumb" src={`https://img.youtube.com/vi/${v.youtube_id}/mqdefault.jpg`} alt={v.title} loading="lazy" width="320" height="180" />
+                </div>
                 <div class="video-info">
                   <h3>{v.title}</h3>
                   <p>{v.description}</p>
@@ -95,9 +104,10 @@ const breadcrumb = {
         </div>
       </div>
     </section>
-  ))}
+    );
+  })}
 
-  <section class="section" style="text-align: center;">
+  <section class="section text-center">
     <a href="https://www.youtube.com/@cody-peterson-author" target="_blank" rel="noopener" class="btn btn-primary">Watch all on YouTube</a>
   </section>
 

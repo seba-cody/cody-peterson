@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Redesign mockups · cody-peterson.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:#0e0c0a;color:#f4ede0;
+    font-family:'Fraunces',Georgia,serif;font-size:17px;line-height:1.55;
+    min-height:100vh;
+    background-image:
+      radial-gradient(900px 600px at 20% -10%, rgba(214,66,46,.08), transparent 60%),
+      radial-gradient(900px 700px at 110% 110%, rgba(167,131,68,.08), transparent 60%);
+  }
+  .mono{font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+  a{color:inherit}
+  header{padding:64px clamp(20px,5vw,80px) 0;max-width:1200px;margin:0 auto}
+  header .tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#d6422e;margin-bottom:18px}
+  header h1{font-weight:500;font-size:clamp(40px,5vw,64px);line-height:1;letter-spacing:-.01em}
+  header h1 em{font-style:italic;color:#d8a868}
+  header p{margin-top:18px;max-width:680px;color:#cfc4ad;font-size:17px}
+  header p em{color:#fff;font-style:italic}
+
+  .grid{
+    display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+    gap:28px;
+    padding:48px clamp(20px,5vw,80px) 80px;
+    max-width:1200px;margin:0 auto;
+  }
+  .card{
+    background:#1a1815;border:1px solid #2a2622;text-decoration:none;color:inherit;
+    padding:32px 28px;display:flex;flex-direction:column;gap:14px;
+    transition:transform .25s ease, border-color .25s ease;
+  }
+  .card:hover{transform:translateY(-4px);border-color:#d6422e}
+  .card .num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#d6422e}
+  .card h2{font-family:'Fraunces',serif;font-weight:500;font-size:30px;line-height:1.05;letter-spacing:-.005em}
+  .card h2 em{font-style:italic;color:#d8a868}
+  .card p{font-size:15px;color:#cfc4ad;line-height:1.55}
+  .card .swatch{display:flex;gap:6px;margin-top:6px}
+  .card .swatch span{width:24px;height:14px;display:inline-block;border:1px solid rgba(255,255,255,.08)}
+  .card .typo{font-family:'JetBrains Mono',monospace;font-size:11px;color:#9a948a;letter-spacing:.04em}
+  .card .open{margin-top:auto;font-family:'Fraunces',serif;font-style:italic;color:#d6422e;font-size:14px}
+
+  footer{padding:24px clamp(20px,5vw,80px);max-width:1200px;margin:0 auto;color:#9a948a;font-size:12px;border-top:1px solid #2a2622;display:flex;justify-content:space-between}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="tag">Redesign mockups · cody-peterson.com</div>
+  <h1>Five <em>directions</em>, one homepage.</h1>
+  <p>Each is a standalone HTML file with real content (book, two Jung Journal papers, Seba.Health, the Greek epigraph). Open one, scroll the whole page, jump between them via the floating switcher in the bottom-right corner. Once you pick one, I'll port it back into the Astro project.</p>
+</header>
+
+<section class="grid">
+
+  <a class="card" href="v1.html">
+    <div class="num">v1 · Editorial</div>
+    <h2>Broadside &amp; <em>folio</em></h2>
+    <p>NYRB / Lapham's Quarterly seriousness. Hairlines, double rules, drop caps, Roman numerals. Big <em>Playfair Display</em> name across the masthead, Crimson Pro body. Ivory paper · ink · oxblood.</p>
+    <div class="swatch"><span style="background:#0e0c0a"></span><span style="background:#f4ede0"></span><span style="background:#6c1d18"></span></div>
+    <div class="typo">Playfair Display · Crimson Pro · Cormorant SC</div>
+    <span class="open">Open v1 →</span>
+  </a>
+
+  <a class="card" href="v2.html">
+    <div class="num">v2 · Cinema</div>
+    <h2>Photographic <em>letter</em></h2>
+    <p>Full-bleed B&amp;W portrait, ultra-thin Cormorant set huge over black. Reads like a magazine spread or a personal letter — drop-capped first paragraph, single vermillion accent. Bone, black, vermillion.</p>
+    <div class="swatch"><span style="background:#0a0a0a"></span><span style="background:#efeae0"></span><span style="background:#d6422e"></span></div>
+    <div class="typo">Cormorant 300 · Fraunces</div>
+    <span class="open">Open v2 →</span>
+  </a>
+
+  <a class="card" href="v3.html">
+    <div class="num">v3 · Archive</div>
+    <h2>Scholar's <em>cabinet</em></h2>
+    <p>A working archive interface — sticky left rail listing works by file number, scrolling main pane of catalog entries. Newsreader serif over JetBrains Mono labels. File stamps, record cards. Paper, soot, ink-blue, tan.</p>
+    <div class="swatch"><span style="background:#f7f3ea"></span><span style="background:#1a1815"></span><span style="background:#1f3a5f"></span><span style="background:#c9a878"></span></div>
+    <div class="typo">Newsreader · JetBrains Mono</div>
+    <span class="open">Open v3 →</span>
+  </a>
+
+  <a class="card" href="v4.html">
+    <div class="num">v4 · Stone</div>
+    <h2>Greek &amp; <em>antique</em></h2>
+    <p>The Met / Christie's catalog feel. Limestone palette, ornaments, Italiana display caps, Greek glyph as the design centerpiece. Cabinet of Works structure — book as exhibit, articles as bibliographic entries. Limestone · ash · terracotta · gold leaf.</p>
+    <div class="swatch"><span style="background:#e8e0cf"></span><span style="background:#27241f"></span><span style="background:#a13b22"></span><span style="background:#a78344"></span></div>
+    <div class="typo">Italiana · EB Garamond · Spectral</div>
+    <span class="open">Open v4 →</span>
+  </a>
+
+  <a class="card" href="v5.html">
+    <div class="num">v5 · Quiet</div>
+    <h2>Contemporary <em>author</em></h2>
+    <p>Restraint as the statement. Lots of whitespace, soft Fraunces variable serif paired with Inria Sans. Single ochre accent, calm vertical rhythm. The closest to <em>Solnit · Maggie Nelson · Olivia Laing</em> author-site register. Bone · ink · ochre.</p>
+    <div class="swatch"><span style="background:#fafaf6"></span><span style="background:#16130f"></span><span style="background:#a87a3a"></span></div>
+    <div class="typo">Fraunces · Inria Sans</div>
+    <span class="open">Open v5 →</span>
+  </a>
+
+</section>
+
+<footer>
+  <span>cody-peterson.com — redesign mockups · 2026-04-28</span>
+  <span>open any to see hero + book + articles + Seba + closer</span>
+</footer>
+
+</body>
+</html>

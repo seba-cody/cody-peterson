@@ -7,74 +7,143 @@ const jsonLd = {
   '@id': 'https://www.cody-peterson.com/#profilepage',
   mainEntity: { '@id': 'https://www.cody-peterson.com/#person' },
   dateCreated: '2024-01-01',
-  dateModified: '2026-03-29',
+  dateModified: '2026-04-13',
+  significantLink: [
+    'https://www.cody-peterson.com/book/',
+    'https://www.cody-peterson.com/about/',
+    'https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105',
+    'https://www.seba.health/',
+  ],
 };
 ---
-<Base title="Cody Peterson" seoTitle="Cody Peterson | Depth Psychology Scholar, Author, Founder of Seba.Health" description="Published author (Chiron Publications), Jung Journal contributor, and founder of Seba.Health. Depth psychology, addiction recovery, and the ancient organ of feeling." jsonLd={jsonLd}>
+<Base
+  title="Cody Peterson"
+  seoTitle="Cody Peterson | Depth Psychology Scholar, Author, Founder of Seba.Health"
+  description="Published author (Chiron Publications), Jung Journal contributor, and founder of Seba.Health. Depth psychology, addiction recovery, and the ancient organ of feeling."
+  jsonLd={jsonLd}
+>
 
-  <section class="hero">
-    <div class="hero-inner">
-      <img src="/images/cody-peterson-bw.jpg" alt="Cody Peterson" class="hero-photo" width="280" height="280" />
-      <div class="hero-content">
-        <h1>Cody Peterson</h1>
-        <p class="hero-tagline">Scholar. Author. Trickster.<br />Building something for the people nobody looks at.</p>
-        <div class="hero-links">
-          <a href="/book" class="btn btn-primary">The Book</a>
-          <a href="https://www.seba.health" class="btn btn-outline">Seba.Health</a>
+  <section class="masthead" aria-labelledby="masthead-title">
+    <div class="masthead-inner">
+
+      <div class="masthead-folio">
+        <span class="label">A depth psychology quarterly &nbsp;·&nbsp; <em>Ongoing</em></span>
+        <span class="label">Vol. I &nbsp;·&nbsp; <em>Est.</em> MMXXIV</span>
+      </div>
+
+      <div class="masthead-grid">
+        <div>
+          <h1 id="masthead-title" class="masthead-title">
+            <span class="given">Cody</span>
+            <span class="family">Peterson</span>
+          </h1>
+          <p class="masthead-subtitle">
+            Depth psychology scholar, author of <em>The Shadow of a Figure of Light</em> (Chiron, 2024), and founder of Seba.Health &mdash; building something for the people nobody looks at.
+          </p>
+          <div class="masthead-actions">
+            <a href="/book" class="btn btn-primary">The Book</a>
+            <a href="/about" class="btn btn-outline">The Story</a>
+            <a href="https://www.seba.health" class="btn btn-outline">Seba.Health</a>
+          </div>
         </div>
-        <div class="hero-epigraph">
-          <span class="greek">σέβας δέ σε θυμὸν ἱκέσθω</span><br />
-          "Let <em>sebas</em> reach your <em>thumos.</em>" — <em>Iliad</em> 18.178
+
+        <div class="masthead-portrait-wrap">
+          <div class="masthead-portrait-frame" style="position: relative; display: inline-block;">
+            <img
+              src="/images/cody-peterson-bw.jpg"
+              alt="Cody Peterson, black-and-white portrait"
+              class="masthead-portrait"
+              width="320"
+              height="400"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
         </div>
       </div>
+
+      <figure class="masthead-epigraph">
+        <div class="masthead-epigraph-inner">
+          <span class="epigraph-greek">&#963;&#941;&#946;&#945;&#962; &#948;&#941; &#963;&#949; &#952;&#965;&#956;&#8056;&#957; &#7985;&#954;&#941;&#963;&#952;&#969;</span>
+          <span class="epigraph-translation">
+            &ldquo;Let <em>sebas</em> reach your <em>thumos</em>.&rdquo;
+          </span>
+          <span class="epigraph-citation">Homer &nbsp;·&nbsp; Iliad 18.178</span>
+        </div>
+      </figure>
+
     </div>
   </section>
 
-  <section class="section">
+  <section class="section reveal" aria-labelledby="book-heading">
     <div class="section-inner">
-      <div class="section-header">
-        <h2>The Shadow of a Figure of Light</h2>
-        <p>The Archetype of the Alcoholic and the Journey to Enlightenment. Chiron Publications, 2024.</p>
-      </div>
+      <header class="section-header">
+        <span class="eyebrow">I. &nbsp; The Book</span>
+        <h2 id="book-heading"><em>The Shadow</em> of a Figure of Light</h2>
+        <p>The Archetype of the Alcoholic and the Journey to Enlightenment. &mdash; Chiron Publications, 2024.</p>
+      </header>
+
       <div class="testimonial">
         <blockquote>
-          <p>"Cody Peterson has written a book whose extension is deep, wide, and high. It rests on the solid foundations of careful scholarship and personal experience, it extends the understanding of alcoholism beyond the reductive neuro-physiological explanations, and it elevates the vision of Bill Wilson and AA using the psycho-spiritual wisdom of C.G. Jung."</p>
+          <p>Cody Peterson has written a book whose extension is deep, wide, and high. It rests on the solid foundations of careful scholarship and personal experience, it extends the understanding of alcoholism beyond the reductive neuro-physiological explanations, and it elevates the vision of Bill Wilson and AA using the psycho-spiritual wisdom of C.G. Jung.</p>
         </blockquote>
-        <p class="attribution">— Murray Stein, Ph.D., author of <em>The Mystery of Transformation</em></p>
+        <p class="attribution">Murray Stein, Ph.D. &nbsp;·&nbsp; <em>author of The Mystery of Transformation</em></p>
       </div>
-      <a href="/book" class="btn btn-primary">Read reviews & get a copy</a>
+
+      <p style="margin-top: 2.5rem;">
+        <a href="/book" class="btn btn-primary">Read reviews &amp; get a copy</a>
+      </p>
     </div>
   </section>
 
-  <section class="section section-alt">
+  <section class="section section-alt reveal" aria-labelledby="publications-heading">
     <div class="section-inner">
-      <div class="section-header">
-        <h2>Published in Jung Journal</h2>
-        <p>Peer-reviewed scholarship on the psychology of antiquity, emotional sobriety, and the archetype of the Alcoholic.</p>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-        <div class="card">
-          <h3 style="margin-bottom: 0.25rem;"><a href="https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105">Taming Wild Beasts</a></h3>
-          <p style="color: var(--color-text-muted); font-size: 0.9375rem; margin-bottom: 0.5rem;"><em>Jung Journal: Culture & Psyche,</em> Vol. 19, Issue 2 (2025)</p>
-          <p style="margin-bottom: 0;">Iron <em>thumos</em> and the interoceptive roots of emotional sobriety in Homer's <em>Odyssey.</em></p>
-        </div>
-        <div class="card">
-          <h3 style="margin-bottom: 0.25rem;">The Abolished Middle (forthcoming)</h3>
-          <p style="color: var(--color-text-muted); font-size: 0.9375rem; margin-bottom: 0.5rem;"><em>Jung Journal: Culture & Psyche</em> (accepted)</p>
-          <p style="margin-bottom: 0;">The <em>tertium non datur</em> in Homer, Jung, and the recovery of the feeling function.</p>
-        </div>
+      <header class="section-header">
+        <span class="eyebrow">II. &nbsp; Peer-Reviewed</span>
+        <h2 id="publications-heading">Published in <em>Jung Journal</em></h2>
+        <p>Scholarship on the psychology of antiquity, emotional sobriety, and the archetype of the Alcoholic.</p>
+      </header>
+
+      <div class="card-stack">
+        <article class="card">
+          <div>
+            <h3>
+              <a href="https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105" rel="noopener">
+                Taming Wild Beasts
+              </a>
+            </h3>
+            <p class="card-meta"><em>Jung Journal: Culture &amp; Psyche</em>, Vol. 19, Issue 2 &nbsp;·&nbsp; 2025</p>
+            <p class="card-desc">Iron <em>thumos</em> and the interoceptive roots of emotional sobriety in Homer's <em>Odyssey</em>.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div>
+            <h3>The Iron <em>Thumos</em> and the Empty Vessel &nbsp;<span style="color: var(--color-text-soft); font-style: italic; font-weight: 400; font-size: 0.8em;">(forthcoming)</span></h3>
+            <p class="card-meta"><em>Jung Journal: Culture &amp; Psyche</em> &nbsp;·&nbsp; Accepted</p>
+            <p class="card-desc">A Homeric response to Jung's <em>Answer to Job</em>.</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section reveal" aria-labelledby="seba-heading">
     <div class="section-inner">
-      <div class="section-header">
-        <h2>Seba.Health</h2>
+      <header class="section-header">
+        <span class="eyebrow">III. &nbsp; The Platform</span>
+        <h2 id="seba-heading"><em>Seba.</em>Health</h2>
         <p>A depth-oriented platform exploring the psychology of addiction, the roots of the psyche, and the ancient organ of feeling.</p>
+      </header>
+
+      <div class="container" style="padding: 0; max-width: var(--content-width); margin: 0;">
+        <p style="font-size: 1.125rem; line-height: 1.78;">
+          Seba.Health is the convergence of everything I&rsquo;ve been working on: depth psychology, recovery, interoception, and the Greek concept of <em>thumos</em> &mdash; the seat of feeling that Western culture forgot. Library, glossary, essays, and a lexicon of five thousand ancient Greek passages indexed for psychological vocabulary.
+        </p>
+        <p style="margin-top: 2rem;">
+          <a href="https://www.seba.health" class="btn btn-primary">Visit Seba.Health</a>
+        </p>
       </div>
-      <p>Seba.Health is the convergence of everything I've been working on: depth psychology, recovery, interoception, and the Greek concept of <em>thumos</em> — the seat of feeling that Western culture forgot. Library, glossary, essays, and a lexicon of 5,000 ancient Greek passages indexed for psychological vocabulary.</p>
-      <p><a href="https://www.seba.health" class="btn btn-primary">Visit Seba.Health</a></p>
     </div>
   </section>
 
