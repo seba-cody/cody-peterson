@@ -22,10 +22,10 @@ function isActive(href: string) {
 }
 
 const navLinks = [
-  { href: '/book', label: 'Book', numeral: 'I' },
-  { href: '/videos', label: 'Videos', numeral: 'II' },
-  { href: '/media', label: 'Media', numeral: 'III' },
-  { href: '/about', label: 'About', numeral: 'IV' },
+  { href: '/book/', label: 'Book', numeral: 'I' },
+  { href: '/videos/', label: 'Videos', numeral: 'II' },
+  { href: '/media/', label: 'Media', numeral: 'III' },
+  { href: '/about/', label: 'About', numeral: 'IV' },
 ];
 
 const year = new Date().getFullYear();
@@ -60,6 +60,35 @@ const globalSchema = {
         'https://www.linkedin.com/in/cody-peterson-487224229/',
         'https://books.google.com/books/about/The_Shadow_of_a_Figure_of_Light.html?id=sacxEQAAQBAJ',
       ],
+      subjectOf: [
+        {
+          '@type': 'Book',
+          name: 'The Shadow of a Figure of Light: The Archetype of the Alcoholic and the Journey to Enlightenment',
+          url: 'https://books.google.com/books/about/The_Shadow_of_a_Figure_of_Light.html?id=sacxEQAAQBAJ',
+          publisher: { '@type': 'Organization', name: 'Chiron Publications' },
+          datePublished: '2024',
+        },
+        {
+          '@type': 'ScholarlyArticle',
+          name: 'Taming Wild Beasts: Homeric Thumos and the Interoceptive Roots of Emotional Sobriety',
+          url: 'https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105',
+          datePublished: '2025-04-24',
+          isPartOf: {
+            '@type': 'Periodical',
+            name: 'Jung Journal: Culture & Psyche',
+          },
+        },
+        {
+          '@type': 'Article',
+          name: 'Beyond a Shadow of a Doubt',
+          url: 'https://inmag.com/books/shadow-of-a-figure-the-alcoholic-journey-to-enlightenment-cody-peterson.html',
+        },
+        {
+          '@type': 'PodcastEpisode',
+          name: 'Cody Peterson on C.G. Jung and Addiction',
+          url: 'https://player.fm/series/aeon-byte-gnostic-radio-1335182/cody-peterson-on-cg-jung-and-addiction',
+        },
+      ],
       founder: [
         {
           '@type': 'Organization',
@@ -82,21 +111,11 @@ const globalSchema = {
           areaServed: { '@type': 'City', name: 'Las Vegas', addressRegion: 'NV' },
         },
       ],
-      alumniOf: {
+      affiliation: {
         '@type': 'CollegeOrUniversity',
         name: 'University of Utah',
         sameAs: 'https://en.wikipedia.org/wiki/University_of_Utah',
       },
-      hasCredential: [{
-        '@type': 'EducationalOccupationalCredential',
-        credentialCategory: 'Degree',
-        educationalLevel: 'Bachelor of Arts in Psychology',
-        recognizedBy: {
-          '@type': 'CollegeOrUniversity',
-          name: 'University of Utah',
-          sameAs: 'https://en.wikipedia.org/wiki/University_of_Utah',
-        },
-      }],
       knowsAbout: [
         'Depth psychology', 'Analytical psychology', 'Addiction recovery',
         'Twelve-step programs', 'Jungian psychotherapy', 'Emotional sobriety',
@@ -232,15 +251,15 @@ const globalSchema = {
         <span class="colophon-label">Colophon</span>
         <em>Cody Peterson</em>
         <p style="color: rgba(243, 236, 223, 0.55); font-style: italic; line-height: 1.55; margin: 0;">
-          Depth psychologist, author, and founder. Set in Cormorant &amp; Spectral. Published from the Mojave.
+          Depth psychology scholar, author, and founder. Set in Cormorant &amp; Spectral. Published from the Mojave.
         </p>
       </div>
       <div class="colophon-block">
         <span class="colophon-label">Work</span>
-        <a href="/book">The Book</a>
-        <a href="/videos">Videos</a>
-        <a href="/media">Media</a>
-        <a href="/about">About</a>
+        <a href="/book/">The Book</a>
+        <a href="/videos/">Videos</a>
+        <a href="/media/">Media</a>
+        <a href="/about/">About</a>
       </div>
       <div class="colophon-block">
         <span class="colophon-label">Ventures</span>

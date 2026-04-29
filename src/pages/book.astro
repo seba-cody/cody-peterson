@@ -1,8 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 
-const paperbackPrice = 23.95;
-const hardcoverPrice = 38.00;
+const paperbackPrice = 24.95;
+const hardcoverPrice = 39.00;
 const shippingFlat = 5.00;
 
 const reviews = [
@@ -49,8 +49,8 @@ const jsonLd = {
     { '@type': 'Thing', name: 'Archetypes' },
   ],
   workExample: [
-    { '@type': 'Book', isbn: '9781685035174', bookFormat: 'https://schema.org/Paperback' },
-    { '@type': 'Book', isbn: '9781685035181', bookFormat: 'https://schema.org/Hardcover' },
+    { '@type': 'Book', isbn: '9781685035198', bookFormat: 'https://schema.org/Paperback' },
+    { '@type': 'Book', isbn: '9781685035204', bookFormat: 'https://schema.org/Hardcover' },
   ],
   offers: [
     {
@@ -98,9 +98,10 @@ const jsonLd = {
   })),
   url: 'https://www.cody-peterson.com/book/',
   sameAs: [
-    'https://www.amazon.com/dp/1685035175',
+    'https://www.amazon.com/dp/1685035191',
     'https://books.google.com/books/about/The_Shadow_of_a_Figure_of_Light.html?id=sacxEQAAQBAJ',
-    'https://www.chironpublications.com/product-category/authors/peterson-cody/',
+    'https://www.chironpublications.com/shop/the-shadow-of-a-figure-of-light-the-archetype-of-the-alcoholic-and-the-journey-to-enlightenment/',
+    'https://www.barnesandnoble.com/w/the-shadow-of-a-figure-of-light-cody-peterson/1146556868',
   ],
 };
 
@@ -272,8 +273,8 @@ const breadcrumb = {
   <section class="section section-alt">
     <div class="section-inner text-center">
       <p class="book-meta">
-        ISBN Paperback &nbsp;·&nbsp; 978&#8209;1&#8209;68503&#8209;517&#8209;4<br />
-        ISBN Hardcover &nbsp;·&nbsp; 978&#8209;1&#8209;68503&#8209;518&#8209;1
+        ISBN Paperback &nbsp;·&nbsp; 978&#8209;1&#8209;68503&#8209;519&#8209;8<br />
+        ISBN Hardcover &nbsp;·&nbsp; 978&#8209;1&#8209;68503&#8209;520&#8209;4
       </p>
       <p style="margin-top: var(--space-lg); color: var(--color-text-muted); font-style: italic;">For more on depth psychology, recovery, and the ancient roots of feeling, visit <a href="https://www.seba.health">Seba.Health</a>.</p>
     </div>
@@ -286,7 +287,7 @@ const breadcrumb = {
   const confirmation = document.getElementById('confirmation')!;
   const orderTotal = document.getElementById('order-total')!;
 
-  const prices: Record<string, number> = { paperback: 23.95, hardcover: 38.00 };
+  const prices: Record<string, number> = { paperback: 24.95, hardcover: 39.00 };
   const shipping = 5.00;
 
   form?.addEventListener('submit', async (e) => {
