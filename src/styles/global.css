@@ -235,12 +235,12 @@ strong { font-weight: 600; color: var(--color-ink); }
 
 .header-inner {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr auto auto;
   align-items: center;
   max-width: var(--masthead-width);
   margin: 0 auto;
   padding: 1.1rem var(--space-lg) 0.9rem;
-  gap: var(--space-xl);
+  gap: clamp(0.75rem, 2vw, var(--space-xl));
   position: relative;
 }
 
@@ -352,6 +352,70 @@ strong { font-weight: 600; color: var(--color-ink); }
 
 @media (min-width: 1024px) { .header-folio { display: block; } }
 
+/* ─── Share Button ─── */
+
+.share-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  height: 2rem;
+  min-width: 2rem;
+  padding: 0 0.65rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: rgba(243, 236, 223, 0.55);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: border-color var(--transition), color var(--transition), background var(--transition), transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.share-button svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: 0 0 auto;
+}
+
+.share-button:hover,
+.share-button:focus-visible,
+.share-button.is-copied {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.share-button:active { transform: translateY(1px); }
+
+.share-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  .share-button {
+    width: 2rem;
+    padding: 0;
+  }
+
+  .share-button-label { display: none; }
+}
+
 /* ─── Hamburger ─── */
 
 .hamburger {
@@ -366,7 +430,7 @@ strong { font-weight: 600; color: var(--color-ink); }
   border: none;
   cursor: pointer;
   justify-self: end;
-  grid-column: 3;
+  grid-column: 4;
 }
 
 @media (min-width: 820px) { .hamburger { display: none; } }

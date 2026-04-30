@@ -214,6 +214,25 @@ const globalSchema = {
       <div class="header-folio" aria-hidden="true">
         Vol. <em>I</em> &nbsp;·&nbsp; Est. <em>MMXXIV</em>
       </div>
+      <button
+        type="button"
+        class="share-button"
+        id="share-page"
+        aria-label="Share this page"
+        title="Share this page"
+        data-share-title={pageTitle}
+        data-share-url={canonicalURL.toString()}
+      >
+        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+          <circle cx="18" cy="5" r="3"></circle>
+          <circle cx="6" cy="12" r="3"></circle>
+          <circle cx="18" cy="19" r="3"></circle>
+          <path d="M8.7 10.7 15.3 6.3"></path>
+          <path d="M8.7 13.3 15.3 17.7"></path>
+        </svg>
+        <span class="share-button-label">Share</span>
+      </button>
+      <span class="share-status" id="share-status" role="status" aria-live="polite"></span>
       <button class="hamburger" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span>
         <span></span>
@@ -301,6 +320,67 @@ const globalSchema = {
         header?.classList.remove('scrolled');
       }
     }, { passive: true });
+
+    // Share current page, falling back to copying the canonical URL.
+    const shareButton = document.getElementById('share-page');
+    const shareStatus = document.getElementById('share-status');
+    const shareLabel = shareButton?.querySelector('.share-button-label');
+    let shareStatusTimeout;
+
+    function setShareStatus(message) {
+      if (!shareButton || !shareStatus) return;
+      shareButton.classList.add('is-copied');
+      shareStatus.textContent = message;
+      if (shareLabel) shareLabel.textContent = message;
+      window.clearTimeout(shareStatusTimeout);
+      shareStatusTimeout = window.setTimeout(() => {
+        shareButton.classList.remove('is-copied');
+        shareStatus.textContent = '';
+        if (shareLabel) shareLabel.textContent = 'Share';
+      }, 2200);
+    }
+
+    async function copyShareUrl(url) {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(url);
+        return;
+      }
+
+      const textArea = document.createElement('textarea');
+      textArea.value = url;
+      textArea.setAttribute('readonly', '');
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-9999px';
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      textArea.remove();
+    }
+
+    shareButton?.addEventListener('click', async () => {
+      const shareUrl = shareButton.dataset.shareUrl || window.location.href;
+      const shareTitle = shareButton.dataset.shareTitle || document.title;
+      const shareText = document.querySelector('meta[name="description"]')?.getAttribute('content') || '';
+      const shareData = { title: shareTitle, text: shareText, url: shareUrl };
+
+      try {
+        if (navigator.share && (!navigator.canShare || navigator.canShare(shareData))) {
+          await navigator.share(shareData);
+          return;
+        }
+
+        await copyShareUrl(shareUrl);
+        setShareStatus('Copied');
+      } catch (error) {
+        if (error?.name === 'AbortError') return;
+        try {
+          await copyShareUrl(shareUrl);
+          setShareStatus('Copied');
+        } catch (_) {
+          setShareStatus('Copy failed');
+        }
+      }
+    });
 
     // Scroll reveal (progressive enhancement — content visible without JS)
     const revealObserver = new IntersectionObserver((entries) => {
