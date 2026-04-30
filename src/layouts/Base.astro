@@ -214,36 +214,25 @@ const globalSchema = {
       <div class="header-folio" aria-hidden="true">
         Vol. <em>I</em> &nbsp;·&nbsp; Est. <em>MMXXIV</em>
       </div>
-      <div
-        class="page-actions"
-        data-page-title={pageTitle}
-        data-page-url={canonicalURL.toString()}
+      <button
+        type="button"
+        class="share-button"
+        id="share-page"
+        aria-label="Share this page"
+        title="Share this page"
+        data-share-title={pageTitle}
+        data-share-url={canonicalURL.toString()}
       >
-        <button type="button" class="page-action" id="save-page" aria-label="Save to profile" title="Save to profile">
-          <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-            <path d="M19 21 12 17 5 21 5 5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2Z"></path>
-          </svg>
-          <span class="page-action-label">Save</span>
-        </button>
-        <button type="button" class="page-action" id="copy-page" aria-label="Copy page link" title="Copy page link">
-          <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-            <rect x="8" y="8" width="12" height="12" rx="2"></rect>
-            <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"></path>
-          </svg>
-          <span class="page-action-label">Copy</span>
-        </button>
-        <button type="button" class="page-action" id="share-page" aria-label="Share this page" title="Share this page">
-          <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-            <circle cx="18" cy="5" r="3"></circle>
-            <circle cx="6" cy="12" r="3"></circle>
-            <circle cx="18" cy="19" r="3"></circle>
-            <path d="M8.7 10.7 15.3 6.3"></path>
-            <path d="M8.7 13.3 15.3 17.7"></path>
-          </svg>
-          <span class="page-action-label">Share</span>
-        </button>
-      </div>
-      <span class="page-action-status" id="page-action-status" role="status" aria-live="polite"></span>
+        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+          <circle cx="18" cy="5" r="3"></circle>
+          <circle cx="6" cy="12" r="3"></circle>
+          <circle cx="18" cy="19" r="3"></circle>
+          <path d="M8.7 10.7 15.3 6.3"></path>
+          <path d="M8.7 13.3 15.3 17.7"></path>
+        </svg>
+        <span class="share-button-label">Share</span>
+      </button>
+      <span class="share-status" id="share-status" role="status" aria-live="polite"></span>
       <button class="hamburger" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
         <span></span>
         <span></span>
@@ -332,37 +321,22 @@ const globalSchema = {
       }
     }, { passive: true });
 
-    // Save, copy, or share the current canonical page.
-    const pageActions = document.querySelector('.page-actions');
-    const saveButton = document.getElementById('save-page');
-    const copyButton = document.getElementById('copy-page');
+    // Share current page, falling back to copying the canonical URL.
     const shareButton = document.getElementById('share-page');
-    const pageActionStatus = document.getElementById('page-action-status');
-    const savedPagesKey = 'cody-peterson:saved-pages';
-    let pageActionStatusTimeout;
+    const shareStatus = document.getElementById('share-status');
+    const shareLabel = shareButton?.querySelector('.share-button-label');
+    let shareStatusTimeout;
 
-    function currentShareData() {
-      return {
-        title: pageActions?.dataset.pageTitle || document.title,
-        text: document.querySelector('meta[name="description"]')?.getAttribute('content') || '',
-        url: pageActions?.dataset.pageUrl || window.location.href,
-      };
-    }
-
-    function setPageActionStatus(button, message) {
-      if (!pageActionStatus) return;
-      const label = button?.querySelector('.page-action-label');
-      const originalLabel = label?.dataset.originalLabel || label?.textContent || '';
-      if (label && !label.dataset.originalLabel) label.dataset.originalLabel = originalLabel;
-
-      button?.classList.add('is-active');
-      pageActionStatus.textContent = message;
-      if (label) label.textContent = message;
-      window.clearTimeout(pageActionStatusTimeout);
-      pageActionStatusTimeout = window.setTimeout(() => {
-        button?.classList.remove('is-active');
-        pageActionStatus.textContent = '';
-        if (label) label.textContent = label.dataset.originalLabel || originalLabel;
+    function setShareStatus(message) {
+      if (!shareButton || !shareStatus) return;
+      shareButton.classList.add('is-copied');
+      shareStatus.textContent = message;
+      if (shareLabel) shareLabel.textContent = message;
+      window.clearTimeout(shareStatusTimeout);
+      shareStatusTimeout = window.setTimeout(() => {
+        shareButton.classList.remove('is-copied');
+        shareStatus.textContent = '';
+        if (shareLabel) shareLabel.textContent = 'Share';
       }, 2200);
     }
 
@@ -383,38 +357,11 @@ const globalSchema = {
       textArea.remove();
     }
 
-    function saveToProfile(page) {
-      const savedPages = JSON.parse(window.localStorage.getItem(savedPagesKey) || '[]');
-      const nextPage = {
-        title: page.title,
-        text: page.text,
-        url: page.url,
-        savedAt: new Date().toISOString(),
-      };
-      const deduped = savedPages.filter(item => item?.url !== page.url);
-      window.localStorage.setItem(savedPagesKey, JSON.stringify([nextPage, ...deduped].slice(0, 50)));
-    }
-
-    saveButton?.addEventListener('click', () => {
-      try {
-        saveToProfile(currentShareData());
-        setPageActionStatus(saveButton, 'Saved');
-      } catch (_) {
-        setPageActionStatus(saveButton, 'Failed');
-      }
-    });
-
-    copyButton?.addEventListener('click', async () => {
-      try {
-        await copyShareUrl(currentShareData().url);
-        setPageActionStatus(copyButton, 'Copied');
-      } catch (_) {
-        setPageActionStatus(copyButton, 'Failed');
-      }
-    });
-
     shareButton?.addEventListener('click', async () => {
-      const shareData = currentShareData();
+      const shareUrl = shareButton.dataset.shareUrl || window.location.href;
+      const shareTitle = shareButton.dataset.shareTitle || document.title;
+      const shareText = document.querySelector('meta[name="description"]')?.getAttribute('content') || '';
+      const shareData = { title: shareTitle, text: shareText, url: shareUrl };
 
       try {
         if (navigator.share && (!navigator.canShare || navigator.canShare(shareData))) {
@@ -422,15 +369,15 @@ const globalSchema = {
           return;
         }
 
-        await copyShareUrl(shareData.url);
-        setPageActionStatus(shareButton, 'Copied');
+        await copyShareUrl(shareUrl);
+        setShareStatus('Copied');
       } catch (error) {
         if (error?.name === 'AbortError') return;
         try {
-          await copyShareUrl(shareData.url);
-          setPageActionStatus(shareButton, 'Copied');
+          await copyShareUrl(shareUrl);
+          setShareStatus('Copied');
         } catch (_) {
-          setPageActionStatus(shareButton, 'Failed');
+          setShareStatus('Copy failed');
         }
       }
     });
