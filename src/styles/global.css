@@ -352,16 +352,24 @@ strong { font-weight: 600; color: var(--color-ink); }
 
 @media (min-width: 1024px) { .header-folio { display: block; } }
 
-/* ─── Share Button ─── */
+/* ─── Page Actions ─── */
 
-.share-button {
+.page-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  justify-self: end;
+}
+
+.page-action {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
   height: 2rem;
-  min-width: 2rem;
-  padding: 0 0.65rem;
+  width: 2rem;
+  padding: 0;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: rgba(243, 236, 223, 0.55);
@@ -377,7 +385,7 @@ strong { font-weight: 600; color: var(--color-ink); }
   white-space: nowrap;
 }
 
-.share-button svg {
+.page-action svg {
   width: 0.9rem;
   height: 0.9rem;
   fill: none;
@@ -388,17 +396,21 @@ strong { font-weight: 600; color: var(--color-ink); }
   flex: 0 0 auto;
 }
 
-.share-button:hover,
-.share-button:focus-visible,
-.share-button.is-copied {
+.page-action:hover,
+.page-action:focus-visible,
+.page-action.is-active {
   border-color: var(--color-accent);
   background: var(--color-accent-soft);
   color: var(--color-accent);
 }
 
-.share-button:active { transform: translateY(1px); }
+.page-action:active { transform: translateY(1px); }
 
-.share-status {
+.page-action-label {
+  display: none;
+}
+
+.page-action-status {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -407,13 +419,14 @@ strong { font-weight: 600; color: var(--color-ink); }
   white-space: nowrap;
 }
 
-@media (max-width: 520px) {
-  .share-button {
-    width: 2rem;
-    padding: 0;
+@media (min-width: 1180px) {
+  .page-action {
+    width: auto;
+    min-width: 2rem;
+    padding: 0 0.65rem;
   }
 
-  .share-button-label { display: none; }
+  .page-action-label { display: inline; }
 }
 
 /* ─── Hamburger ─── */
