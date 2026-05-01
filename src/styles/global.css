@@ -743,6 +743,40 @@ strong { font-weight: 600; color: var(--color-ink); }
 .btn-outline { color: var(--color-text-muted); border-bottom-color: var(--color-border); }
 .btn-outline:hover { color: var(--color-ink); border-bottom-color: var(--color-ink); }
 
+.media-callout {
+  border-top: var(--hairline);
+  border-bottom: var(--hairline);
+  padding: 1.35rem 0 1.5rem;
+}
+
+.media-callout h3 {
+  margin-bottom: 0.65rem;
+}
+
+.media-callout h3 a {
+  text-decoration-color: var(--color-accent);
+}
+
+.media-callout p {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.media-callout p:last-child {
+  margin-bottom: 0;
+}
+
+.media-callout-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  font-size: 0.92rem;
+}
+
+.media-callout-links a {
+  color: var(--color-accent);
+}
+
 /* Pill-shaped CTA for forms (book page submit, subscribe) */
 .btn-pill {
   border: 1px solid var(--color-ink);
@@ -1257,6 +1291,21 @@ strong { font-weight: 600; color: var(--color-ink); }
   font-style: italic;
   margin-bottom: 0;
   line-height: 1.55;
+}
+
+.media-item-featured p {
+  color: var(--color-text);
+}
+
+.media-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.85rem;
+  margin-top: 0.65rem;
+}
+
+.media-links a {
+  color: var(--color-accent);
 }
 
 /* ─── About Page — literary essay ─── */

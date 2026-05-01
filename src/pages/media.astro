@@ -10,6 +10,32 @@ const jsonLd = {
   mainEntity: { '@id': 'https://www.cody-peterson.com/#person' },
 };
 
+const bearPsychologyEpisode = {
+  '@context': 'https://schema.org',
+  '@type': 'PodcastEpisode',
+  name: 'Addiction and the Journey to Enlightenment',
+  datePublished: '2026-05-01',
+  url: 'https://bearpsychology.ca/addiction-and-the-journey-to-enlightenment/',
+  associatedMedia: [
+    'https://youtu.be/uOQRBeLSLQ8?si=AX06IzfLxrxDOJXn',
+    'https://directory.libsyn.com/episode/index/id/41078220',
+    'https://podcasts.apple.com/us/podcast/addition-and-the-journey-to-enlightenment/id1463793962?i=1000764900166',
+    'https://open.spotify.com/show/6RGGInXwRDux3YvVQGT3p7',
+  ],
+  about: [
+    'Depth psychology',
+    'Addiction recovery',
+    'The Shadow of a Figure of Light',
+    'Spiritual transformation',
+  ],
+  guest: { '@id': 'https://www.cody-peterson.com/#person' },
+  partOfSeries: {
+    '@type': 'PodcastSeries',
+    name: 'Bear Psychology Radio Show',
+    url: 'https://bearpsychology.ca/',
+  },
+};
+
 const breadcrumb = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
@@ -22,7 +48,7 @@ const breadcrumb = {
 <Base
   title="Media"
   description="Podcast appearances, interviews, and press coverage featuring Cody Peterson on depth psychology, addiction, and the archetype of the Alcoholic."
-  jsonLd={[jsonLd, breadcrumb]}
+  jsonLd={[jsonLd, bearPsychologyEpisode, breadcrumb]}
 >
 
   <div class="page-header">
@@ -59,6 +85,20 @@ const breadcrumb = {
         <span class="eyebrow">II. &nbsp; Podcast Appearances</span>
         <h2>On the record</h2>
       </header>
+      <div class="media-item media-item-featured">
+        <h3><a href="https://bearpsychology.ca/addiction-and-the-journey-to-enlightenment/" target="_blank" rel="noopener">Addiction and the Journey to Enlightenment</a></h3>
+        <p>
+          Bear Psychology Radio Show &mdash; with Dr. Anna Baranowsky, on
+          <em>The Shadow of a Figure of Light</em>, the archetypal underpinnings of experience,
+          and the path from addiction toward transformation, healing, and freedom.
+          <span class="media-links">
+            <a href="https://youtu.be/uOQRBeLSLQ8?si=AX06IzfLxrxDOJXn" target="_blank" rel="noopener">YouTube</a>
+            <a href="https://directory.libsyn.com/episode/index/id/41078220" target="_blank" rel="noopener">Libsyn</a>
+            <a href="https://podcasts.apple.com/us/podcast/addition-and-the-journey-to-enlightenment/id1463793962?i=1000764900166" target="_blank" rel="noopener">Apple Podcasts</a>
+            <a href="https://open.spotify.com/show/6RGGInXwRDux3YvVQGT3p7" target="_blank" rel="noopener">Spotify</a>
+          </span>
+        </p>
+      </div>
       <div class="media-item">
         <h3><a href="https://www.youtube.com/watch?v=Q8hG0TMgM90" target="_blank" rel="noopener">From Addiction to Spiritual Awakening</a></h3>
         <p>Positive Talk Radio</p>
