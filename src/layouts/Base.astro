@@ -30,9 +30,38 @@ const navLinks = [
 
 const year = new Date().getFullYear();
 
+const hendersonPlace = {
+  '@type': 'Place',
+  '@id': 'https://www.cody-peterson.com/#henderson-nv',
+  name: 'Henderson, Nevada',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Henderson',
+    addressRegion: 'NV',
+    addressCountry: 'US',
+  },
+  containedInPlace: {
+    '@type': 'AdministrativeArea',
+    name: 'Las Vegas Valley',
+  },
+};
+
+const lasVegasValleyPlace = {
+  '@type': 'AdministrativeArea',
+  '@id': 'https://www.cody-peterson.com/#las-vegas-valley',
+  name: 'Las Vegas Valley',
+  address: {
+    '@type': 'PostalAddress',
+    addressRegion: 'NV',
+    addressCountry: 'US',
+  },
+};
+
 const globalSchema = {
   '@context': 'https://schema.org',
   '@graph': [
+    hendersonPlace,
+    lasVegasValleyPlace,
     {
       '@type': 'Person',
       '@id': 'https://www.cody-peterson.com/#person',
@@ -43,6 +72,23 @@ const globalSchema = {
       image: 'https://www.cody-peterson.com/images/cody-peterson-bw.jpg',
       jobTitle: 'Depth Psychology Scholar',
       description: 'Published author (Chiron Publications, 2024), depth psychology scholar, Jung Journal contributor, and founder of Seba Health, City Seamless Rain Gutter, and 702 Alliance.',
+      homeLocation: { '@id': 'https://www.cody-peterson.com/#henderson-nv' },
+      workLocation: { '@id': 'https://www.cody-peterson.com/#las-vegas-valley' },
+      hasOccupation: [
+        {
+          '@type': 'Occupation',
+          name: 'Author',
+          occupationalCategory: '27-3043.00',
+        },
+        {
+          '@type': 'Occupation',
+          name: 'Depth Psychology Scholar',
+        },
+        {
+          '@type': 'Occupation',
+          name: 'Founder',
+        },
+      ],
       identifier: [
         { '@type': 'PropertyValue', propertyID: 'ORCID', value: '0009-0009-2028-0154', url: 'https://orcid.org/0009-0009-2028-0154' },
       ],
@@ -105,20 +151,29 @@ const globalSchema = {
           name: 'Seba Health',
           url: 'https://www.seba.health/',
           description: 'Depth-oriented clinical authority platform for addiction recovery, convergence psychology, and the ancient vocabulary of the soul.',
+          foundingLocation: { '@id': 'https://www.cody-peterson.com/#henderson-nv' },
         },
         {
           '@type': 'LocalBusiness',
           name: 'City Seamless Rain Gutter',
           url: 'https://www.cityseamless.com/',
           description: 'Seamless rain gutter installation in the Las Vegas Valley.',
-          areaServed: { '@type': 'City', name: 'Las Vegas', addressRegion: 'NV' },
+          foundingLocation: { '@id': 'https://www.cody-peterson.com/#henderson-nv' },
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Henderson',
+            addressRegion: 'NV',
+            addressCountry: 'US',
+          },
+          areaServed: { '@id': 'https://www.cody-peterson.com/#las-vegas-valley' },
         },
         {
           '@type': 'Organization',
           name: '702 Alliance',
           url: 'https://www.702alliance.com/',
           description: 'Vetted network of locally owned businesses across the Las Vegas Valley.',
-          areaServed: { '@type': 'City', name: 'Las Vegas', addressRegion: 'NV' },
+          foundingLocation: { '@id': 'https://www.cody-peterson.com/#henderson-nv' },
+          areaServed: { '@id': 'https://www.cody-peterson.com/#las-vegas-valley' },
         },
       ],
       affiliation: {
