@@ -7,13 +7,14 @@ const jsonLd = {
   '@id': 'https://www.cody-peterson.com/#profilepage',
   mainEntity: { '@id': 'https://www.cody-peterson.com/#person' },
   dateCreated: '2024-01-01',
-  dateModified: '2026-05-01',
+  dateModified: '2026-07-04',
   significantLink: [
     'https://www.cody-peterson.com/book/',
     'https://www.cody-peterson.com/about/',
     'https://bearpsychology.ca/addiction-and-the-journey-to-enlightenment/',
     'https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105',
     'https://www.seba.health/',
+    'https://logoi.health/',
     'https://orcid.org/0009-0009-2028-0154',
     'https://scholar.google.com/citations?user=a8xhFSgAAAAJ',
     'https://books.google.com/books/about/The_Shadow_of_a_Figure_of_Light.html?id=sacxEQAAQBAJ',
@@ -21,158 +22,310 @@ const jsonLd = {
     'https://www.youtube.com/@cody-peterson-author',
   ],
 };
+
+const links = [
+  { href: '/book/', label: 'The Book' },
+  { href: '/videos/', label: 'Lectures' },
+  { href: 'https://www.seba.health', label: 'Seba.Health', live: true, ext: true },
+  { href: 'https://logoi.health', label: 'Logoi.Health', live: true, ext: true },
+  { href: 'https://www.youtube.com/@cody-peterson-author', label: 'YouTube', ext: true },
+  { href: 'https://orcid.org/0009-0009-2028-0154', label: 'ORCID', ext: true },
+  { href: 'https://scholar.google.com/citations?user=a8xhFSgAAAAJ', label: 'Scholar', ext: true },
+  { href: 'https://x.com/AlkyArchetype', label: 'X', ext: true },
+];
+
+const feed = [
+  {
+    status: 'in draft',
+    when: 'on the desk now',
+    title: 'The next thūmos paper',
+    body: 'The scholarship is turning into theory. The new paper takes the Homeric material past commentary and toward a claim about how the soul endures. No journal attached yet — the writing is not waiting for one.',
+  },
+  {
+    status: 'building',
+    when: 'in the shop',
+    title: 'Logoi.Health',
+    href: 'https://logoi.health',
+    body: 'A younger sibling to Seba, being built right now: a companion over the vocabulary of the soul, fourteen eras of it, Homer forward. Live in early form.',
+  },
+  {
+    status: 'live',
+    when: 'seba.health',
+    title: 'Seba.Health & Sebastian',
+    href: 'https://www.seba.health',
+    body: 'Nearly two thousand pages: a library of three hundred books, a glossary, a lexicon of ancient Greek, dream work in the depth tradition — and Sebastian, a librarian of the soul you can actually talk to.',
+  },
+  {
+    status: 'forthcoming',
+    when: 'jung journal',
+    title: 'The Iron Thūmos and the Empty Vessel',
+    body: 'Peer-reviewed and accepted at Jung Journal: Culture & Psyche. A Homeric response to Jung’s Answer to Job.',
+  },
+  {
+    status: 'in school',
+    when: 'u of u → adams state',
+    title: 'Toward the clinic',
+    body: 'Finishing a psychology degree at the University of Utah, admitted to the M.A. Clinical Mental Health Counseling program at Adams State. The end of this road is a licensed clinician who reads Greek.',
+  },
+];
+
+const videos = [
+  { id: 'sDYXCBCN3KQ', title: 'A Case for Coming Down', desc: 'Emotional sobriety and the case for descent.' },
+  { id: 'kDZG3sBqap4', title: 'Monotheism, Misogyny, and Eusebia', desc: 'From Corbin and Hillman to the Greek notion of eusebia.' },
+  { id: 'E_BuFNpGE_A', title: 'The Mystery of the Coniunctio', desc: 'Spiritus contra spiritum through the lens of the Alcoholic.' },
+  { id: 'EzDFZsEOMVQ', title: 'Alchemical Symbolism and Modern Dreams', desc: 'Dream interpretation through Jung’s alchemy.' },
+];
+
+const photos = [
+  { src: '/images/life/canyon-rappel.jpg', alt: 'Rappelling into a sandstone slot canyon', cap: "Fat Man's Misery, Zion" },
+  { src: '/images/life/subway-swim.jpg', alt: 'Swimming through an emerald pool in the Subway, Zion', cap: 'The Subway, Zion' },
+  { src: '/images/life/narrows-rope.jpg', alt: 'Cody with a rope over his shoulder in a river canyon', cap: 'Rope work, East Fork' },
+  { src: '/images/life/monument-valley.jpg', alt: 'The long road into Monument Valley', cap: 'Monument Valley' },
+  { src: '/images/life/canyon-sky.jpg', alt: 'Looking up at the sky from the bottom of a slot canyon', cap: 'Looking up' },
+  { src: '/images/life/zion-winter.jpg', alt: 'Zion cliffs above winter grassland', cap: 'Zion, winter' },
+  { src: '/images/life/narrows-laugh.jpg', alt: 'Cody laughing mid-river in a canyon', cap: 'The good part' },
+  { src: '/images/life/canyon-scramble.jpg', alt: 'Scrambling out of a canyon with rope and stick', cap: 'Climbing out' },
+];
 ---
 <Base
   title="Cody Peterson"
-  seoTitle="Cody Peterson | Depth Psychology Scholar, Author, Founder of Seba.Health"
-  description="Published author (Chiron Publications), Jung Journal contributor, and founder of Seba.Health. Depth psychology, addiction recovery, and the ancient organ of feeling."
+  seoTitle="Cody Peterson | Depth Psychology Scholar, Author, Builder of Seba.Health & Logoi.Health"
+  description="Depth psychology scholar and author of The Shadow of a Figure of Light (Chiron, 2024). Jung Journal contributor. Building Seba.Health and Logoi.Health — AI systems that read ancient Greek. Sober since 2013."
   jsonLd={jsonLd}
+  noSuffix
 >
 
-  <section class="masthead" aria-labelledby="masthead-title">
-    <div class="masthead-inner">
+  <!-- ═══ Profile hero ═══ -->
+  <section class="profile-hero" aria-labelledby="profile-name">
+    <div class="profile-grid">
+      <div>
+        <p class="profile-kicker hero-rise hero-rise-1">Depth psychology &nbsp;·&nbsp; Recovery &nbsp;·&nbsp; Ancient Greek</p>
 
-      <div class="masthead-folio">
-        <span class="label">A depth psychology folio &nbsp;·&nbsp; <em>Ongoing</em></span>
-        <span class="label">Vol. I &nbsp;·&nbsp; <em>Est.</em> MMXXIV</span>
-      </div>
+        <h1 id="profile-name" class="profile-name hero-rise hero-rise-2">
+          Cody <span class="family">Peterson</span>
+        </h1>
 
-      <div class="masthead-grid">
-        <div>
-          <h1 id="masthead-title" class="masthead-title">
-            <span class="given">Cody</span>
-            <span class="family">Peterson</span>
-          </h1>
-          <p class="masthead-subtitle">
-            Depth psychology scholar, author of <em>The Shadow of a Figure of Light</em> (Chiron, 2024), and founder of Seba.Health &mdash; building something for the people nobody looks at.
-          </p>
-          <div class="masthead-actions">
-            <a href="/book/" class="btn btn-primary">The Book</a>
-            <a href="/about/" class="btn btn-outline">The Story</a>
-            <a href="https://www.seba.health" class="btn btn-outline">Seba.Health</a>
-          </div>
-        </div>
+        <p class="profile-role hero-rise hero-rise-3">
+          Scholar of the <em>ancient organ of feeling</em> — author, builder, and canyoneer.
+        </p>
 
-        <div class="masthead-portrait-wrap">
-          <div class="masthead-portrait-frame" style="position: relative; display: inline-block;">
-            <img
-              src="/images/cody-peterson-bw.jpg"
-              alt="Cody Peterson, black-and-white portrait"
-              class="masthead-portrait"
-              width="320"
-              height="400"
-              loading="eager"
-              fetchpriority="high"
-            />
-          </div>
-        </div>
-      </div>
+        <p class="profile-bio hero-rise hero-rise-4">
+          I got sober on a curb in Las Vegas in 2013. Since then: a book with Chiron Publications,
+          papers in <strong>Jung Journal</strong>, a rain-gutter company that runs without me, and two
+          platforms for the psychology of feeling. These days I split my time between Homer&rsquo;s Greek,
+          a psychology degree, and the slot canyons of southern Utah.
+        </p>
 
-      <figure class="masthead-epigraph">
-        <div class="masthead-epigraph-inner">
+        <nav class="profile-links hero-rise hero-rise-5" aria-label="Profile links">
+          {links.map(l => (
+            <a
+              href={l.href}
+              class:list={[{ 'chip-live': l.live }]}
+              target={l.ext ? '_blank' : undefined}
+              rel={l.ext ? 'noopener' : undefined}
+            >{l.label}</a>
+          ))}
+        </nav>
+
+        <figure class="profile-epigraph hero-rise hero-rise-6">
           <span class="epigraph-greek">&#963;&#941;&#946;&#945;&#962; &#948;&#941; &#963;&#949; &#952;&#965;&#956;&#8056;&#957; &#7985;&#954;&#941;&#963;&#952;&#969;</span>
-          <span class="epigraph-translation">
-            &ldquo;Let <em>sebas</em> reach your <em>thumos</em>.&rdquo;
-          </span>
+          <span class="epigraph-translation">&ldquo;Let <em>sebas</em> reach your <em>thumos</em>.&rdquo;</span>
           <span class="epigraph-citation">Homer &nbsp;·&nbsp; Iliad 18.178</span>
-        </div>
-      </figure>
+        </figure>
+      </div>
 
-    </div>
-  </section>
-
-  <section class="section reveal" aria-labelledby="media-heading">
-    <div class="section-inner">
-      <header class="section-header">
-        <span class="eyebrow">New &nbsp;·&nbsp; May 2026</span>
-        <h2 id="media-heading">Bear Psychology Radio Show</h2>
-        <p>Cody joined Dr. Anna Baranowsky for a conversation on addiction, depth psychology, and <em>The Shadow of a Figure of Light</em>.</p>
-      </header>
-
-      <div class="media-callout">
-        <h3><a href="https://bearpsychology.ca/addiction-and-the-journey-to-enlightenment/" target="_blank" rel="noopener">Addiction and the Journey to Enlightenment</a></h3>
-        <p>
-          A discussion of the archetypal underpinnings of experience as the doorway to a spirituality
-          that leads toward transformation, healing, and freedom.
-        </p>
-        <p class="media-callout-links">
-          <a href="https://youtu.be/uOQRBeLSLQ8?si=AX06IzfLxrxDOJXn" target="_blank" rel="noopener">Watch on YouTube</a>
-          <a href="https://podcasts.apple.com/us/podcast/addition-and-the-journey-to-enlightenment/id1463793962?i=1000764900166" target="_blank" rel="noopener">Apple Podcasts</a>
-          <a href="https://open.spotify.com/show/6RGGInXwRDux3YvVQGT3p7" target="_blank" rel="noopener">Spotify</a>
-        </p>
+      <div class="profile-photo-wrap hero-rise hero-rise-3">
+        <img
+          src="/images/life/canyon-silhouette.jpg"
+          alt="Cody Peterson silhouetted against glowing sandstone, descending a slot canyon on rope"
+          class="profile-photo"
+          width="1200"
+          height="1600"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <span class="profile-photo-caption">Fat Man&rsquo;s Misery &nbsp;·&nbsp; Zion</span>
       </div>
     </div>
   </section>
 
-  <section class="section section-alt reveal" aria-labelledby="book-heading">
+  <!-- ═══ Right now ═══ -->
+  <section class="section" aria-labelledby="now-heading" id="now">
     <div class="section-inner">
       <header class="section-header">
-        <span class="eyebrow">I. &nbsp; The Book</span>
-        <h2 id="book-heading"><em>The Shadow</em> of a Figure of Light</h2>
-        <p>The Archetype of the Alcoholic and the Journey to Enlightenment. &mdash; Chiron Publications, 2024.</p>
+        <span class="eyebrow">Field log</span>
+        <h2 id="now-heading">Right now</h2>
+        <p>What&rsquo;s on the desk, in the shop, and out the door — updated as it moves.</p>
       </header>
 
-      <div class="testimonial">
-        <blockquote>
-          <p>Cody Peterson has written a book whose extension is deep, wide, and high. It rests on the solid foundations of careful scholarship and personal experience, it extends the understanding of alcoholism beyond the reductive neuro-physiological explanations, and it elevates the vision of Bill Wilson and AA using the psycho-spiritual wisdom of C.G. Jung.</p>
-        </blockquote>
-        <p class="attribution">Murray Stein, Ph.D. &nbsp;·&nbsp; <em>author of The Mystery of Transformation</em></p>
+      <div class="now-feed">
+        {feed.map(item => (
+          <article class="feed-item reveal" data-status={item.status === 'live' ? 'live' : undefined}>
+            <span class="feed-dot" aria-hidden="true"></span>
+            <div>
+              <div class="feed-tags">
+                <span class="feed-status">{item.status}</span>
+                <span class="feed-when">{item.when}</span>
+              </div>
+              <h3>
+                {item.href
+                  ? <a href={item.href} target="_blank" rel="noopener">{item.title}</a>
+                  : item.title}
+              </h3>
+              <p>{item.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ On machines ═══ -->
+  <section class="section section-alt reveal" aria-labelledby="machines-heading">
+    <div class="manifesto">
+      <span class="eyebrow" id="machines-heading">Field note &nbsp;·&nbsp; on machines</span>
+      <p class="manifesto-text">
+        Almost nobody knows what AI is for yet. A very small number of people are actually
+        building with it — and what a person builds with a machine like this tells you
+        <em>exactly who they are</em>.
+      </p>
+      <p class="manifesto-footnote">
+        I automated a rain-gutter company so it runs without me. Then I built a research engine
+        over hundreds of volumes of depth psychology, taught it to search ancient Greek, and started
+        using what came back to poke holes in Jungian theory. Some people are making video games
+        with it. This is my video game.
+      </p>
+      <p class="manifesto-sig">— from the workshop, southern Utah desert</p>
+    </div>
+  </section>
+
+  <!-- ═══ The work ═══ -->
+  <section class="section reveal" aria-labelledby="work-heading" id="work">
+    <div class="section-inner">
+      <header class="section-header">
+        <span class="eyebrow">The work</span>
+        <h2 id="work-heading">Book &amp; papers</h2>
+        <p>One monograph, a growing series of papers on <em>thūmos</em> — the Homeric seat of feeling — and what it means for recovery.</p>
+      </header>
+
+      <div class="work-grid">
+        <div class="book-feature">
+          <a href="/book/" aria-label="The Shadow of a Figure of Light — the book page">
+            <img
+              src="/images/book-cover.jpg"
+              alt="Cover of The Shadow of a Figure of Light by Cody Peterson"
+              class="book-cover"
+              width="300"
+              height="454"
+              loading="lazy"
+            />
+          </a>
+          <div class="book-feature-info">
+            <p class="paper-venue">Chiron Publications &nbsp;·&nbsp; 2024</p>
+            <h3><a href="/book/"><em>The Shadow</em> of a Figure of Light</a></h3>
+            <p style="color: var(--color-text-muted); font-size: 0.98rem;">
+              The Archetype of the Alcoholic and the Journey to Enlightenment.
+            </p>
+            <p class="book-blurb">
+              &ldquo;A book whose extension is deep, wide, and high&hellip; it elevates the vision of
+              Bill Wilson and AA using the psycho-spiritual wisdom of C.G. Jung.&rdquo;
+              <span class="book-blurb-attr">Murray Stein, Ph.D.</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="paper-list">
+          <article class="paper">
+            <span class="paper-status" data-s="published">Published</span>
+            <h3><a href="https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105" rel="noopener" target="_blank">Taming Wild Beasts</a></h3>
+            <p class="paper-venue">Jung Journal: Culture &amp; Psyche &nbsp;·&nbsp; Vol. 19, Iss. 2 &nbsp;·&nbsp; 2025</p>
+            <p>Iron <em>thumos</em> and the interoceptive roots of emotional sobriety in Homer&rsquo;s <em>Odyssey</em>.</p>
+          </article>
+
+          <article class="paper">
+            <span class="paper-status" data-s="forthcoming">Forthcoming</span>
+            <h3>The Iron <em>Thūmos</em> and the Empty Vessel</h3>
+            <p class="paper-venue">Jung Journal: Culture &amp; Psyche &nbsp;·&nbsp; peer-reviewed, accepted</p>
+            <p>A Homeric response to Jung&rsquo;s <em>Answer to Job</em>.</p>
+          </article>
+
+          <article class="paper">
+            <span class="paper-status">In draft</span>
+            <h3>The next movements</h3>
+            <p class="paper-venue">The thūmos series continues</p>
+            <p>More than one paper is on the desk right now — the furthest along is pushing past scholarship into theory.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Lectures ═══ -->
+  <section class="section section-alt reveal" aria-labelledby="videos-heading">
+    <div class="section-inner">
+      <header class="section-header">
+        <span class="eyebrow">Moving pictures</span>
+        <h2 id="videos-heading">Lectures &amp; seminars</h2>
+        <p>A year of weekly lectures on the book, plus seminars for Friendly Circle Berlin on dreams, alchemy, and emotional sobriety.</p>
+      </header>
+
+      <div class="video-strip">
+        {videos.map(v => (
+          <div class="video-card">
+            <a href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener">
+              <div class="video-thumb-wrap">
+                <img class="video-thumb" src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`} alt={v.title} loading="lazy" width="320" height="180" />
+              </div>
+              <div class="video-info">
+                <h3>{v.title}</h3>
+                <p>{v.desc}</p>
+              </div>
+            </a>
+          </div>
+        ))}
       </div>
 
       <p style="margin-top: 2.5rem;">
-        <a href="/book/" class="btn btn-primary">Read reviews &amp; get a copy</a>
+        <a href="/videos/" class="btn btn-outline">All fourteen lectures</a>
+        &nbsp;&nbsp;
+        <a href="https://www.youtube.com/@cody-peterson-author" class="btn btn-primary" target="_blank" rel="noopener">YouTube channel</a>
       </p>
     </div>
   </section>
 
-  <section class="section reveal" aria-labelledby="publications-heading">
-    <div class="section-inner">
-      <header class="section-header">
-        <span class="eyebrow">II. &nbsp; Peer-Reviewed</span>
-        <h2 id="publications-heading">Published in <em>Jung Journal</em></h2>
-        <p>Scholarship on the psychology of antiquity, emotional sobriety, and the archetype of the Alcoholic.</p>
-      </header>
-
-      <div class="card-stack">
-        <article class="card">
-          <div>
-            <h3>
-              <a href="https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105" rel="noopener">
-                Taming Wild Beasts
-              </a>
-            </h3>
-            <p class="card-meta"><em>Jung Journal: Culture &amp; Psyche</em>, Vol. 19, Issue 2 &nbsp;·&nbsp; 2025</p>
-            <p class="card-desc">Iron <em>thumos</em> and the interoceptive roots of emotional sobriety in Homer's <em>Odyssey</em>.</p>
-          </div>
-        </article>
-
-        <article class="card">
-          <div>
-            <h3>The Iron <em>Thumos</em> and the Empty Vessel &nbsp;<span style="color: var(--color-text-soft); font-style: italic; font-weight: 400; font-size: 0.8em;">(forthcoming)</span></h3>
-            <p class="card-meta"><em>Jung Journal: Culture &amp; Psyche</em> &nbsp;·&nbsp; Accepted</p>
-            <p class="card-desc">A Homeric response to Jung's <em>Answer to Job</em>.</p>
-          </div>
-        </article>
-      </div>
+  <!-- ═══ Field work ═══ -->
+  <section class="photo-band-section reveal" aria-labelledby="field-heading">
+    <div class="photo-band-header">
+      <span class="eyebrow">Out of the library</span>
+      <h2 id="field-heading">Field work</h2>
+      <p style="color: var(--color-text-muted); max-width: 56ch; margin-top: 1rem;">
+        Depth psychology is not a metaphor out here. Canyoneering, big walls, and trail
+        running in the desert around Zion — where the descent is literal and the rope matters.
+      </p>
+    </div>
+    <div class="photo-band">
+      {photos.map(p => (
+        <figure>
+          <img src={p.src} alt={p.alt} loading="lazy" />
+          <figcaption>{p.cap}</figcaption>
+        </figure>
+      ))}
     </div>
   </section>
 
-  <section class="section section-alt reveal" aria-labelledby="seba-heading">
-    <div class="section-inner">
-      <header class="section-header">
-        <span class="eyebrow">III. &nbsp; The Platform</span>
-        <h2 id="seba-heading"><em>Seba.</em>Health</h2>
-        <p>A depth-oriented platform exploring the psychology of addiction, the roots of the psyche, and the ancient organ of feeling.</p>
-      </header>
-
-      <div class="container" style="padding: 0; max-width: var(--content-width); margin: 0;">
-        <p style="font-size: 1.125rem; line-height: 1.78;">
-          Seba.Health is the convergence of everything I&rsquo;ve been working on: depth psychology, recovery, interoception, and the Greek concept of <em>thumos</em> &mdash; the seat of feeling that Western culture forgot. Library, glossary, essays, and a lexicon of five thousand ancient Greek passages indexed for psychological vocabulary.
-        </p>
-        <p style="margin-top: 2rem;">
-          <a href="https://www.seba.health" class="btn btn-primary">Visit Seba.Health</a>
-        </p>
-      </div>
+  <!-- ═══ The story ═══ -->
+  <section class="section section-alt reveal" aria-labelledby="story-heading">
+    <div class="story-teaser">
+      <span class="eyebrow" id="story-heading">The story</span>
+      <p class="story-line">
+        I got sober on <strong>March 4, 2013</strong> — on a curb in front of the Hard Rock,
+        watching people who wouldn&rsquo;t look at me.
+      </p>
+      <p class="story-sub">
+        The whole arc is on one page: the alcoholic home, the mission, the fifteen-year relapse,
+        the curb, the books. Now I&rsquo;m building something for the people nobody looks at.
+      </p>
+      <a href="/about/" class="btn btn-primary">Read the story</a>
     </div>
   </section>
 
