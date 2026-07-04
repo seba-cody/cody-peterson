@@ -179,47 +179,9 @@ const breadcrumb = {
       </div>
 
       <div class="shop-order-section">
-        <p class="shop-order-intro">Fill out the form below and we&rsquo;ll send payment instructions. Books ship within 2&ndash;3 business days of receiving payment.</p>
+        <p class="shop-order-intro">Pay securely by card. You&rsquo;ll enter your shipping address at checkout &mdash; and there&rsquo;s a note field there for inscription requests. Signed copies ship within 2&ndash;3 business days.</p>
 
-        <form
-          action="https://formspree.io/f/mqegqkyq"
-          method="POST"
-          id="order-form"
-        >
-          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
-          <input type="hidden" name="_subject" value="New book order from cody-peterson.com" />
-
-          <div class="shop-form-row">
-            <div class="shop-form-group">
-              <label for="name" class="shop-label">Full Name</label>
-              <input type="text" id="name" name="name" required class="shop-input" autocomplete="name" />
-            </div>
-            <div class="shop-form-group">
-              <label for="email" class="shop-label">Email</label>
-              <input type="email" id="email" name="email" required class="shop-input" autocomplete="email" />
-            </div>
-          </div>
-
-          <div class="shop-form-group">
-            <label for="address" class="shop-label">Shipping Address</label>
-            <input type="text" id="address" name="address" required class="shop-input" placeholder="Street address" autocomplete="street-address" />
-          </div>
-
-          <div class="shop-form-row">
-            <div class="shop-form-group">
-              <label for="city" class="shop-label">City</label>
-              <input type="text" id="city" name="city" required class="shop-input" autocomplete="address-level2" />
-            </div>
-            <div class="shop-form-group shop-form-group-sm">
-              <label for="state" class="shop-label">State</label>
-              <input type="text" id="state" name="state" required class="shop-input" maxlength="2" placeholder="UT" autocomplete="address-level1" />
-            </div>
-            <div class="shop-form-group shop-form-group-sm">
-              <label for="zip" class="shop-label">ZIP</label>
-              <input type="text" id="zip" name="zip" required class="shop-input" maxlength="10" autocomplete="postal-code" />
-            </div>
-          </div>
-
+        <form id="buy-form">
           <div class="shop-form-row">
             <div class="shop-form-group">
               <label for="format" class="shop-label">Format</label>
@@ -238,34 +200,11 @@ const breadcrumb = {
             </div>
           </div>
 
-          <div class="shop-form-group">
-            <label for="note" class="shop-label">Note <span style="color: var(--color-text-soft); font-weight: 400; text-transform: none; letter-spacing: 0;">&mdash; optional</span></label>
-            <textarea id="note" name="note" rows="2" class="shop-input shop-textarea" placeholder="Inscription request, gift message, etc."></textarea>
-          </div>
-
-          <button type="submit" class="shop-submit">Submit Order</button>
+          <button type="submit" class="shop-submit" id="buy-button">Buy now &mdash; <span id="buy-total">$29.95</span></button>
+          <p class="shop-payment-note" id="buy-error" role="alert" style="display:none; margin-top: 0.75rem; color: #d98e8e;"></p>
         </form>
 
-        <div class="shop-confirmation" id="confirmation" style="display:none;">
-          <h2 class="confirmation-title">Order received.</h2>
-          <p>Your total is <strong id="order-total"></strong> (including $5.00 shipping).</p>
-          <p>Send payment using either option below, then we&rsquo;ll ship your signed copy within 2&ndash;3 business days.</p>
-
-          <div class="shop-payment-options">
-            <div class="shop-payment-card">
-              <h3>Venmo</h3>
-              <p class="shop-payment-handle">@cody-peterson-author</p>
-              <p class="shop-payment-note">Include your name in the memo</p>
-            </div>
-            <div class="shop-payment-card">
-              <h3>Zelle</h3>
-              <p class="shop-payment-handle">Cody Peterson</p>
-              <p class="shop-payment-note">725&ndash;502&ndash;3114</p>
-            </div>
-          </div>
-
-          <p class="confirmation-note">A confirmation email has been sent. If you have any questions, reach out at <a href="mailto:alkyarchetype@gmail.com">alkyarchetype@gmail.com</a>.</p>
-        </div>
+        <p class="shop-payment-note" style="margin-top: 2rem;">Total includes ${shippingFlat.toFixed(2)} flat-rate shipping. Prefer Venmo or Zelle? Email <a href="mailto:alkyarchetype@gmail.com">alkyarchetype@gmail.com</a> and we&rsquo;ll sort it out.</p>
       </div>
     </div>
   </section>
@@ -283,28 +222,48 @@ const breadcrumb = {
 </Base>
 
 <script>
-  const form = document.getElementById('order-form') as HTMLFormElement;
-  const confirmation = document.getElementById('confirmation')!;
-  const orderTotal = document.getElementById('order-total')!;
+  const form = document.getElementById('buy-form') as HTMLFormElement;
+  const button = document.getElementById('buy-button') as HTMLButtonElement;
+  const totalEl = document.getElementById('buy-total')!;
+  const errorEl = document.getElementById('buy-error') as HTMLElement;
+  const formatEl = document.getElementById('format') as HTMLSelectElement;
+  const qtyEl = document.getElementById('quantity') as HTMLSelectElement;
 
   const prices: Record<string, number> = { paperback: 24.95, hardcover: 39.00 };
   const shipping = 5.00;
 
+  function updateTotal() {
+    const total = prices[formatEl.value] * Number(qtyEl.value) + shipping;
+    totalEl.textContent = `$${total.toFixed(2)}`;
+  }
+  formatEl?.addEventListener('change', updateTotal);
+  qtyEl?.addEventListener('change', updateTotal);
+  updateTotal();
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const data = new FormData(form);
-    const format = data.get('format') as string;
-    const qty = Number(data.get('quantity'));
-    const total = (prices[format] * qty + shipping).toFixed(2);
+    errorEl.style.display = 'none';
+    button.disabled = true;
+    const label = button.innerHTML;
+    button.textContent = 'Opening checkout…';
 
     try {
-      await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
-    } catch (_) { /* Formspree submission — show confirmation regardless */ }
-
-    orderTotal.textContent = `$${total}`;
-    form.style.display = 'none';
-    document.querySelector('.shop-order-intro')!.remove();
-    confirmation.style.display = 'block';
-    confirmation.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const res = await fetch('/api/book-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ format: formatEl.value, quantity: Number(qtyEl.value) }),
+      });
+      const data = await res.json();
+      if (res.ok && data.url) {
+        window.location.href = data.url;
+        return;
+      }
+      throw new Error(data.error || 'Could not start checkout.');
+    } catch (err) {
+      errorEl.textContent = err instanceof Error ? err.message : 'Could not start checkout. Please try again.';
+      errorEl.style.display = 'block';
+      button.disabled = false;
+      button.innerHTML = label;
+    }
   });
 </script>

@@ -8,9 +8,10 @@ interface Props {
   noSuffix?: boolean;
   ogImage?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  noindex?: boolean;
 }
 
-const { title, description = '', seoTitle, noSuffix = false, ogImage, jsonLd } = Astro.props;
+const { title, description = '', seoTitle, noSuffix = false, ogImage, jsonLd, noindex = false } = Astro.props;
 const pageTitle = seoTitle || (noSuffix ? title : `${title} | Cody Peterson`);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = ogImage || '/images/cody-peterson-bw.jpg';
@@ -229,6 +230,7 @@ const globalSchema = {
   <meta name="author" content="Cody Peterson" />
   <meta name="theme-color" content="#171009" />
   <link rel="canonical" href={canonicalURL} />
+  {noindex && <meta name="robots" content="noindex" />}
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="icon" type="image/png" href="/images/moon.png" />
 
