@@ -13,5 +13,10 @@
   "assets": {
     "binding": "ASSETS",
     "directory": "dist"
-  }
+  },
+  "send_email": [
+    {
+      "name": "ORDER_MAIL"
+    }
+  ]
 }
