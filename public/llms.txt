@@ -20,7 +20,7 @@ Updated: 2026-09-05
 
 ## Related projects
 - [Seba.Health](https://www.seba.health/): Depth-psychology research resources and practitioner directory, operated on a not-for-profit basis. Sebastian provides AI-assisted exploratory conversations.
-- [Logoi](https://logoi.health/): Philological workbench for reading, corpus search, word study, comparison, and usage analysis.
+- Logoi — coming soon. A philological workbench in development for reading, corpus search, word study, comparison, and usage analysis.
 
 ## Status and attribution
 Cody studies psychology at the University of Utah and has been accepted to a master's programme at Adams State University beginning January 2027. This site presents his work as a writer and researcher, not licensed clinical practice. Not-for-profit operation does not establish registered charitable status. Listed practitioners do not thereby endorse Cody's arguments or Sebastian. AI output is provisional working material, not a source; corpus results and psychological interpretation remain distinct.

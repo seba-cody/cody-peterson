@@ -26,7 +26,7 @@ ${papers.map(p => `\n${p.title}\nStatus: ${p.status}\n${p.citation}\n${p.descrip
 ## Public projects
 Seba.Health (https://www.seba.health/) brings together depth-psychology research resources, study tools, and a practitioner directory. It operates on a not-for-profit basis; this does not establish registered charitable status. Sebastian offers AI-assisted exploratory conversations about texts, dreams, and images, not clinical care. A practitioner listing does not imply endorsement of Cody's scholarship or Sebastian.
 
-Logoi (https://logoi.health/) is a philological workbench for reading, corpus search, word study, comparison, and usage analysis. It keeps editions and passages attached to the work of interpretation.
+Logoi — coming soon. A philological workbench in development alongside the Homeric research, intended for reading, corpus search, word study, comparison, and usage analysis. It is still taking shape.
 
 ## Other pages
 Biography and recovery memoir: https://www.cody-peterson.com/about/
