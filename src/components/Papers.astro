@@ -1,0 +1,13 @@
+---
+import { papers } from '../data/publications';
+---
+<div class="publication-list">
+  {papers.map(paper => (
+    <article class="publication">
+      <p class="work-status">{paper.status}</p>
+      <h3>{paper.href ? <a href={paper.href}>{paper.title} <span aria-hidden="true">↗</span></a> : paper.title}</h3>
+      <p class="publication-citation"><em>{paper.citation}</em></p>
+      <p>{paper.description}</p>
+    </article>
+  ))}
+</div>

@@ -23,10 +23,11 @@ function isActive(href: string) {
 }
 
 const navLinks = [
-  { href: '/book/', label: 'Book', numeral: 'I' },
-  { href: '/videos/', label: 'Videos', numeral: 'II' },
-  { href: '/media/', label: 'Media', numeral: 'III' },
-  { href: '/about/', label: 'About', numeral: 'IV' },
+  { href: '/research/', label: 'Research', numeral: 'I' },
+  { href: '/book/', label: 'Book', numeral: 'II' },
+  { href: '/videos/', label: 'Lectures', numeral: 'III' },
+  { href: '/media/', label: 'Media', numeral: 'IV' },
+  { href: '/about/', label: 'About', numeral: 'V' },
 ];
 
 const year = new Date().getFullYear();
@@ -64,6 +65,42 @@ const globalSchema = {
     hendersonPlace,
     lasVegasValleyPlace,
     {
+      '@type': 'Book',
+      author: { '@id': 'https://www.cody-peterson.com/#person' },
+      name: 'The Shadow of a Figure of Light: The Archetype of the Alcoholic and the Journey to Enlightenment',
+      url: 'https://books.google.com/books/about/The_Shadow_of_a_Figure_of_Light.html?id=sacxEQAAQBAJ',
+      publisher: { '@type': 'Organization', name: 'Chiron Publications' },
+      datePublished: '2024',
+    },
+    {
+      '@type': 'ScholarlyArticle',
+      author: { '@id': 'https://www.cody-peterson.com/#person' },
+      name: 'Taming Wild Beasts',
+      url: 'https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105',
+      datePublished: '2025-04-03',
+      isPartOf: {
+        '@type': 'Periodical',
+        name: 'Jung Journal: Culture & Psyche',
+      },
+    },
+    {
+      '@type': 'Organization',
+      '@id': 'https://www.seba.health/#organization',
+      name: 'Seba Health', url: 'https://www.seba.health/',
+      description: 'Depth-psychology research platform operated on a not-for-profit basis.',
+      founder: { '@id': 'https://www.cody-peterson.com/#person' },
+    },
+    {
+      '@type': 'Organization',
+      name: 'City Seamless Rain Gutter', url: 'https://www.cityseamless.com/',
+      founder: { '@id': 'https://www.cody-peterson.com/#person' },
+    },
+    {
+      '@type': 'Organization',
+      name: '702 Alliance', url: 'https://www.702alliance.com/',
+      founder: { '@id': 'https://www.cody-peterson.com/#person' },
+    },
+    {
       '@type': 'Person',
       '@id': 'https://www.cody-peterson.com/#person',
       name: 'Cody Peterson',
@@ -71,8 +108,8 @@ const globalSchema = {
       familyName: 'Peterson',
       url: 'https://www.cody-peterson.com/',
       image: 'https://www.cody-peterson.com/images/cody-peterson-bw.jpg',
-      jobTitle: 'Depth Psychology Scholar',
-      description: 'Published author (Chiron Publications, 2024), depth psychology scholar, Jung Journal contributor, and founder of Seba Health, City Seamless Rain Gutter, and 702 Alliance.',
+      jobTitle: 'Depth psychology researcher and writer',
+      description: 'Depth psychology researcher and writer, author of The Shadow of a Figure of Light, designer of AI-assisted research programmes, and founder of Seba.Health.',
       homeLocation: { '@id': 'https://www.cody-peterson.com/#henderson-nv' },
       workLocation: { '@id': 'https://www.cody-peterson.com/#las-vegas-valley' },
       hasOccupation: [
@@ -83,7 +120,7 @@ const globalSchema = {
         },
         {
           '@type': 'Occupation',
-          name: 'Depth Psychology Scholar',
+          name: 'Depth psychology researcher',
         },
         {
           '@type': 'Occupation',
@@ -94,37 +131,15 @@ const globalSchema = {
         { '@type': 'PropertyValue', propertyID: 'ORCID', value: '0009-0009-2028-0154', url: 'https://orcid.org/0009-0009-2028-0154' },
       ],
       sameAs: [
-        'https://www.seba.health/',
-        'https://www.cityseamless.com/',
-        'https://www.702alliance.com/',
         'https://www.chironpublications.com/product-category/authors/peterson-cody/',
-        'https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105',
         'https://www.researchgate.net/profile/Cody-Peterson-6/research',
         'https://scholar.google.com/citations?user=a8xhFSgAAAAJ',
         'https://orcid.org/0009-0009-2028-0154',
         'https://www.youtube.com/@cody-peterson-author',
         'https://x.com/AlkyArchetype',
         'https://www.linkedin.com/in/cody-peterson-487224229/',
-        'https://books.google.com/books/about/The_Shadow_of_a_Figure_of_Light.html?id=sacxEQAAQBAJ',
       ],
       subjectOf: [
-        {
-          '@type': 'Book',
-          name: 'The Shadow of a Figure of Light: The Archetype of the Alcoholic and the Journey to Enlightenment',
-          url: 'https://books.google.com/books/about/The_Shadow_of_a_Figure_of_Light.html?id=sacxEQAAQBAJ',
-          publisher: { '@type': 'Organization', name: 'Chiron Publications' },
-          datePublished: '2024',
-        },
-        {
-          '@type': 'ScholarlyArticle',
-          name: 'Taming Wild Beasts',
-          url: 'https://www.tandfonline.com/doi/full/10.1080/19342039.2025.2487105',
-          datePublished: '2025-04-03',
-          isPartOf: {
-            '@type': 'Periodical',
-            name: 'Jung Journal: Culture & Psyche',
-          },
-        },
         {
           '@type': 'Article',
           name: 'Beyond a Shadow of a Doubt',
@@ -146,47 +161,16 @@ const globalSchema = {
           },
         },
       ],
-      founder: [
-        {
-          '@type': 'Organization',
-          name: 'Seba Health',
-          url: 'https://www.seba.health/',
-          description: 'Depth-oriented clinical authority platform for addiction recovery, convergence psychology, and the ancient vocabulary of the soul.',
-          foundingLocation: { '@id': 'https://www.cody-peterson.com/#henderson-nv' },
-        },
-        {
-          '@type': 'LocalBusiness',
-          name: 'City Seamless Rain Gutter',
-          url: 'https://www.cityseamless.com/',
-          description: 'Seamless rain gutter installation in the Las Vegas Valley.',
-          foundingLocation: { '@id': 'https://www.cody-peterson.com/#henderson-nv' },
-          address: {
-            '@type': 'PostalAddress',
-            addressLocality: 'Henderson',
-            addressRegion: 'NV',
-            addressCountry: 'US',
-          },
-          areaServed: { '@id': 'https://www.cody-peterson.com/#las-vegas-valley' },
-        },
-        {
-          '@type': 'Organization',
-          name: '702 Alliance',
-          url: 'https://www.702alliance.com/',
-          description: 'Vetted network of locally owned businesses across the Las Vegas Valley.',
-          foundingLocation: { '@id': 'https://www.cody-peterson.com/#henderson-nv' },
-          areaServed: { '@id': 'https://www.cody-peterson.com/#las-vegas-valley' },
-        },
-      ],
-      affiliation: {
-        '@type': 'CollegeOrUniversity',
-        name: 'University of Utah',
-        sameAs: 'https://en.wikipedia.org/wiki/University_of_Utah',
+      memberOf: {
+        '@type': 'OrganizationRole',
+        roleName: 'Undergraduate psychology student',
+        memberOf: { '@type': 'CollegeOrUniversity', name: 'University of Utah', url: 'https://www.utah.edu/' },
       },
       knowsAbout: [
         'Depth psychology', 'Analytical psychology', 'Addiction recovery',
-        'Twelve-step programs', 'Jungian psychotherapy', 'Emotional sobriety',
+        'Twelve-step programs', 'Homeric philology', 'Emotional sobriety',
         'Archetypal psychology', 'Ancient Greek psychology', 'Thumos',
-        'Interoception', 'Shamanism', 'Alchemy',
+        'AI-assisted humanities research', 'Corpus analysis', 'Alchemy',
       ],
     },
     {
@@ -194,12 +178,12 @@ const globalSchema = {
       '@id': 'https://www.cody-peterson.com/#website',
       url: 'https://www.cody-peterson.com/',
       name: 'Cody Peterson',
-      description: 'Depth psychology scholar, published author, and founder of Seba.Health.',
+      description: 'Writing, depth psychology, Homeric research, recovery, and research tools by Cody Peterson.',
       publisher: { '@id': 'https://www.cody-peterson.com/#person' },
       inLanguage: 'en-US',
       potentialAction: {
         '@type': 'ReadAction',
-        target: ['https://www.cody-peterson.com/book/', 'https://www.cody-peterson.com/about/'],
+        target: ['https://www.cody-peterson.com/research/', 'https://www.cody-peterson.com/book/'],
       },
     },
     {
@@ -228,10 +212,11 @@ const globalSchema = {
   <title>{pageTitle}</title>
   <meta name="description" content={description} />
   <meta name="author" content="Cody Peterson" />
-  <meta name="theme-color" content="#171009" />
+  <meta name="theme-color" content="#151b1b" />
   <link rel="canonical" href={canonicalURL} />
   {noindex && <meta name="robots" content="noindex" />}
   <link rel="sitemap" href="/sitemap-index.xml" />
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="Site guide" />
   <link rel="icon" type="image/png" href="/images/moon.png" />
 
   <!-- Fonts -->
@@ -266,6 +251,7 @@ const globalSchema = {
   <script defer src="https://analytics.seba.health/script.js" data-website-id="01f8f274-971e-431d-a34e-75a84e61dd01"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="header-inner">
       <a href="/" class="site-name" aria-label="Cody Peterson — home">
@@ -308,14 +294,14 @@ const globalSchema = {
     </div>
     <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
       {navLinks.map(link => (
-        <a href={link.href} data-numeral={link.numeral} class:list={[{ active: isActive(link.href) }]} aria-current={isActive(link.href) ? 'page' : undefined}>
-          {link.label}
+        <a href={link.href} class:list={[{ active: isActive(link.href) }]} aria-current={isActive(link.href) ? 'page' : undefined}>
+          <span class="mobile-numeral" aria-hidden="true">{link.numeral}</span>{link.label}
         </a>
       ))}
     </nav>
   </header>
 
-  <main>
+  <main id="main-content" tabindex="-1">
     <slot />
   </main>
 
@@ -336,19 +322,20 @@ const globalSchema = {
       <div class="colophon-block">
         <span class="colophon-label">Colophon</span>
         <em>Cody Peterson</em>
-        <p style="color: rgba(241, 231, 211, 0.55); font-style: italic; line-height: 1.55; margin: 0;">
-          Depth psychology scholar, author, and builder. Set in Fraunces &amp; Newsreader. Published from the desert.
+        <p style="color: var(--color-text-muted); font-style: italic; line-height: 1.55; margin: 0;">
+          Homeric language, depth psychology, and the history of feeling. Writing and research from the desert.
         </p>
       </div>
       <div class="colophon-block">
         <span class="colophon-label">Work</span>
         <a href="/book/">The Book</a>
-        <a href="/videos/">Videos</a>
+        <a href="/research/">Research &amp; publications</a>
+        <a href="/videos/">Lectures</a>
         <a href="/media/">Media</a>
         <a href="/about/">About</a>
       </div>
       <div class="colophon-block">
-        <span class="colophon-label">Ventures</span>
+        <span class="colophon-label">Built by Cody</span>
         <a href="https://www.seba.health">Seba Health</a>
         <a href="https://logoi.health">Logoi Health</a>
         <a href="https://www.702alliance.com">702 Alliance</a>
@@ -356,6 +343,7 @@ const globalSchema = {
       </div>
       <div class="colophon-block">
         <span class="colophon-label">Correspond</span>
+        <a href="mailto:cody@seba.health">cody@seba.health</a>
         <a href="https://x.com/AlkyArchetype" rel="me noopener" target="_blank">X / Twitter</a>
         <a href="https://www.youtube.com/@cody-peterson-author" rel="me noopener" target="_blank">YouTube</a>
         <a href="https://www.linkedin.com/in/cody-peterson-487224229/" rel="me noopener" target="_blank">LinkedIn</a>
@@ -375,8 +363,20 @@ const globalSchema = {
     toggle?.addEventListener('click', () => {
       const isOpen = mobileNav?.classList.toggle('open');
       toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
       mobileNav?.setAttribute('aria-hidden', String(!isOpen));
       toggle.classList.toggle('open', isOpen);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && mobileNav?.classList.contains('open')) {
+        mobileNav.classList.remove('open');
+        mobileNav.setAttribute('aria-hidden', 'true');
+        toggle?.setAttribute('aria-expanded', 'false');
+        toggle?.setAttribute('aria-label', 'Open navigation menu');
+        toggle?.classList.remove('open');
+        toggle?.focus();
+      }
     });
 
     // Header scroll shadow

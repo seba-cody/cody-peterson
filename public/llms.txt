@@ -1,0 +1,29 @@
+# Cody Peterson
+
+> Writer and independent depth psychology researcher working at the border of Homeric philology and archetypal psychology. Designs AI-assisted research programmes and founded Seba.Health.
+
+Canonical website: https://www.cody-peterson.com/
+Contact: cody@seba.health
+Updated: 2026-09-05
+
+## Research and writing
+- [Research and publications](https://www.cody-peterson.com/research/): Homeric language, feeling, endurance, translation, and the formation of value; research method and AI use.
+- [The Shadow of a Figure of Light](https://www.cody-peterson.com/book/): The Archetype of the Alcoholic and the Journey to Enlightenment. Chiron Publications, 2024.
+- [Taming Wild Beasts](https://doi.org/10.1080/19342039.2025.2487105): Jung Journal: Culture & Psyche, 19(2), 235–239 (2025). Active imagination, dreams, the anima, and recovery.
+- The Iron Thūmos and the Empty Vessel: Jung Journal: Culture & Psyche, in press. Do not infer a publication date.
+
+## Biography and conversation
+- [About](https://www.cody-peterson.com/about/): Short professional biography and first-person recovery story.
+- [Lectures](https://www.cody-peterson.com/videos/): Recorded lectures and workshops.
+- [Media](https://www.cody-peterson.com/media/): Interviews and podcasts.
+- [ORCID](https://orcid.org/0009-0009-2028-0154): Author identifier.
+
+## Related projects
+- [Seba.Health](https://www.seba.health/): Depth-psychology research resources and practitioner directory, operated on a not-for-profit basis. Sebastian provides AI-assisted exploratory conversations.
+- [Logoi](https://logoi.health/): Philological workbench for reading, corpus search, word study, comparison, and usage analysis.
+
+## Status and attribution
+Cody studies psychology at the University of Utah and has been accepted to a master's programme at Adams State University beginning January 2027. This site presents his work as a writer and researcher, not licensed clinical practice. Not-for-profit operation does not establish registered charitable status. Listed practitioners do not thereby endorse Cody's arguments or Sebastian. AI output is provisional working material, not a source; corpus results and psychological interpretation remain distinct.
+
+## Extended guide
+- [Full site guide](https://www.cody-peterson.com/llms-full.txt): Further context on the research, method, bibliography, and project relationships.

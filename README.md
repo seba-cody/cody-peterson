@@ -1,43 +1,72 @@
-# Astro Starter Kit: Minimal
+# Cody Peterson — author website
+
+The source for Cody-Peterson.com. Built with Astro, with static public pages and
+existing Cloudflare handlers for signed-book checkout and order notifications.
+
+## Start here
+
+- Broader research and career workspace: `/home/user/projects/cody-research`
+- Current website handoff: [HANDOFF.md](HANDOFF.md)
+- Current direction: [website brief](../../cody-research/briefs/WEBSITE_REVAMP_2026-09-05.md)
+- Public bibliography: `src/data/publications.ts`
+
+Cody explicitly authorized redesign and deployment in the September 5, 2026
+website conversation. The current release centers the Homeric research and its
+connection to writing, AI-assisted inquiry, and Seba. Keep submitted manuscripts, anonymous review
+links, private datasets, and editorial correspondence out of `src/` and `public/`.
+Read the shared career direction before changing professional or publication
+status. “Iron Thūmos” remains in press until publisher evidence says otherwise.
+
+## Pages
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Writing, research tools, lectures, and a life behind the work |
+| `/research/` | Questions, methods, bibliography, and research programmes |
+| `/book/` | Book description, existing endorsements, and signed-copy orders |
+| `/videos/` | Lecture and workshop archive; URL preserved |
+| `/media/` | Interviews, podcasts, and invitations |
+| `/about/` | Short professional biography and the first-person memoir |
+
+Pre-existing scholarship and document pages in `public/` belong to separate
+work. Preserve them. Do not include or remove them casually in a future release.
+
+## Local development and review
+
+With Node and npm installed:
 
 ```sh
-npm create astro@latest -- --template minimal
+npm ci
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Build the existing project:
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+npm run build
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+For a static, loopback-only review of the already built pages:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```sh
+./scripts/preview-local.sh
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+Then visit `http://127.0.0.1:4325/`. An optional first argument selects another
+port. Stop the server with Ctrl-C. Python 3 is the only dependency for this
+preview. It serves `dist/` and does not run the Worker or payment handlers.
+Forms and external links still point to their normal destinations; do not
+submit them while doing a read-only preview.
 
-## 🧞 Commands
+The existing `npm run preview` invokes Wrangler. It is not the static preview
+above. Payment code, Wrangler configuration, package versions, and the lockfile
+were retained in this revision. Do not run the deploy script without Cody's
+explicit direction and the applicable release checks.
 
-All commands are run from the root of the project, from a terminal:
+## Content and design
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The site uses an ink-and-sandstone palette with a light reading section,
+Fraunces and Newsreader, and the existing photographs and social preview image. Shared layout/navigation are in
+`src/layouts/Base.astro`; shared styles are in `src/styles/global.css`.
+`src/components/Papers.astro` reads the public bibliography for both the homepage
+and research page, so publication status is maintained in one place.
