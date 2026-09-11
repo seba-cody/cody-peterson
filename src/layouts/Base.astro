@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ironThumosSchema } from '../data/iron-thumos';
 
 interface Props {
   title: string;
@@ -62,6 +63,7 @@ const lasVegasValleyPlace = {
 const globalSchema = {
   '@context': 'https://schema.org',
   '@graph': [
+    ironThumosSchema,
     hendersonPlace,
     lasVegasValleyPlace,
     {

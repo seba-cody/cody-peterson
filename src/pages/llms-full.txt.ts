@@ -4,7 +4,7 @@ export function GET() {
   const text = `# Cody Peterson: research, writing, and public projects
 
 Canonical website: https://www.cody-peterson.com/
-Updated: 2026-09-05
+Updated: 2026-09-10
 Contact: cody@seba.health
 ORCID: https://orcid.org/0009-0009-2028-0154
 
@@ -21,7 +21,7 @@ AI assists with source discovery, research organization, software development, a
 ## Publications
 The Shadow of a Figure of Light: The Archetype of the Alcoholic and the Journey to Enlightenment. Chiron Publications, 2024. Published book on Jung, Bill Wilson, the Twelve Steps, and recovery.
 Book page: https://www.cody-peterson.com/book/
-${papers.map(p => `\n${p.title}\nStatus: ${p.status}\n${p.citation}\n${p.description}${p.href ? `\n${p.href}` : ''}`).join('\n')}
+${papers.map(p => `\n${p.title}\nStatus: ${p.status}\n${p.citation}\n${p.description}${p.href ? `\n${new URL(p.href, 'https://www.cody-peterson.com/').href}` : ''}${'publisherHref' in p ? `\nFull text: ${p.publisherHref}\nDOI: 10.1080/19342039.2026.2670265\nPublished online: 2026-09-09` : ''}`).join('\n')}
 
 ## Public projects
 Seba.Health (https://www.seba.health/) brings together depth-psychology research resources, study tools, and a practitioner directory. It operates on a not-for-profit basis; this does not establish registered charitable status. Sebastian offers AI-assisted exploratory conversations about texts, dreams, and images, not clinical care. A practitioner listing does not imply endorsement of Cody's scholarship or Sebastian.

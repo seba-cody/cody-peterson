@@ -15,7 +15,7 @@ website conversation. The current release centers the Homeric research and its
 connection to writing, AI-assisted inquiry, and Seba. Keep submitted manuscripts, anonymous review
 links, private datasets, and editorial correspondence out of `src/` and `public/`.
 Read the shared career direction before changing professional or publication
-status. “Iron Thūmos” remains in press until publisher evidence says otherwise.
+status. “Iron Thūmos” was published online 9 September 2026 (DOI 10.1080/19342039.2026.2670265). Its author page points readers to the publisher for full text and PDF.
 
 ## Pages
 

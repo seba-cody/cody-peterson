@@ -2,10 +2,11 @@
 export const papers = [
   {
     title: 'The Iron Thūmos and the Empty Vessel',
-    status: 'In press',
-    citation: 'Jung Journal: Culture & Psyche',
+    status: 'Published · 2026 · Open access',
+    citation: 'Jung Journal: Culture & Psyche, 20(3), 103–117',
     description: 'A Homeric response to Jung’s Answer to Job, following the relation between endurance, feeling, and the images through which we understand the soul.',
-    href: null,
+    href: '/iron-thumos/',
+    publisherHref: 'https://www.tandfonline.com/doi/full/10.1080/19342039.2026.2670265',
   },
   {
     title: 'Taming Wild Beasts',
