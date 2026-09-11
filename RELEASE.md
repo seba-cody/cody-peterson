@@ -7,7 +7,9 @@ instructions in older local handoffs.
 was published online on 9 September 2026 in *Jung Journal: Culture & Psyche*,
 20(3), 103–117, DOI [10.1080/19342039.2026.2670265](https://doi.org/10.1080/19342039.2026.2670265).
 It is published, not in press or merely accepted. Keep the publisher full-text
-and PDF links available on `/iron-thumos/` and in the publication list.
+and PDF links available on `/iron-thumos/`. Cody's priority is publisher views:
+publication-card titles link directly to the DOI; a secondary “Details” link
+keeps the internal article page accessible.
 
 The publication release is commit `562d0f08c9313730553b2022f05136b10b9ac036`.
 Its live Worker version before these corrections was
