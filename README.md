@@ -6,7 +6,7 @@ existing Cloudflare handlers for signed-book checkout and order notifications.
 ## Start here
 
 - Broader research and career workspace: `/home/user/projects/cody-research`
-- Current website handoff: [HANDOFF.md](HANDOFF.md)
+- Current publication and release instructions: [RELEASE.md](RELEASE.md)
 - Current direction: [website brief](../../cody-research/briefs/WEBSITE_REVAMP_2026-09-05.md)
 - Public bibliography: `src/data/publications.ts`
 
@@ -23,6 +23,7 @@ status. “Iron Thūmos” was published online 9 September 2026 (DOI 10.1080/19
 | --- | --- |
 | `/` | Writing, research tools, lectures, and a life behind the work |
 | `/research/` | Questions, methods, bibliography, and research programmes |
+| `/iron-thumos/` | Published article details and direct publisher full-text/PDF links |
 | `/book/` | Book description, existing endorsements, and signed-copy orders |
 | `/videos/` | Lecture and workshop archive; URL preserved |
 | `/media/` | Interviews, podcasts, and invitations |
@@ -59,9 +60,9 @@ Forms and external links still point to their normal destinations; do not
 submit them while doing a read-only preview.
 
 The existing `npm run preview` invokes Wrangler. It is not the static preview
-above. Payment code, Wrangler configuration, package versions, and the lockfile
-were retained in this revision. Do not run the deploy script without Cody's
-explicit direction and the applicable release checks.
+above. For authorized releases, follow [RELEASE.md](RELEASE.md). Wrangler now
+requires committed source, rejects untracked build inputs, and rebuilds before
+deployment so an old `dist/` cannot silently replace the live site.
 
 ## Content and design
 
