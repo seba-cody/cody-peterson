@@ -15,7 +15,7 @@ interface Props {
 const { title, description = '', seoTitle, noSuffix = false, ogImage, jsonLd, noindex = false } = Astro.props;
 const pageTitle = seoTitle || (noSuffix ? title : `${title} | Cody Peterson`);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImageURL = ogImage || '/images/cody-peterson-bw.jpg';
+const ogImageURL = ogImage || '/images/life/waterfall-portrait-1200.jpg';
 
 const currentPath = Astro.url.pathname;
 function isActive(href: string) {
@@ -24,11 +24,11 @@ function isActive(href: string) {
 }
 
 const navLinks = [
-  { href: '/research/', label: 'Research', numeral: 'I' },
-  { href: '/book/', label: 'Book', numeral: 'II' },
-  { href: '/videos/', label: 'Lectures', numeral: 'III' },
-  { href: '/media/', label: 'Media', numeral: 'IV' },
-  { href: '/about/', label: 'About', numeral: 'V' },
+  { href: '/research/', label: 'Research' },
+  { href: '/book/', label: 'Book' },
+  { href: '/videos/', label: 'Talks' },
+  { href: '/media/', label: 'Media' },
+  { href: '/about/', label: 'About' },
 ];
 
 const year = new Date().getFullYear();
@@ -214,19 +214,17 @@ const globalSchema = {
   <title>{pageTitle}</title>
   <meta name="description" content={description} />
   <meta name="author" content="Cody Peterson" />
-  <meta name="theme-color" content="#151b1b" />
+  <meta name="theme-color" content="#f7f3ea" />
   <link rel="canonical" href={canonicalURL} />
   {noindex && <meta name="robots" content="noindex" />}
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="alternate" type="text/plain" href="/llms.txt" title="Site guide" />
   <link rel="icon" type="image/png" href="/images/moon.png" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
 
-  <!-- Open Graph -->
   <meta property="og:title" content={pageTitle} />
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
@@ -235,7 +233,6 @@ const globalSchema = {
   <meta property="og:site_name" content="Cody Peterson" />
   <meta property="og:locale" content="en_US" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@AlkyArchetype" />
   <meta name="twitter:creator" content="@AlkyArchetype" />
@@ -243,7 +240,6 @@ const globalSchema = {
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={new URL(ogImageURL, Astro.site)} />
 
-  <!-- JSON-LD -->
   <script type="application/ld+json" set:html={JSON.stringify(globalSchema)} />
   {jsonLd && (
     Array.isArray(jsonLd)
@@ -256,9 +252,7 @@ const globalSchema = {
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="header-inner">
-      <a href="/" class="site-name" aria-label="Cody Peterson — home">
-        Cody Peterson<span class="site-name-mark" aria-hidden="true"></span>
-      </a>
+      <a href="/" class="site-name">Cody Peterson</a>
       <nav class="site-nav" aria-label="Primary navigation">
         {navLinks.map(link => (
           <a href={link.href} class:list={[{ active: isActive(link.href) }]} aria-current={isActive(link.href) ? 'page' : undefined}>
@@ -266,39 +260,11 @@ const globalSchema = {
           </a>
         ))}
       </nav>
-      <div class="header-folio" aria-hidden="true">
-        Vol. <em>I</em> &nbsp;·&nbsp; Est. <em>MMXXIV</em>
-      </div>
-      <button
-        type="button"
-        class="share-button"
-        id="share-page"
-        aria-label="Share this page"
-        title="Share this page"
-        data-share-title={pageTitle}
-        data-share-url={canonicalURL.toString()}
-      >
-        <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
-          <circle cx="18" cy="5" r="3"></circle>
-          <circle cx="6" cy="12" r="3"></circle>
-          <circle cx="18" cy="19" r="3"></circle>
-          <path d="M8.7 10.7 15.3 6.3"></path>
-          <path d="M8.7 13.3 15.3 17.7"></path>
-        </svg>
-        <span class="share-button-label">Share</span>
-      </button>
-      <span class="share-status" id="share-status" role="status" aria-live="polite"></span>
-      <button class="hamburger" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">Menu</button>
     </div>
     <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
       {navLinks.map(link => (
-        <a href={link.href} class:list={[{ active: isActive(link.href) }]} aria-current={isActive(link.href) ? 'page' : undefined}>
-          <span class="mobile-numeral" aria-hidden="true">{link.numeral}</span>{link.label}
-        </a>
+        <a href={link.href} class:list={[{ active: isActive(link.href) }]} aria-current={isActive(link.href) ? 'page' : undefined}>{link.label}</a>
       ))}
     </nav>
   </header>
@@ -307,169 +273,39 @@ const globalSchema = {
     <slot />
   </main>
 
-  <section class="subscribe-section" aria-label="Subscribe to the newsletter">
-    <div class="subscribe-inner">
-      <div class="subscribe-eyebrow">Correspondence</div>
-      <h2>Stay in the work.</h2>
-      <p>Depth psychology, recovery, and the ancient roots of feeling. Occasional letters. No spam.</p>
-      <form class="subscribe-form" action="https://buttondown.com/api/emails/embed-subscribe/alkyarchetype" method="post">
-        <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address" />
-        <button type="submit">Subscribe</button>
+  <section class="letters" aria-label="Occasional letters by email">
+    <div class="column">
+      <h2>Letters</h2>
+      <p>Now and then I send an email about what I am writing. Leave your address if you want one.</p>
+      <form class="letters-form" action="https://buttondown.com/api/emails/embed-subscribe/alkyarchetype" method="post">
+        <label for="letters-email" class="visually-hidden">Email address</label>
+        <input id="letters-email" type="email" name="email" placeholder="you@example.com" required />
+        <button type="submit">Send me the letters</button>
       </form>
     </div>
   </section>
 
   <footer class="site-footer">
-    <div class="colophon">
-      <div class="colophon-block">
-        <span class="colophon-label">Colophon</span>
-        <em>Cody Peterson</em>
-        <p style="color: var(--color-text-muted); font-style: italic; line-height: 1.55; margin: 0;">
-          Homeric language, depth psychology, and the history of feeling. Writing and research from the desert.
-        </p>
-      </div>
-      <div class="colophon-block">
-        <span class="colophon-label">Work</span>
-        <a href="/book/">The Book</a>
-        <a href="/research/">Research &amp; publications</a>
-        <a href="/videos/">Lectures</a>
-        <a href="/media/">Media</a>
-        <a href="/about/">About</a>
-      </div>
-      <div class="colophon-block">
-        <span class="colophon-label">Built by Cody</span>
-        <a href="https://www.seba.health">Seba Health</a>
-        <span>Logoi · Coming soon</span>
-        <a href="https://www.702alliance.com">702 Alliance</a>
-        <a href="https://www.cityseamless.com">City Seamless</a>
-      </div>
-      <div class="colophon-block">
-        <span class="colophon-label">Correspond</span>
-        <a href="mailto:cody@seba.health">cody@seba.health</a>
-        <a href="https://x.com/AlkyArchetype" rel="me noopener" target="_blank">X / Twitter</a>
-        <a href="https://www.youtube.com/@cody-peterson-author" rel="me noopener" target="_blank">YouTube</a>
-        <a href="https://www.linkedin.com/in/cody-peterson-487224229/" rel="me noopener" target="_blank">LinkedIn</a>
-        <a href="https://orcid.org/0009-0009-2028-0154" rel="me noopener" target="_blank">ORCID</a>
-      </div>
-      <div class="colophon-note">
-        <span>&copy; {year} Cody Peterson. All rights reserved.</span>
-        <span>Composed in the desert. Typeset in Fraunces &amp; Newsreader.</span>
-      </div>
+    <div class="column">
+      <p><a href="https://www.seba.health">Seba.Health</a> · Logoi, coming soon · <a href="https://www.cityseamless.com">City Seamless</a> · <a href="https://www.702alliance.com">702 Alliance</a></p>
+      <p><a href="https://x.com/AlkyArchetype" rel="me noopener" target="_blank">X</a> · <a href="https://www.youtube.com/@cody-peterson-author" rel="me noopener" target="_blank">YouTube</a> · <a href="https://www.linkedin.com/in/cody-peterson-487224229/" rel="me noopener" target="_blank">LinkedIn</a> · <a href="https://orcid.org/0009-0009-2028-0154" rel="me noopener" target="_blank">ORCID</a> · <a href="mailto:cody@seba.health">cody@seba.health</a></p>
+      <p class="muted">© {year} Cody Peterson</p>
     </div>
   </footer>
 
   <script>
-    // Mobile menu
     const toggle = document.getElementById('menu-toggle');
     const mobileNav = document.getElementById('mobile-nav');
-    toggle?.addEventListener('click', () => {
-      const isOpen = mobileNav?.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', String(isOpen));
-      toggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
-      mobileNav?.setAttribute('aria-hidden', String(!isOpen));
-      toggle.classList.toggle('open', isOpen);
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && mobileNav?.classList.contains('open')) {
-        mobileNav.classList.remove('open');
-        mobileNav.setAttribute('aria-hidden', 'true');
-        toggle?.setAttribute('aria-expanded', 'false');
-        toggle?.setAttribute('aria-label', 'Open navigation menu');
-        toggle?.classList.remove('open');
-        toggle?.focus();
-      }
-    });
-
-    // Header scroll shadow
-    const header = document.querySelector('.site-header');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 40) {
-        header?.classList.add('scrolled');
-      } else {
-        header?.classList.remove('scrolled');
-      }
-    }, { passive: true });
-
-    // Share current page, falling back to copying the canonical URL.
-    const shareButton = document.getElementById('share-page');
-    const shareStatus = document.getElementById('share-status');
-    const shareLabel = shareButton?.querySelector('.share-button-label');
-    let shareStatusTimeout;
-
-    function setShareStatus(message) {
-      if (!shareButton || !shareStatus) return;
-      shareButton.classList.add('is-copied');
-      shareStatus.textContent = message;
-      if (shareLabel) shareLabel.textContent = message;
-      window.clearTimeout(shareStatusTimeout);
-      shareStatusTimeout = window.setTimeout(() => {
-        shareButton.classList.remove('is-copied');
-        shareStatus.textContent = '';
-        if (shareLabel) shareLabel.textContent = 'Share';
-      }, 2200);
+    function setMenu(open) {
+      mobileNav?.classList.toggle('open', open);
+      mobileNav?.setAttribute('aria-hidden', String(!open));
+      toggle?.setAttribute('aria-expanded', String(open));
+      toggle?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      if (toggle) toggle.textContent = open ? 'Close' : 'Menu';
     }
-
-    async function copyShareUrl(url) {
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(url);
-        return;
-      }
-
-      const textArea = document.createElement('textarea');
-      textArea.value = url;
-      textArea.setAttribute('readonly', '');
-      textArea.style.position = 'fixed';
-      textArea.style.left = '-9999px';
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand('copy');
-      textArea.remove();
-    }
-
-    shareButton?.addEventListener('click', async () => {
-      const shareUrl = shareButton.dataset.shareUrl || window.location.href;
-      const shareTitle = shareButton.dataset.shareTitle || document.title;
-      const shareText = document.querySelector('meta[name="description"]')?.getAttribute('content') || '';
-      const shareData = { title: shareTitle, text: shareText, url: shareUrl };
-
-      try {
-        if (navigator.share && (!navigator.canShare || navigator.canShare(shareData))) {
-          await navigator.share(shareData);
-          return;
-        }
-
-        await copyShareUrl(shareUrl);
-        setShareStatus('Copied');
-      } catch (error) {
-        if (error?.name === 'AbortError') return;
-        try {
-          await copyShareUrl(shareUrl);
-          setShareStatus('Copied');
-        } catch (_) {
-          setShareStatus('Copy failed');
-        }
-      }
-    });
-
-    // Scroll reveal (progressive enhancement — content visible without JS)
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
-
-    document.querySelectorAll('.reveal').forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight) {
-        el.classList.add('revealed');
-      } else {
-        el.classList.add('reveal-init');
-        revealObserver.observe(el);
-      }
+    toggle?.addEventListener('click', () => setMenu(!mobileNav?.classList.contains('open')));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileNav?.classList.contains('open')) { setMenu(false); toggle?.focus(); }
     });
   </script>
 </body>

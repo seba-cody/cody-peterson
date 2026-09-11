@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import Papers from '../components/Papers.astro';
+import { ironThumos } from '../data/iron-thumos';
 const jsonLd = {
   '@context': 'https://schema.org', '@type': 'ProfilePage',
   '@id': 'https://www.cody-peterson.com/#profilepage',
@@ -8,53 +8,104 @@ const jsonLd = {
   dateModified: '2026-09-10',
   significantLink: ['https://www.cody-peterson.com/research/', 'https://www.cody-peterson.com/book/', 'https://www.seba.health/'],
 };
+const doi = `https://doi.org/${ironThumos.doi}`;
 ---
-<Base title="Cody Peterson" seoTitle="Cody Peterson | Homer, Depth Psychology & AI-Assisted Research" description="Cody Peterson is a writer and depth psychology researcher. Homeric language, the history of feeling, AI-assisted research, and Seba.Health." jsonLd={jsonLd} noSuffix>
-  <section class="inquiry-hero" aria-labelledby="inquiry-title">
-    <div class="inquiry-hero-inner">
-      <div class="inquiry-hero-copy">
-        <p class="eyebrow">Cody Peterson · Writer &amp; researcher</p>
-        <h1 id="inquiry-title">The life<br />of <em>the soul.</em></h1>
-        <p class="inquiry-deck">Homeric language.<br />Archetypal psychology.<br />New instruments of inquiry.</p>
-        <p class="inquiry-introduction">I study what inherited language preserves of feeling and the formation of value—and what it asks of depth psychology today.</p>
-        <p class="publication-launch"><span class="work-status">New in Jung Journal · Open access</span><br /><a class="text-link" href="/iron-thumos/">The Iron Thūmos and the Empty Vessel <span aria-hidden="true">→</span></a></p>
-        <div class="hero-actions"><a class="btn btn-primary" href="/research/">Enter the research <span aria-hidden="true">↗</span></a><a class="text-link" href="#connections">How it connects <span aria-hidden="true">↓</span></a></div>
-      </div>
-      <figure class="inquiry-hero-image">
-        <img src="/images/life/canyon-silhouette.jpg" alt="Cody descending through the sandstone walls of a slot canyon" width="1200" height="1600" fetchpriority="high" />
-        <figcaption><span>In the field, in another sense.</span><span>Fat Man’s Misery · Zion</span></figcaption>
+<Base title="Cody Peterson" seoTitle="Cody Peterson | Writer, depth psychology researcher, Homer" description="Cody Peterson is a writer and depth psychology researcher. Recovery, Jung, Homer, and the essay The Iron Thūmos and the Empty Vessel, open access in Jung Journal." jsonLd={jsonLd} noSuffix>
+
+  <section class="opening">
+    <div class="opening-text">
+      <h1>Cody Peterson is a trickster.</h1>
+      <p>I got sober on a curb outside the Hard Rock in Las Vegas on March 4, 2013. I was thirty-four, homeless, with warrants in four states. I haven't had a drink or a drug since.</p>
+      <p>Five or six years into sobriety I went back to books. Campbell first, then Jung, then Homer, who turned out to have an older language for the things I had been living through: feeling, endurance, the soul. That is what I write about now.</p>
+      <p>I own a rain gutter company in Las Vegas and I still handle the sales. I study psychology at the University of Utah and start a master's at Adams State in January 2027. In between I build things: <a href="https://www.seba.health/">Seba.Health</a>, a depth psychology library and directory, and Logoi, a workbench for reading Greek. My wife and I lived next to Zion for five years. I go back to the canyons whenever I can.</p>
+    </div>
+    <figure class="opening-portrait">
+      <img src="/images/life/waterfall-portrait-1200.jpg" srcset="/images/life/waterfall-portrait-1200.jpg 900w, /images/life/waterfall-portrait.jpg 1500w" sizes="(min-width: 1000px) 420px, 100vw" width="900" height="1200" alt="Cody in a bucket hat, sitting beside a waterfall in a slot canyon" fetchpriority="high" />
+      <figcaption>Somewhere wet in southern Utah.</figcaption>
+    </figure>
+  </section>
+
+  <section class="column">
+    <h2>New</h2>
+    <p class="citation">The Iron Thūmos and the Empty Vessel: A Homeric Response to “Answer to Job.” <em>Jung Journal: Culture &amp; Psyche</em> 20(3), September 2026. Open access.</p>
+    <p>Why does Odysseus turn down immortality? Homer's answer is in his grammar, and it turns out to be a reply to Jung's hardest book.</p>
+    <p><a href={doi}>Read it at the journal, free</a> · <a href="/iron-thumos/">About the essay</a></p>
+  </section>
+
+  <figure class="wide">
+    <img src="/images/life/coffee-is-love-summit-1200.jpg" srcset="/images/life/coffee-is-love-summit-1200.jpg 1200w, /images/life/coffee-is-love-summit.jpg 2000w" sizes="(min-width: 1148px) 1100px, 100vw" width="1200" height="900" alt="Cody in a climbing helmet that reads Coffee is Love, grinning above Zion Canyon" loading="lazy" />
+    <figcaption>The helmet says what it says.</figcaption>
+  </figure>
+
+  <section class="column">
+    <h2>Writing</h2>
+    <ol class="writing">
+      <li>
+        <span class="year">2026</span>
+        <div>
+          <p>The Iron Thūmos and the Empty Vessel: A Homeric Response to “Answer to Job.” <em>Jung Journal: Culture &amp; Psyche</em> 20(3), 103–117. Open access.</p>
+          <p><a href={doi}>Read at the journal</a> · <a href="/iron-thumos/">Details</a></p>
+        </div>
+      </li>
+      <li>
+        <span class="year">2025</span>
+        <div>
+          <p>Taming Wild Beasts. <em>Jung Journal: Culture &amp; Psyche</em> 19(2), 235–239. On active imagination, dreams, the anima, and the archetype of the Alcoholic.</p>
+          <p><a href="https://doi.org/10.1080/19342039.2025.2487105">Read at the journal</a></p>
+        </div>
+      </li>
+      <li>
+        <span class="year">2024</span>
+        <div class="with-cover">
+          <div>
+            <p><em>The Shadow of a Figure of Light: The Archetype of the Alcoholic and the Journey to Enlightenment.</em> Chiron Publications. Jung, Bill Wilson, and the Twelve Steps, written from inside recovery.</p>
+            <p><a href="/book/">About the book</a></p>
+          </div>
+          <a href="/book/" class="cover"><img src="/images/book-cover.jpg" width="90" height="135" alt="Cover of The Shadow of a Figure of Light" loading="lazy" /></a>
+        </div>
+      </li>
+    </ol>
+    <p>A follow-up essay is under review. A second book is underway.</p>
+    <blockquote>
+      <p>“It rests on the solid foundations of careful scholarship and personal experience.”</p>
+      <footer>Murray Stein, on <em>The Shadow of a Figure of Light</em></footer>
+    </blockquote>
+  </section>
+
+  <figure class="wide tall">
+    <img src="/images/life/red-cliffs-alpenglow-1200.jpg" srcset="/images/life/red-cliffs-alpenglow-1200.jpg 900w, /images/life/red-cliffs-alpenglow.jpg 1500w" sizes="(min-width: 900px) 680px, 100vw" width="900" height="1200" alt="Red sandstone cliffs lit orange at sunset above a stand of junipers" loading="lazy" />
+    <figcaption>Last light on the red cliffs.</figcaption>
+  </figure>
+
+  <section class="column">
+    <h2>What I'm working on</h2>
+    <p>In <em>Odyssey</em> 20, Odysseus tells his own heart to endure. I count how Homer's words for suffering and enduring are shared out between gods and mortals, and I ask what that says about where value comes from. I use AI to search, sort, and check. The readings, and the mistakes, are mine.</p>
+    <p><a href="/research/">The research, in detail</a></p>
+  </section>
+
+  <section class="column">
+    <h2>Talks</h2>
+    <p>I teach and talk about recovery, dreams, and Homer. In October 2025 I taught an online lecture for the C.G. Jung Institute Zürich on the archetype of the Alcoholic. Fourteen recordings are in the lecture archive.</p>
+    <p><a href="/videos/">Lectures and workshops</a> · <a href="/media/">Interviews and podcasts</a></p>
+  </section>
+
+  <figure class="wide">
+    <img src="/images/life/three-peaks-morning-1200.jpg" srcset="/images/life/three-peaks-morning-1200.jpg 1200w, /images/life/three-peaks-morning.jpg 2000w" sizes="(min-width: 1148px) 1100px, 100vw" width="1200" height="900" alt="Three sandstone peaks above the trees in Zion Canyon under a streaked sky" loading="lazy" />
+    <figcaption>Zion, early.</figcaption>
+  </figure>
+
+  <section class="column closing">
+    <figure class="cap">
+      <img src="/images/life/last-light-on-the-cap-1200.jpg" srcset="/images/life/last-light-on-the-cap-1200.jpg 900w, /images/life/last-light-on-the-cap.jpg 1500w" sizes="(min-width: 700px) 300px, 100vw" width="900" height="1200" alt="The last of the sun on the top of a sandstone peak" loading="lazy" />
+      <figcaption>Sun on the cap.</figcaption>
+    </figure>
+    <div>
+      <h2>Write to me</h2>
+      <p><a href="mailto:cody@seba.health">cody@seba.health</a>. I answer.</p>
+      <figure class="truck">
+        <img src="/images/life/city-seamless-truck-1000.jpg" width="750" height="1000" alt="The City Seamless work truck" loading="lazy" />
+        <figcaption>The truck.</figcaption>
       </figure>
     </div>
-    <nav class="inquiry-index" aria-label="Explore this page"><a href="#connections"><span>01</span> The inquiry</a><a href="#tools"><span>02</span> The tools</a><a href="#writing"><span>03</span> The writing</a><a href="#life"><span>04</span> The life</a></nav>
   </section>
-
-  <section class="section paper-section" id="connections" aria-labelledby="connections-title">
-    <div class="section-inner">
-      <div class="connection-heading"><div><span class="eyebrow">01 · The connecting question</span><h2 id="connections-title">What does a life<br /><em>carry forward?</em></h2></div><div class="prose"><p>Recovery brought me back to books. Jung and Hillman deepened the questions. Homer brought me to an older language of feeling, endurance, and the soul.</p><p>Today, I design AI-assisted research programmes to follow these questions across texts and traditions. Seba and Logoi grow out of the same commitment: making the sources easier to reach, and the arguments open to examination.</p></div></div>
-      <div class="inquiry-focus"><div><span class="eyebrow">Current focus · Homer &amp; depth psychology</span><h3>Who—or what—<em>has endured?</em></h3></div><div class="prose"><p>In <em>Odyssey</em> 20.17–23, Odysseus addresses his heart and recalls what it has already endured. My research asks how grammar distributes feeling and agency—and what later translations and psychological readings do with those relations.</p><p>The larger question is what this language can contribute to archetypal psychology’s understanding of feeling and value.</p><a class="text-link" href="/research/">Read the questions &amp; method <span aria-hidden="true">→</span></a></div></div>
-    </div>
-  </section>
-
-  <section class="section" id="tools" aria-labelledby="tools-title">
-    <div class="section-inner">
-      <header class="section-header section-heading-row"><div><span class="eyebrow">02 · Research &amp; public tools</span><h2 id="tools-title">Ways into <em>the work.</em></h2></div><p class="section-heading-note">A research practice, a workbench in development,<br />and a place to find the people behind the tradition.</p></header>
-      <div class="tool-pair">
-        <article class="tool-feature"><div class="tool-topline"><span class="eyebrow">Depth psychology · Community &amp; resources</span><span aria-hidden="true">↗</span></div><h3><a href="https://www.seba.health/">Seba.Health</a></h3><p>Seba began with a practical question: how do you find a Jungian analyst? I built a directory, then a wider platform for exploring depth-psychology literature, ideas, and AI-assisted reflection.</p><p class="tool-detail">Operated on a not-for-profit basis. The directory, research resources, and Sebastian’s AI conversations serve different purposes.</p><a class="text-link" href="https://www.seba.health/">Explore Seba <span aria-hidden="true">↗</span></a></article>
-        <article class="tool-feature"><div class="tool-topline"><span class="eyebrow">Philology · In development</span></div><h3>Logoi</h3><p>A philological workbench in development for reading texts, searching corpora, studying words, comparing versions, and examining usage—with the edition and passage kept close to the interpretation.</p><p class="tool-detail">Growing out of my Homeric research. Still taking shape.</p><p class="work-status">Coming soon</p></article>
-      </div>
-      <div class="method-note"><span class="eyebrow">Where AI fits</span><div><p>I use AI in source discovery, software, research organization, and testing interpretations. Generated output is provisional working material. The evidence comes from the sources; the judgments and arguments are my responsibility.</p><a class="text-link" href="/research/#method">Read my approach to AI &amp; evidence <span aria-hidden="true">→</span></a></div></div>
-    </div>
-  </section>
-
-  <section id="writing" class="section section-alt" aria-labelledby="writing-title">
-    <div class="section-inner">
-      <header class="section-header section-heading-row"><div><span class="eyebrow">03 · Selected writing</span><h2 id="writing-title">From recovery<br /><em>to the ancient soul.</em></h2></div><a class="text-link" href="/research/#publications">Publication record <span aria-hidden="true">→</span></a></header>
-      <div class="writing-layout"><article class="featured-book"><a href="/book/" class="book-cover-link" aria-label="Read about The Shadow of a Figure of Light"><img src="/images/book-cover.jpg" alt="The Shadow of a Figure of Light by Cody Peterson, book cover" width="400" height="600" loading="lazy" /></a><div><p class="work-status">Chiron Publications · 2024</p><h3><a href="/book/">The Shadow of <em>a Figure of Light</em></a></h3><p class="book-subtitle">The Archetype of the Alcoholic and the Journey to Enlightenment</p><p>Jung, Bill Wilson, and the Twelve Steps: an inquiry into the thirst for wholeness, written from within recovery.</p><a class="text-link" href="/book/">About the book &amp; signed copies <span aria-hidden="true">→</span></a></div></article><Papers /></div>
-      <blockquote class="book-endorsement"><p>“It rests on the solid foundations of careful scholarship and personal experience.”</p><cite>Murray Stein · on <em>The Shadow of a Figure of Light</em></cite></blockquote>
-    </div>
-  </section>
-
-  <section id="life" class="section" aria-labelledby="life-title"><div class="section-inner life-layout"><figure class="life-image"><img src="/images/life/narrows-laugh.jpg" alt="Cody laughing in a river canyon" width="1200" height="1600" loading="lazy" /><figcaption class="image-note">The good part.</figcaption></figure><div class="prose life-copy"><span class="eyebrow">04 · A life behind the work</span><h2 id="life-title">A scholar.<br />A builder.<br /><em>A trickster.</em></h2><p>I got sober on a curb in Las Vegas on March 4, 2013. The writing, the research, the businesses, and the return to school all belong to the life that followed.</p><p>I study psychology at the University of Utah and have been accepted to a master’s programme at Adams State University, beginning January 2027. Between the old texts and the things I build, I find my way back to the canyons of southern Utah.</p><a class="text-link" href="/about/">Read the full story <span aria-hidden="true">→</span></a></div></div></section>
-
-  <section class="conversation-band" aria-labelledby="conversation-title"><div class="section-inner"><div><span class="eyebrow">Continuing the conversation</span><h2 id="conversation-title">Ideas are better <em>in company.</em></h2><p>For research correspondence, seminars, and speaking invitations.</p><a class="text-link" href="mailto:cody@seba.health">cody@seba.health <span aria-hidden="true">↗</span></a></div><nav aria-label="Talks and interviews"><a href="/videos/"><span>Lecture &amp; workshop archive</span><span aria-hidden="true">→</span></a><a href="/media/"><span>Interviews &amp; podcasts</span><span aria-hidden="true">→</span></a></nav></div></section>
 </Base>
