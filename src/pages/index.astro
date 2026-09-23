@@ -12,96 +12,115 @@ const doi = `https://doi.org/${ironThumos.doi}`;
 ---
 <Base title="Cody Peterson" seoTitle="Cody Peterson | Writer, depth psychology researcher, Homer" description="Cody Peterson is a writer and depth psychology researcher. Recovery, Jung, Homer, and the essay The Iron Thūmos and the Empty Vessel, open access in Jung Journal." jsonLd={jsonLd} noSuffix>
 
-  <section class="opening">
-    <div class="opening-text">
-      <h1>Cody Peterson is a trickster.</h1>
-      <p>I got sober on a curb outside the Hard Rock in Las Vegas on March 4, 2013. I was thirty-four, homeless, with warrants in four states. I haven't had a drink or a drug since.</p>
-      <p>Five or six years into sobriety I went back to books. Campbell first, then Jung, then Homer, who turned out to have an older language for the things I had been living through: feeling, endurance, the soul. That is what I write about now.</p>
-      <p>I own a rain gutter company in Las Vegas and I still handle the sales. I study psychology at the University of Utah and start a master's at Adams State in January 2027. In between I build things: <a href="https://www.seba.health/">Seba.Health</a>, a depth psychology library and directory, and Logoi, a workbench for reading Greek. My wife and I lived next to Zion for five years. I go back to the canyons whenever I can.</p>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-text">
+      <h1 id="hero-title">Cody Peterson is a trickster.</h1>
+      <div class="hero-prose">
+        <p>I got sober on a curb outside the Hard Rock in Las Vegas on March 4, 2013. I was thirty-four, homeless, with warrants in four states. I haven't had a drink or a drug since.</p>
+        <p>Five or six years into sobriety I went back to books. Campbell first, then Jung, then Homer, who turned out to have an older language for the things I had been living through: feeling, endurance, the soul. That is what I write about now.</p>
+        <p>I own a rain gutter company in Las Vegas and I still handle the sales. I study psychology at the University of Utah and start a master's at Adams State in January 2027. In between I build things: <a href="https://www.seba.health/">Seba.Health</a>, a depth psychology library and directory, and Logoi, a workbench for reading Greek. My wife and I lived next to Zion for five years. I go back to the canyons whenever I can.</p>
+      </div>
     </div>
-    <figure class="opening-portrait">
-      <img src="/images/life/waterfall-portrait-1200.jpg" srcset="/images/life/waterfall-portrait-1200.jpg 900w, /images/life/waterfall-portrait.jpg 1500w" sizes="(min-width: 1000px) 420px, 100vw" width="900" height="1200" alt="Cody in a bucket hat, sitting beside a waterfall in a slot canyon" fetchpriority="high" />
-      <figcaption>Somewhere wet in southern Utah.</figcaption>
-    </figure>
+    <span class="moon hero-moon" aria-hidden="true"></span>
+    <div class="hero-figure">
+      <figure class="hero-portrait">
+        <img src="/images/life/waterfall-portrait-1200.jpg" srcset="/images/life/waterfall-portrait-1200.jpg 900w, /images/life/waterfall-portrait.jpg 1500w" sizes="(min-width: 1000px) 380px, 80vw" width="900" height="1200" alt="Cody in a bucket hat, sitting beside a waterfall in a slot canyon" fetchpriority="high" />
+        <figcaption>Somewhere wet in southern Utah.</figcaption>
+      </figure>
+    </div>
   </section>
 
-  <section class="column">
-    <h2>New</h2>
-    <p class="citation">The Iron Thūmos and the Empty Vessel: A Homeric Response to “Answer to Job.” <em>Jung Journal: Culture &amp; Psyche</em> 20(3), September 2026. Open access.</p>
-    <p>Why does Odysseus turn down immortality? Homer's answer is in his grammar, and it turns out to be a reply to Jung's hardest book.</p>
-    <p><a href={doi}>Read it at the journal, free</a> · <a href="/iron-thumos/">About the essay</a></p>
+  <section class="title-page" aria-labelledby="new-title">
+    <h2 id="new-title">New</h2>
+    <p class="citation">
+      <span class="tp-title">The Iron Thūmos and the Empty Vessel:</span>
+      <span class="tp-sub">A Homeric Response to “Answer to Job.”</span>
+      <span class="tp-journal"><em>Jung Journal: Culture &amp; Psyche</em> 20(3), September 2026. Open access.</span>
+    </p>
+    <div class="tp-body">
+      <figure class="epigraph">
+        <blockquote class="greek" lang="grc"><p><span class="colon">τέτλαθι δή, κραδίη·</span> <span class="colon">καὶ κύντερον ἄλλο ποτʼ ἔτλης.</span></p></blockquote>
+        <figcaption><span class="epigraph-translation">“Endure now, my kradiē; you endured something even more dog-like than this before.”</span><cite><em>Odyssey</em> 20.18, trans. Cody Peterson</cite></figcaption>
+      </figure>
+      <p class="tp-lede">Why does Odysseus turn down immortality? Homer's answer is in his grammar, and it turns out to be a reply to Jung's hardest book.</p>
+      <p class="actions"><a class="button" href={doi}>Read it at the journal, free</a><a href="/iron-thumos/">About the essay</a></p>
+    </div>
   </section>
 
-  <figure class="wide">
-    <img src="/images/life/coffee-is-love-summit-1200.jpg" srcset="/images/life/coffee-is-love-summit-1200.jpg 1200w, /images/life/coffee-is-love-summit.jpg 2000w" sizes="(min-width: 1148px) 1100px, 100vw" width="1200" height="900" alt="Cody in a climbing helmet that reads Coffee is Love, grinning above Zion Canyon" loading="lazy" />
+  <figure class="plate">
+    <img src="/images/life/coffee-is-love-summit-1200.jpg" srcset="/images/life/coffee-is-love-summit-1200.jpg 1200w, /images/life/coffee-is-love-summit.jpg 2000w" sizes="(min-width: 1296px) 1200px, 100vw" width="1200" height="900" alt="Cody in a climbing helmet that reads Coffee is Love, grinning above Zion Canyon" loading="lazy" />
     <figcaption>The helmet says what it says.</figcaption>
   </figure>
 
-  <section class="column">
-    <h2>Writing</h2>
-    <ol class="writing">
-      <li>
-        <span class="year">2026</span>
-        <div>
-          <p>The Iron Thūmos and the Empty Vessel: A Homeric Response to “Answer to Job.” <em>Jung Journal: Culture &amp; Psyche</em> 20(3), 103–117. Open access.</p>
-          <p><a href={doi}>Read at the journal</a> · <a href="/iron-thumos/">Details</a></p>
-        </div>
-      </li>
-      <li>
-        <span class="year">2025</span>
-        <div>
-          <p>Taming Wild Beasts. <em>Jung Journal: Culture &amp; Psyche</em> 19(2), 235–239. On active imagination, dreams, the anima, and the archetype of the Alcoholic.</p>
-          <p><a href="https://doi.org/10.1080/19342039.2025.2487105">Read at the journal</a></p>
-        </div>
-      </li>
-      <li>
-        <span class="year">2024</span>
-        <div class="with-cover">
+  <section class="home-band" aria-labelledby="writing-title">
+    <h2 id="writing-title">Writing</h2>
+    <div class="band-main">
+      <ol class="writing">
+        <li>
+          <span class="year">2026</span>
           <div>
-            <p><em>The Shadow of a Figure of Light: The Archetype of the Alcoholic and the Journey to Enlightenment.</em> Chiron Publications. Jung, Bill Wilson, and the Twelve Steps, written from inside recovery.</p>
-            <p><a href="/book/">About the book</a></p>
+            <p>The Iron Thūmos and the Empty Vessel: A Homeric Response to “Answer to Job.” <em>Jung Journal: Culture &amp; Psyche</em> 20(3), 103–117. Open access.</p>
+            <p class="entry-links"><a href={doi}>Read at the journal</a><a href="/iron-thumos/">Details</a></p>
           </div>
-          <a href="/book/" class="cover"><img src="/images/book-cover.jpg" width="90" height="135" alt="Cover of The Shadow of a Figure of Light" loading="lazy" /></a>
-        </div>
-      </li>
-    </ol>
-    <p>A follow-up essay is under review. A second book is underway.</p>
-    <blockquote>
-      <p>“It rests on the solid foundations of careful scholarship and personal experience.”</p>
-      <footer>Murray Stein, on <em>The Shadow of a Figure of Light</em></footer>
-    </blockquote>
+        </li>
+        <li>
+          <span class="year">2025</span>
+          <div>
+            <p>Taming Wild Beasts. <em>Jung Journal: Culture &amp; Psyche</em> 19(2), 235–239. On active imagination, dreams, the anima, and the archetype of the Alcoholic.</p>
+            <p class="entry-links"><a href="https://doi.org/10.1080/19342039.2025.2487105">Read at the journal</a></p>
+          </div>
+        </li>
+        <li class="book-entry">
+          <span class="year">2024</span>
+          <div class="book-grid">
+            <a href="/book/" class="cover"><img src="/images/book-cover.jpg" width="300" height="454" alt="Cover of The Shadow of a Figure of Light" loading="lazy" /></a>
+            <div>
+              <p><em>The Shadow of a Figure of Light: The Archetype of the Alcoholic and the Journey to Enlightenment.</em> Chiron Publications. Jung, Bill Wilson, and the Twelve Steps, written from inside recovery.</p>
+              <p class="entry-links"><a href="/book/">About the book</a></p>
+              <blockquote>
+                <p>“It rests on the solid foundations of careful scholarship and personal experience.”</p>
+                <footer>Murray Stein, on <em>The Shadow of a Figure of Light</em></footer>
+              </blockquote>
+            </div>
+          </div>
+        </li>
+      </ol>
+      <p>A follow-up essay is under review. A second book is underway.</p>
+    </div>
   </section>
 
-  <figure class="wide tall">
-    <img src="/images/life/red-cliffs-alpenglow-1200.jpg" srcset="/images/life/red-cliffs-alpenglow-1200.jpg 900w, /images/life/red-cliffs-alpenglow.jpg 1500w" sizes="(min-width: 900px) 680px, 100vw" width="900" height="1200" alt="Red sandstone cliffs lit orange at sunset above a stand of junipers" loading="lazy" />
-    <figcaption>Last light on the red cliffs.</figcaption>
-  </figure>
+  <div class="split">
+    <div class="split-text">
+      <section aria-labelledby="working-title">
+        <h2 id="working-title">What I'm working on</h2>
+        <p>In <em>Odyssey</em> 20, Odysseus tells his own heart to endure. I count how Homer's words for suffering and enduring are shared out between gods and mortals, and I ask what that says about where value comes from. I use AI to search, sort, and check. The readings, and the mistakes, are mine.</p>
+        <p><a href="/research/">The research, in detail</a></p>
+      </section>
+      <section aria-labelledby="talks-title">
+        <h2 id="talks-title">Talks</h2>
+        <p>I teach and talk about recovery, dreams, and Homer. In October 2025 I taught an online lecture for the C.G. Jung Institute Zürich on the archetype of the Alcoholic. Fourteen recordings are in the lecture archive.</p>
+        <p class="entry-links actions"><a href="/videos/">Lectures and workshops</a><a href="/media/">Interviews and podcasts</a></p>
+      </section>
+    </div>
+    <figure>
+      <img src="/images/life/red-cliffs-alpenglow-1200.jpg" srcset="/images/life/red-cliffs-alpenglow-1200.jpg 900w, /images/life/red-cliffs-alpenglow.jpg 1500w" sizes="(min-width: 900px) 460px, 100vw" width="900" height="1200" alt="Red sandstone cliffs lit orange at sunset above a stand of junipers" loading="lazy" />
+      <figcaption>Last light on the red cliffs.</figcaption>
+    </figure>
+  </div>
 
-  <section class="column">
-    <h2>What I'm working on</h2>
-    <p>In <em>Odyssey</em> 20, Odysseus tells his own heart to endure. I count how Homer's words for suffering and enduring are shared out between gods and mortals, and I ask what that says about where value comes from. I use AI to search, sort, and check. The readings, and the mistakes, are mine.</p>
-    <p><a href="/research/">The research, in detail</a></p>
-  </section>
-
-  <section class="column">
-    <h2>Talks</h2>
-    <p>I teach and talk about recovery, dreams, and Homer. In October 2025 I taught an online lecture for the C.G. Jung Institute Zürich on the archetype of the Alcoholic. Fourteen recordings are in the lecture archive.</p>
-    <p><a href="/videos/">Lectures and workshops</a> · <a href="/media/">Interviews and podcasts</a></p>
-  </section>
-
-  <figure class="wide">
-    <img src="/images/life/three-peaks-morning-1200.jpg" srcset="/images/life/three-peaks-morning-1200.jpg 1200w, /images/life/three-peaks-morning.jpg 2000w" sizes="(min-width: 1148px) 1100px, 100vw" width="1200" height="900" alt="Three sandstone peaks above the trees in Zion Canyon under a streaked sky" loading="lazy" />
+  <figure class="plate">
+    <img src="/images/life/three-peaks-morning-1200.jpg" srcset="/images/life/three-peaks-morning-1200.jpg 1200w, /images/life/three-peaks-morning.jpg 2000w" sizes="(min-width: 1296px) 1200px, 100vw" width="1200" height="900" alt="Three sandstone peaks above the trees in Zion Canyon under a streaked sky" loading="lazy" />
     <figcaption>Zion, early.</figcaption>
   </figure>
 
-  <section class="column closing">
+  <section class="closing" aria-labelledby="write-title">
     <figure class="cap">
-      <img src="/images/life/last-light-on-the-cap-1200.jpg" srcset="/images/life/last-light-on-the-cap-1200.jpg 900w, /images/life/last-light-on-the-cap.jpg 1500w" sizes="(min-width: 700px) 300px, 100vw" width="900" height="1200" alt="The last of the sun on the top of a sandstone peak" loading="lazy" />
+      <img src="/images/life/last-light-on-the-cap-1200.jpg" srcset="/images/life/last-light-on-the-cap-1200.jpg 900w, /images/life/last-light-on-the-cap.jpg 1500w" sizes="(min-width: 760px) 340px, 100vw" width="900" height="1200" alt="The last of the sun on the top of a sandstone peak" loading="lazy" />
       <figcaption>Sun on the cap.</figcaption>
     </figure>
     <div>
-      <h2>Write to me</h2>
-      <p><a href="mailto:cody@seba.health">cody@seba.health</a>. I answer.</p>
+      <h2 id="write-title">Write to me</h2>
+      <p class="write-line"><a href="mailto:cody@seba.health">cody@seba.health</a>. I answer.</p>
       <figure class="truck">
         <img src="/images/life/city-seamless-truck-1000.jpg" width="750" height="1000" alt="The City Seamless work truck" loading="lazy" />
         <figcaption>The truck.</figcaption>

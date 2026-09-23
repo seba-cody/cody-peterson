@@ -228,7 +228,7 @@ const globalSchema = {
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Serif+Display:ital,wght@0,300..500;1,300..500&display=swap" rel="stylesheet" />
 
   <meta property="og:title" content={pageTitle} />
   <meta property="og:description" content={description} />
@@ -257,7 +257,7 @@ const globalSchema = {
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="header-inner">
-      <a href="/" class="site-name">Cody Peterson</a>
+      <a href="/" class="site-name"><span class="moon" aria-hidden="true"></span>Cody Peterson</a>
       <nav class="site-nav" aria-label="Primary navigation">
         {navLinks.map(link => (
           <a href={link.href} class:list={[{ active: isActive(link.href) }]} aria-current={isActive(link.href) ? 'page' : undefined}>
@@ -292,9 +292,24 @@ const globalSchema = {
 
   <footer class="site-footer">
     <div class="column">
-      <p><a href="https://www.seba.health">Seba.Health</a> · Logoi, coming soon · <a href="https://www.cityseamless.com">City Seamless</a> · <a href="https://www.702alliance.com">702 Alliance</a></p>
-      <p><a href="https://x.com/AlkyArchetype" rel="me noopener" target="_blank">X</a> · <a href="https://www.youtube.com/@cody-peterson-author" rel="me noopener" target="_blank">YouTube</a> · <a href="https://www.linkedin.com/in/cody-peterson-487224229/" rel="me noopener" target="_blank">LinkedIn</a> · <a href="https://orcid.org/0009-0009-2028-0154" rel="me noopener" target="_blank">ORCID</a> · <a href="mailto:cody@seba.health">cody@seba.health</a></p>
-      <p class="muted">© {year} Cody Peterson</p>
+      <p class="footer-mark"><span class="moon" aria-hidden="true"></span>Cody Peterson</p>
+      <div class="footer-lists">
+        <ul class="footer-links">
+          <li><a href="https://www.seba.health">Seba.Health</a></li>
+          <li>Logoi, coming soon</li>
+          <li><a href="https://www.cityseamless.com">City Seamless</a></li>
+          <li><a href="https://www.702alliance.com">702 Alliance</a></li>
+        </ul>
+        <ul class="footer-links">
+          <li><a href="https://x.com/AlkyArchetype" rel="me noopener" target="_blank">X</a></li>
+          <li><a href="https://www.youtube.com/@cody-peterson-author" rel="me noopener" target="_blank">YouTube</a></li>
+          <li><a href="https://www.linkedin.com/in/cody-peterson-487224229/" rel="me noopener" target="_blank">LinkedIn</a></li>
+          <li><a href="https://orcid.org/0009-0009-2028-0154" rel="me noopener" target="_blank">ORCID</a></li>
+          <li><a href="/feed.xml" type="application/rss+xml">RSS feed</a></li>
+          <li><a href="mailto:cody@seba.health">cody@seba.health</a></li>
+        </ul>
+        <p class="muted">© {year} Cody Peterson</p>
+      </div>
     </div>
   </footer>
 

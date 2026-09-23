@@ -12,12 +12,20 @@ const jsonLd = {
 ---
 <Base title="The Iron Thūmos and the Empty Vessel" description="Cody Peterson’s open-access Jung Journal essay on Homer, endurance, and Jung’s Answer to Job. Read the published article or download the PDF at Taylor & Francis." jsonLd={jsonLd}>
   <header class="page-header essay-header">
-    <div class="page-header-inner">
-      <h1>The Iron Thūmos and the Empty Vessel.</h1>
-      <p class="subtitle">{ironThumos.subtitle}</p>
-      <p class="essay-byline">Cody Peterson · <em>Jung Journal: Culture &amp; Psyche</em>, 20(3), 103–117</p>
-      <div class="hero-actions"><a class="text-link" href={ironThumos.fullText}>Read the essay free</a><a class="text-link" href={ironThumos.pdf}>Download PDF at Taylor &amp; Francis</a></div>
-      <p class="source-note">Published online 9 September 2026. The full text and PDF are freely available from the publisher.</p>
+    <div class="page-header-inner essay-title-page">
+      <div class="essay-title-main">
+        <h1>The Iron Thūmos and the Empty Vessel.</h1>
+        <p class="subtitle">{ironThumos.subtitle}</p>
+        <p class="essay-byline">Cody Peterson · <em>Jung Journal: Culture &amp; Psyche</em>, 20(3), 103–117</p>
+      </div>
+      <div class="essay-title-side">
+        <figure class="epigraph">
+          <blockquote class="greek" lang="grc"><p><span class="colon">τέτλαθι δή, κραδίη·</span> <span class="colon">καὶ κύντερον ἄλλο ποτʼ ἔτλης.</span></p></blockquote>
+          <figcaption><span class="epigraph-translation">“Endure now, my kradiē; you endured something even more dog-like than this before.”</span><cite><em>Odyssey</em> 20.18, trans. Cody Peterson</cite></figcaption>
+        </figure>
+        <div class="hero-actions"><a class="text-link" href={ironThumos.fullText}>Read the essay free</a><a class="text-link" href={ironThumos.pdf}>Download PDF at Taylor &amp; Francis</a></div>
+        <p class="source-note">Published online 9 September 2026. The full text and PDF are freely available from the publisher.</p>
+      </div>
     </div>
   </header>
   <section class="section paper-section" aria-labelledby="essay-question">
@@ -36,9 +44,3 @@ const jsonLd = {
     <div class="section-inner research-intro"><div><span class="eyebrow">Publication</span><h2 id="essay-citation">Cite the essay.</h2></div><div class="prose"><p>Peterson, Cody. 2026. “The Iron Thūmos and the Empty Vessel: A Homeric Response to ‘Answer to Job.’” <em>Jung Journal: Culture &amp; Psyche</em> 20 (3): 103–117.</p><p><a href={`https://doi.org/${ironThumos.doi}`}>doi:{ironThumos.doi}</a></p><p class="source-note">Published under a Creative Commons Attribution–NonCommercial–NoDerivatives 4.0 license.</p><a class="text-link" href="/research/#publications">All publications</a></div></div>
   </section>
 </Base>
-<style>
-  .essay-header h1 { max-width: 1050px; font-size: clamp(2.5rem, 6vw, 5.5rem); }
-  .essay-byline { margin: 1.5rem 0; }
-  .essay-header .source-note { margin-top: 1.4rem; }
-  .essay-header .hero-actions { flex-wrap: wrap; }
-</style>
