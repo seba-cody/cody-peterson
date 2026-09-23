@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import { ironThumos } from '../../data/iron-thumos';
+import { learningToFeel } from '../../data/posts';
+const url = 'https://www.cody-peterson.com/writing/learning-to-feel/';
+const doi = `https://doi.org/${ironThumos.doi}`;
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'BlogPosting',
+  '@id': `${url}#post`,
+  url,
+  mainEntityOfPage: url,
+  headline: 'Learning to Feel',
+  author: { '@id': 'https://www.cody-peterson.com/#person' },
+  publisher: { '@id': 'https://www.cody-peterson.com/#person' },
+  datePublished: '2026-09-23',
+  inLanguage: 'en-US',
+  citation: { '@id': doi },
+};
+---
+<Base title="Learning to Feel" description="Cody Peterson on a lost experience of God, sobriety, feeling, and how Homer led to his Jung Journal essay The Iron Thūmos and the Empty Vessel." jsonLd={jsonLd}>
+  <header class="page-header">
+    <div class="page-header-inner">
+      <h1>Learning to Feel</h1>
+      <p class="essay-byline">Cody Peterson · 23 September 2026</p>
+    </div>
+  </header>
+  <article class="column prose">
+    {learningToFeel.paragraphs.map(html => <p set:html={html} />)}
+    <p><a href={doi}>Read <em>The Iron Thūmos and the Empty Vessel</em>, free and open access</a> · <a href="/iron-thumos/">About the essay</a></p>
+    <p class="source-note">Peterson, Cody. 2026. “The Iron Thūmos and the Empty Vessel: A Homeric Response to ‘Answer to Job.’” <em>Jung Journal: Culture &amp; Psyche</em> 20 (3): 103–117. <a href={doi}>doi:{ironThumos.doi}</a></p>
+  </article>
+</Base>
