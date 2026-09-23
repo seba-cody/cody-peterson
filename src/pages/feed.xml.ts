@@ -1,4 +1,5 @@
 import { ironThumos } from '../data/iron-thumos';
+import { learningToFeel } from '../data/posts';
 export const prerender = true;
 
 // Public posts, newest first. Each entry links a page on this site; include the
@@ -6,6 +7,14 @@ export const prerender = true;
 const site = 'https://www.cody-peterson.com';
 const doiURL = `https://doi.org/${ironThumos.doi}`;
 const entries = [
+  {
+    title: learningToFeel.title,
+    path: `/writing/${learningToFeel.slug}/`,
+    date: `${learningToFeel.date}T12:00:00Z`,
+    summary: learningToFeel.summary,
+    html: learningToFeel.paragraphs.map(p => `<p>${p}</p>`).join('\n')
+      + `\n<p><a href="${doiURL}">Read <em>The Iron Thūmos and the Empty Vessel</em>, free and open access</a> (${doiURL})</p>`,
+  },
   {
     title: `${ironThumos.title}: ${ironThumos.subtitle}`,
     path: '/iron-thumos/',
