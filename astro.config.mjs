@@ -5,7 +5,7 @@ import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
   site: 'https://www.cody-peterson.com',
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: page => !page.includes('/book/thanks/') })],
   adapter: cloudflare(),
   vite: {
     ssr: {
