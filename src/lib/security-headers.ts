@@ -5,7 +5,8 @@
 // Cloudflare serves without running the Worker. Keep the two the same.
 //
 // The CSP lists every source the pages use: the site's own files, the Umami
-// script and its /api/send beacon on analytics.seba.health, Google Fonts,
+// script and its /api/send beacon on analytics.seba.health, the Cloudflare
+// Web Analytics beacon the zone adds to live pages, Google Fonts,
 // YouTube thumbnails on /videos/, and the Buttondown letters form. Page
 // scripts are built as files (vite assetsInlineLimit 0), so scripts need no
 // 'unsafe-inline'; inline style attributes on /book/ do. The buy button posts
@@ -13,11 +14,11 @@
 // does not restrict. Nothing frames this site.
 export const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  "script-src 'self' https://analytics.seba.health",
+  "script-src 'self' https://analytics.seba.health https://static.cloudflareinsights.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data: https://img.youtube.com",
-  "connect-src 'self' https://analytics.seba.health",
+  "connect-src 'self' https://analytics.seba.health https://cloudflareinsights.com",
   "form-action 'self' https://buttondown.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
