@@ -1,10 +1,7 @@
 import type { APIRoute } from 'astro';
+import { env as cfEnv } from 'cloudflare:workers';
 
 export const prerender = false;
-
-interface CFLocals {
-  runtime: { env: Record<string, string> };
-}
 
 const BOOK = {
   formats: {
@@ -28,8 +25,8 @@ function json(body: unknown, status = 200): Response {
   });
 }
 
-export const POST: APIRoute = async ({ request, locals }) => {
-  const env = (locals as unknown as CFLocals).runtime?.env ?? {};
+export const POST: APIRoute = async ({ request }) => {
+  const env = (cfEnv ?? {}) as unknown as Record<string, string | undefined>;
   const secret = env.STRIPE_SECRET_KEY ?? import.meta.env.STRIPE_SECRET_KEY ?? '';
 
   if (!secret) {

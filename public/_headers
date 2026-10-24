@@ -1,0 +1,9 @@
+# Security headers for the static pages and files Cloudflare serves without
+# running the Worker (2026-10-24). The Worker's own responses (/api/*) get the
+# same set from src/lib/security-headers.ts. Keep the two the same.
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://analytics.seba.health; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://img.youtube.com; connect-src 'self' https://analytics.seba.health; form-action 'self' https://buttondown.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'

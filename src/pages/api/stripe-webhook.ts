@@ -1,10 +1,7 @@
 import type { APIRoute } from 'astro';
+import { env as cfEnv } from 'cloudflare:workers';
 
 export const prerender = false;
-
-interface CFLocals {
-  runtime: { env: Record<string, unknown> };
-}
 
 interface SendEmailBinding {
   send(message: unknown): Promise<void>;
@@ -94,8 +91,8 @@ function buildRawEmail(from: string, to: string, subject: string, body: string):
   ].join('\r\n');
 }
 
-export const POST: APIRoute = async ({ request, locals }) => {
-  const env = (locals as unknown as CFLocals).runtime?.env ?? {};
+export const POST: APIRoute = async ({ request }) => {
+  const env = (cfEnv ?? {}) as unknown as Record<string, unknown>;
   const secret = (env.STRIPE_WEBHOOK_SECRET as string) ?? '';
   const mailer = env.ORDER_MAIL as SendEmailBinding | undefined;
 

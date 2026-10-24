@@ -1,0 +1,26 @@
+// The Worker config Astro's Cloudflare adapter builds from (astro.config.mjs
+// passes it as `configPath`). The build writes dist/server/wrangler.json from
+// it, and `wrangler deploy` after a build uses that file.
+// wrangler.jsonc is the same Worker for a bare `wrangler deploy` from a clean
+// checkout (the Cloudflare Git build): keep the bindings, flags and dates of
+// the two files the same.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cody-peterson",
+  "compatibility_date": "2026-04-10",
+  "observability": {
+    "enabled": true
+  },
+  "compatibility_flags": [
+    "global_fetch_strictly_public",
+    "nodejs_compat"
+  ],
+  "assets": {
+    "binding": "ASSETS"
+  },
+  "send_email": [
+    {
+      "name": "ORDER_MAIL"
+    }
+  ]
+}

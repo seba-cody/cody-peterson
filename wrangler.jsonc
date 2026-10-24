@@ -1,3 +1,9 @@
+// A bare `wrangler deploy` from a clean checkout (the Cloudflare Git build)
+// reads this file: it runs the release gate and the Astro build, then uploads
+// the built Worker. Astro itself builds from wrangler.astro.jsonc; keep the
+// bindings, flags and dates of the two files the same. After any build,
+// `wrangler deploy` uses the generated dist/server/wrangler.json instead, so
+// release with `npm run deploy`, which always runs the gate first.
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "cody-peterson",
@@ -5,7 +11,11 @@
   "observability": {
     "enabled": true
   },
-  "main": "dist/_worker.js/index.js",
+  "main": "dist/server/entry.mjs",
+  "no_bundle": true,
+  "rules": [
+    { "type": "ESModule", "globs": ["**/*.js", "**/*.mjs"] }
+  ],
   "build": {
     "command": "node scripts/build-release.mjs"
   },
@@ -15,7 +25,7 @@
   ],
   "assets": {
     "binding": "ASSETS",
-    "directory": "dist"
+    "directory": "dist/client"
   },
   "send_email": [
     {

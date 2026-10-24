@@ -7,8 +7,8 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const git = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
 const changed = git('diff', '--name-only', 'HEAD');
 const untracked = git('ls-files', '--others', '--',
-  'src', 'public', 'scripts', 'astro.config.mjs', 'package.json',
-  'package-lock.json', 'wrangler.jsonc', 'tsconfig.json');
+  'src', 'public', 'scripts', 'astro.config.mjs', 'package.json', 'wrangler.astro.jsonc',
+  'package-lock.json', 'wrangler.jsonc', 'tsconfig.json', '.node-version');
 
 if (changed || untracked) {
   console.error('Release stopped: build from a clean checkout of the reviewed commit.');
@@ -18,7 +18,7 @@ if (changed || untracked) {
 }
 
 console.log(`Building committed release ${git('rev-parse', 'HEAD')}`);
-const build = spawnSync(process.execPath, ['node_modules/astro/astro.js', 'build'], {
+const build = spawnSync(process.execPath, ['node_modules/astro/bin/astro.mjs', 'build'], {
   cwd: root,
   stdio: 'inherit',
 });
