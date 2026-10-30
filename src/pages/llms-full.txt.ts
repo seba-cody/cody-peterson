@@ -11,7 +11,7 @@ Contact: cody@seba.health
 ORCID: https://orcid.org/0009-0009-2028-0154
 
 ## Biography
-Cody Peterson is a trickster. He is a writer and independent depth psychology researcher working at the border of Homeric philology and archetypal psychology, examining what inherited language preserves of feeling and the formation of value. He designs AI-assisted research programmes and founded Seba.Health. He studies psychology at the University of Utah and has been accepted to a master's programme at Adams State University beginning January 2027. This is a scholarly and author website, not an offer of licensed clinical practice.
+Cody Peterson is a trickster. He is a writer and independent depth psychology researcher working at the border of Homeric philology and archetypal psychology, examining what inherited language preserves of feeling and the formation of value. He designs AI-assisted research programmes and founded Seba.Health. He studies psychology at the University of Utah and has been accepted to a master's programme at Adams State University beginning in fall 2027. This is a scholarly and author website, not an offer of licensed clinical practice.
 
 ## Research
 The Homeric research joins close reading to reproducible corpus analysis. It asks how grammar distributes feeling, agency, and the result of endurance, and how later translations and psychological readings interpret those relations. Original-language evidence, translations, reception, corpus observations, and psychological interpretation remain distinct. A grammatical distribution does not by itself prove a psychological theory. The comparison does not assume a linear decline across translations.
